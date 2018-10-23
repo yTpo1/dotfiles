@@ -1,0 +1,14 @@
+# ~/.config/i3/config
+
+bar {
+        position top
+        status_command i3status
+}
+
+#me# Set wallpaper
+exec_always feh --bg-scale /home/ghost1/Pictures/cyb_bg.jpg
+#me# Set screen resolution
+exec --no-startup-id xrandr --output VGA-1 --mode 1920x1080
+#xrandr --output VGA-1 --mode 1920x1080
+# 1600x1200 1680x1050 1920x1080
+
