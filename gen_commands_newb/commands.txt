@@ -1,4 +1,0 @@
-# change screen resolution on virtual box
-xrandr --output VGA-1 --mode 14490x900
-# to see available modes
-xradr

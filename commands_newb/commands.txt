@@ -1,0 +1,75 @@
+# system info
+neofetch
+
+
+# i use to see hardware information. 
+# (-F --full)(-G --graphics)(-x extra)
+inxi -FGx
+
+
+mhwd
+
+
+# print working directory
+pwd
+
+# rename a folder
+mv oldname/ newname/
+
+# change screen resolution on virtual box
+xrandr --output VGA-1 --mode 14490x900
+# to see available modes
+xradr
+
+
+######### Information
+
+$ man %command%
+$ info %command%
+$ help %command%
+$ %command% -h
+$ %command% --help
+
+Don't know what to look for?
+$ apropos %something%
+
+Check the Wikis (most troubleshoots work for all distros):
+https://wiki.archlinux.org
+https://wiki.gentoo.org
+
+/g/'s Wiki on GNU/Linux:
+https://wiki.installgentoo.com/index.php/Category:GNU/Linux
+
+>What distro should I choose?
+https://wiki.installgentoo.com/index.php/Babbies_First_Linux
+>What are some cool programs?
+https://wiki.archlinux.org/index.php/list_of_applications
+https://directory.fsf.org/wiki/Main_Page
+>What are some cool terminal commands?
+http://www.commandlinefu.com/
+http://cheat.sh/
+>Where can I learn the command line?
+http://mywiki.wooledge.org/BashGuide
+http://linuxcommand.org/tlcl.php
+http://www.grymoire.com/Unix/
+>Where can I learn more about Free Software?
+https://www.gnu.org/philosophy/philosophy.html
+>How to break out of the botnet?
+https://prism-break.org/en/categories/gnu-linux
+
+/fglt/'s website and copypasta collection:
+http://fglt.nl && https://p.teknik.io/wJ9Zy
+
+######### no explanation needed
+cd
+ls
+touch
+less
+
+######### Arch distro specific ########
+
+# uprgade system
+sudo pacman -Syu
+
+# download an package (app/program)
+sudo pacman -S [name]

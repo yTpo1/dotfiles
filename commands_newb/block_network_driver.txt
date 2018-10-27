@@ -1,0 +1,6 @@
+# manjaro, network driver on my pc is not working, so to have internet access i use r8169
+
+# /etc/modprobe.d/nobeep.conf
+# Do not load the 'r8169' module on boot
+blacklist r8168
+# blacklist r8169
