@@ -6,6 +6,9 @@ neofetch
 # (-F --full)(-G --graphics)(-x extra)
 inxi -FGx
 
+# list pluged in devices
+lsblk
+
 # see disk space usage (-h human readble form)
 df -h
 
