@@ -1,0 +1,40 @@
+source:
+https://www.youtube.com/watch?v=nSHOb8YU9Gw&t=1181s
+
+1 Users
+1.1 Adding a new user
+# -g wheel : add to group wheel
+# -m create home directory
+useradd -m -g wheel ghost1
+passwd ghost1
+
+1.2
+# give a user sudo access
+sudo vim /etc/sudoers
+
+#unccoment 
+wheel ALL=(ALL) ALL
+
+2 GUI
+2.1 WM
+pacman -S xorg-server xorg-xinit
+
+# maybe i3-gaps
+# maybe extra: network manager (nm-applet)
+
+pacman -S i3-gaps i3status rxvt-unicode dmenu
+
+# make the X server start i3 when it starts:
+# in ~/.xinitrc, put:
+exec i3
+
+2.2 Fonts
+ttf-linux-libertine ttf-inconsolata 
+# or 
+pacman -S noto-fonts
+
+# to configure
+#in ~/.config/fontconfig/fonts.conf
+
+# to start WM
+startx
