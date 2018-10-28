@@ -1,8 +1,13 @@
+vim
+thunar
 firefox
 neofetch
 feh - image viewer, wallpaper setter
 
-Development:
+# File managers
+thunar
+
+# Development
 python
 git
 
