@@ -52,6 +52,8 @@ https://wiki.archlinux.org/index.php/Installation_guide
       >default 
       # choose 2-4, default 2
       >defualt
+      #first sector
+      >default
       # Swap. For hybernate computer. Has different recomendations. 150% of ram size. 
       # Since im doing it for a virtual machine, I can't offer alot of space
       +2G
@@ -120,13 +122,14 @@ pacstrap /mnt base base-devel vim git
     
     3.4 Localization
     # uncomment. If need multiple lang, uncomment more
-    # en_US.UTF-8 UTF-8
-    # en_US ISO-8859-1
     vim /etc/locale.gen
+        en_US.UTF-8 UTF-8
+        en_US ISO-8859-1
     # read uncommented like and generate
     locale-gen
-    # write: LANG=en-US.UTF-8
+    # write: 
     vim /etc/locale.conf
+        LANG=en_US.UTF-8
     
     
     3.5 Network configuration
