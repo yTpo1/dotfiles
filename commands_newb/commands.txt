@@ -1,7 +1,6 @@
 # system info
 neofetch
 
-
 # i use to see hardware information. 
 # (-F --full)(-G --graphics)(-x extra)
 inxi -FGx
@@ -12,8 +11,8 @@ lsblk
 # see disk space usage (-h human readble form)
 df -h
 
+# 
 mhwd
-
 
 # print working directory
 pwd
@@ -26,9 +25,10 @@ xrandr --output VGA-1 --mode 14490x900
 # to see available modes
 xradr
 
+# i used to put iso file on a usb
+dd
 
 ######### Information
-
 $ man %command%
 $ info %command%
 $ help %command%
@@ -38,6 +38,20 @@ $ %command% --help
 Don't know what to look for?
 $ apropos %something%
 
+######### no explanation needed
+cd
+ls
+touch
+less
+
+######### Arch distro specific ########
+# uprgade system
+sudo pacman -Syu
+
+# download an package (app/program)
+sudo pacman -S [name]
+
+###### other
 Check the Wikis (most troubleshoots work for all distros):
 https://wiki.archlinux.org
 https://wiki.gentoo.org
@@ -64,17 +78,3 @@ https://prism-break.org/en/categories/gnu-linux
 
 /fglt/'s website and copypasta collection:
 http://fglt.nl && https://p.teknik.io/wJ9Zy
-
-######### no explanation needed
-cd
-ls
-touch
-less
-
-######### Arch distro specific ########
-
-# uprgade system
-sudo pacman -Syu
-
-# download an package (app/program)
-sudo pacman -S [name]
