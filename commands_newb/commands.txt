@@ -26,6 +26,7 @@ xrandr --output VGA-1 --mode 14490x900
 xradr
 
 # i used to put iso file on a usb
+# dd if=Downloads/myfile.iso of=/dev/sdb status="progress"
 dd
 
 ######### Information
