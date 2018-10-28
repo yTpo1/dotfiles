@@ -83,9 +83,70 @@ Step by step instalation and configuration instruction
     
     mkdir /mnt/home
     mkdir /mnt/boot
-    
     mount /dev/sdb1 /mnt/boot
     mount /dev/sdb4 /mnt/home
+
+2 Instalation
+# install arch linux where i tell it to. And install additional packages
+pacstrap /mnt base base-devel vim git
+    
+3 Configure the system
+
+    3.1 Fstab
+    
+    genfstab -U /mnt >> /mnt/etc/fstab
+    
+    3.2 Chroot
+    
+    # get out of usb into your arch linux
+    arch-chroot /mnt
+    
+    3.3 Seting up a network manager
+    # By default no arch doesn't have internet access
+    pacman -S networkmanager
+    # telling systemd to automatickly start it
+    systemctl enable NetworkManager
+    
+    3.3 Time zone
+    ls usr/share/zoneinfo/
+    ls /etc/localtime
+    # ln - link
+    ln -sf /usr/share/zoneinfo/Europe/Kiev /etc/localtime
+    
+    3.4 Localization
+    # uncomment. If need multiple lang, uncomment more
+    # en_US.UTF-8 UTF-8
+    # en_US ISO-8859-1
+    vim /etc/locale.gen
+    # read uncommented like and generate
+    locale-gen
+    # write: LANG=en-US.UTF-8
+    vim /etc/locale.conf
     
     
+    3.5 Network configuration
+    vim /etc/hostname
+    # choose a hostname
+    myarch
+    
+    3.6 Initramfs
+    3.7 Root password
+    #set a password for root
+    passwd
+    
+    3.8 Boot loader
+    #grub as my bootloader
+    pacman -S grub
+    grub-install --target=i386-pc /dev/sdb
+    grub-mkconfig -o /boot/grub/grub.cfg
+    
+4 Reboot
+exit
+umount -R /mnt
+reboot
+
+
+
+
+
 
