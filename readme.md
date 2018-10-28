@@ -41,6 +41,8 @@ https://wiki.archlinux.org/index.php/Installation_guide
       >default
       # choose 1-4, default 1
       >defualt
+      # first sector
+      >default (2048)
       # how big partition to be
       # first is boot. We want 200 megabytes
       +200M
