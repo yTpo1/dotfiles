@@ -29,8 +29,7 @@ pacman -S i3-gaps i3status rxvt-unicode dmenu
 exec i3
 
 2.2 Fonts
-ttf-linux-libertine ttf-inconsolata 
-# or 
+pacman -S ttf-linux-libertine ttf-inconsolata 
 pacman -S noto-fonts
 
 # to configure
