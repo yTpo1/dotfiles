@@ -1,5 +1,7 @@
 # ~/.config/i3/config
 
+font pango:monospace 13
+
 bar {
         position top
         status_command i3status
