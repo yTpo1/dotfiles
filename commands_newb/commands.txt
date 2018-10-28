@@ -6,8 +6,8 @@ neofetch
 # (-F --full)(-G --graphics)(-x extra)
 inxi -FGx
 
-# see disk space usage
-df
+# see disk space usage (-h human readble form)
+df -h
 
 mhwd
 
