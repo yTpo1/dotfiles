@@ -1,4 +1,7 @@
 Step by step instalation and configuration instruction
+sources:
+https://www.youtube.com/watch?v=4PBqpX0_UOc
+https://wiki.archlinux.org/index.php/Installation_guide
 
 1 Pre-installation
 
