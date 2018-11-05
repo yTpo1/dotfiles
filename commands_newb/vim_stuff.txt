@@ -1,0 +1,6 @@
+
+
+
+
+# detect file type
+:filetype detect
