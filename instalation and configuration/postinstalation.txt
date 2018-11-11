@@ -37,3 +37,10 @@ pacman -S noto-fonts
 
 # to start WM
 startx
+
+-----
+# System time - The Network Time Protocol (NTP)
+# enabling ntpd.service via systemd.
+pacman -Syu ntp # Installed the required package
+systemctl enable ntpd.service # Enable it at boot so every time you boot the system the clock will be synchronized
+systemctl start ntpd.service # Start it immediately
