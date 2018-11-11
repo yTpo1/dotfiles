@@ -1,5 +1,4 @@
 vim
-thunar
 firefox
 neofetch
 feh - image viewer, wallpaper setter
@@ -10,4 +9,5 @@ thunar
 # Development
 python
 git
+sqlite
 
