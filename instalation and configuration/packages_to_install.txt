@@ -6,6 +6,9 @@ feh - image viewer, wallpaper setter
 # File managers
 thunar
 
+# to mount and use USB
+udisks2
+
 # Development
 python
 git
