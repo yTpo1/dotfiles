@@ -1,3 +1,5 @@
+Xft.dpi: 150
+
 URxvt.font: xft:monospace:size=15
 !URxvt.background: black
 !URxvt.background: white
