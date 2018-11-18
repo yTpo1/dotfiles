@@ -2,6 +2,7 @@ vim
 firefox
 neofetch
 feh - image viewer, wallpaper setter
+hexchat
 
 # File managers
 thunar
