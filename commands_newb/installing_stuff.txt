@@ -1,0 +1,9 @@
+######### Arch distro specific ########
+# uprgade system
+sudo pacman -Syu
+
+# download an package (app/program)
+sudo pacman -S [name]
+
+###### For AUR ####
+https://www.ostechnix.com/yay-found-yet-another-reliable-aur-helper/
