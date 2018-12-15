@@ -1,1 +1,4 @@
-sdf
+#if using udisks2
+# sdb or what ever disk
+lsblk
+udisksctl mount -b /dev/sdb
