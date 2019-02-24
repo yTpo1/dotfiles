@@ -47,4 +47,22 @@ swap
 root
 
 # home partition. Purpose, for programs, games, user profiles, user files
+n
+(default start)
+(default end)
+(default hex 8300)
+#name 
+home
 
+# choose option to write to disk
+yes
+# choose option "quit"
+
+lsblk
+
+mkfs.fat -F32 /dev/sda1
+mkswap /dev/sda2
+# turn swap on
+swapon /dev/sda2
+mkfs.ext4 /dev/sda3
+mkfs.ext4 /dev/sda4
