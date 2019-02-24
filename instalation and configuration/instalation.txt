@@ -54,14 +54,14 @@ https://wiki.archlinux.org/index.php/Installation_guide
       >defualt
       #first sector
       >default
-      # Swap. For hybernate computer. Has different recomendations. 150% of ram size. 
+      # Swap. For hybernate computer. Has different recomendations. 150% of ram size. (if 8G ram = 12G swap)
       # Since im doing it for a virtual machine, I can't offer alot of space
       +2G
     p
     n
       >default
       >default
-      # root partition
+      # root partition - where all my programs will be, a safe size is 25G. (i used 50 for my pc and 15 for my vm)
       +15G
     n
       p
