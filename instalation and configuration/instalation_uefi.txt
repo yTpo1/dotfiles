@@ -1,0 +1,34 @@
+# check if uefi is activated
+
+ls /sys/firmware/efi/efivars
+# or
+efivar -l
+
+# ---
+gdisk /dev/sda
+
+# x - advanced options
+x
+# z - to kill everything on it
+z
+y
+y
+
+# create new partitions
+cgdisk /dev/dba
+
+# boot partition
+n
+# (default)
+1GiB
+# hex code for uefi
+EF00
+# name
+boot
+
+# swap partition
+(default)
+# 2 ram so 3 Gib. (1.5 * ram)
+3Gib
+#swap code
+8200
