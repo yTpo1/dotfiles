@@ -134,7 +134,7 @@ pacstrap /mnt base base-devel vim git
     
     3.5 Network configuration
     vim /etc/hostname
-    # choose a hostname
+    # choose a hostname - the name of the computer
     myarch
     
     3.6 Initramfs
