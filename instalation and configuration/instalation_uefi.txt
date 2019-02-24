@@ -1,3 +1,5 @@
+source - 2016 Arch Linux EFI Install Guide Part 1 - Preparation and Disk Partitioning - https://www.youtube.com/watch?v=MMkST5IjSjY&t=703s
+
 # check if uefi is activated
 
 ls /sys/firmware/efi/efivars
@@ -30,5 +32,19 @@ boot
 (default)
 # 2 ram so 3 Gib. (1.5 * ram)
 3Gib
-#swap code
+# swap code
 8200
+# name 
+swap
+
+# root partition. In video, purpuse - system
+(default)
+# size - i gave (30GiB). 
+20GiB
+# hex code
+(default 8300)
+# name
+root
+
+# home partition. Purpose, for programs, games, user profiles, user files
+
