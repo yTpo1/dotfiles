@@ -16,3 +16,5 @@ python
 git
 sqlite
 
+# Development - javascipt
+nodejs
