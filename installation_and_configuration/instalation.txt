@@ -110,12 +110,6 @@ pacstrap /mnt base base-devel vim git
     # get out of usb into your arch linux
     arch-chroot /mnt
     
-    3.3 Seting up a network manager
-    # By default no arch doesn't have internet access
-    pacman -S networkmanager
-    # telling systemd to automatickly start it
-    systemctl enable NetworkManager
-    
     3.3 Time zone
     ls usr/share/zoneinfo/
     ls /etc/localtime
@@ -133,6 +127,11 @@ pacstrap /mnt base base-devel vim git
     vim /etc/locale.conf
         LANG=en_US.UTF-8
     
+    3.3 Seting up a network manager
+    # By default no arch doesn't have internet access
+    pacman -S networkmanager
+    # telling systemd to automatickly start it
+    systemctl enable NetworkManager
     
     3.5 Network configuration
     vim /etc/hostname
