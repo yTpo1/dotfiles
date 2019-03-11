@@ -63,9 +63,11 @@ https://wiki.archlinux.org/index.php/Installation_guide
       >default
       # root partition - where all my programs will be, a safe size is 25G. (i used 50 for my pc and 15 for my vm)
       +15G
+      
+    # home partition
     n
+      # choose primary
       p
-      #home partition
       #use all the rest of the space
       
     # write. Do all the changes
