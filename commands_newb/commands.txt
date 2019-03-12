@@ -1,5 +1,5 @@
-# system info
-neofetch
+# see disk space usage (-h human readble form)
+df -h
 
 # i use to see hardware information. 
 # (-F --full)(-G --graphics)(-x extra)
@@ -7,9 +7,6 @@ inxi -FGx
 
 # list pluged in devices
 lsblk
-
-# see disk space usage (-h human readble form)
-df -h
 
 # 
 mhwd
@@ -28,6 +25,9 @@ xradr
 # i used to put iso file on a usb
 # dd if=Downloads/myfile.iso of=/dev/sdb status="progress"
 dd
+
+# system info
+neofetch
 
 ######### Information
 $ man %command%
