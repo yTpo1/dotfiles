@@ -3,6 +3,7 @@ firefox
 neofetch
 feh - image viewer, wallpaper setter
 hexchat
+ranger
 
 # File managers
 thunar
