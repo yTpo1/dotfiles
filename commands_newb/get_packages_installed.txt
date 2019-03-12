@@ -1,0 +1,2 @@
+# get_packages_installed by the user
+comm -23 <(pacman -Qqett | sort) <(pacman -Qqg base -g base-devel | sort | uniq)
