@@ -4,6 +4,7 @@ neofetch
 feh - image viewer, wallpaper setter
 hexchat
 ranger
+bash-completion
 
 # SSH — SFTP is a network protocol that provides file access, file transfer, and file management over any reliable data stream.
 openssh
