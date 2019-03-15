@@ -59,3 +59,9 @@ bar {
         position top
         status_command i3status
 }
+
+3.2 configure bash
+# copy the .bashrc file
+
+3.3 configure terminal URxvt
+# copy .Xdefaults
