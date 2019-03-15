@@ -14,6 +14,10 @@ green="\e[32;40m"
 cyan_bg_grey="\e[36;40m"
 cyan="\e[0;36m"
 
+# was default
+# PS1='[\u@\h \W]\$ '
+
+# my PS1 config
 PS1="$cyan\[\u~> $def_color\]"
 
 
