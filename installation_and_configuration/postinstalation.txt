@@ -69,3 +69,5 @@ bar {
 3.4 configure vim
 # copy .vimrc
 
+3.5 Autostart Xserver
+# copy .bash_profile
