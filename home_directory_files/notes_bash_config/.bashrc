@@ -2,9 +2,10 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything
+# If not running interactively, don't do anything (was in .bashrc by default)
 [[ $- != *i* ]] && return
 
+# (was in .bashrc by default)
 alias ls='ls --color=auto'
 
 # color variables
