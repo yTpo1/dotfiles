@@ -65,3 +65,7 @@ bar {
 
 3.3 configure terminal URxvt
 # copy .Xdefaults
+
+3.4 configure vim
+# copy .vimrc
+
