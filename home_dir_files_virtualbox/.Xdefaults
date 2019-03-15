@@ -1,0 +1,54 @@
+! increases the font in programs and apps, i.e. font in i3status, firefox..
+Xft.dpi: 150
+
+! TERMINAL CONFIGURATION
+! increses font and font size in the terminal
+URxvt.font: xft:monospace:size=14
+
+! changes the color of the text in the terminal
+! white
+*.foreground: #f8f8f2
+
+! color behing the cursor
+! black
+*.background: #272822
+! white
+*.cursorColor: #f8f8f2
+
+! transparent terminal
+URxvt.transparent: true
+URxvt.tintColor: white
+URxvt.shading: 20
+
+! Default colors to show in terminal
+! black
+*.color0: #272822
+*.color8: #75715e
+
+! red
+*.color1: #f92672
+*.color9: #f92672
+
+! green
+*.color2: #a6e22e
+*.color10: #a6e22e
+
+! yellow
+*.color3: #f4bf75
+*.color11: #f4bf75
+
+! blue
+*.color4: #66d9ef
+*.color12: #66d9ef
+
+! magenta
+*.color5: #ae81ff
+*.color13: #ae81ff
+
+! cyan
+*.color6: #a1efe4
+*.color14: #a1efe4
+
+! white
+*.color7: #f8f8f2
+*.color15: #f9f8f5

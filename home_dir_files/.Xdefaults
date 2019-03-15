@@ -9,9 +9,11 @@ URxvt.font: xft:monospace:size=14
 ! white
 *.foreground: #f8f8f2
 
-! dont need these as my terminal is transparent
-!*.background: #272822
-!*.cursorColor: #f8f8f2
+! color behing the cursor
+! black
+*.background: #272822
+! white
+*.cursorColor: #f8f8f2
 
 ! transparent terminal
 URxvt.transparent: true
