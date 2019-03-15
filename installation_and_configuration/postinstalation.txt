@@ -44,3 +44,12 @@ startx
 pacman -Syu ntp # Installed the required package
 systemctl enable ntpd.service # Enable it at boot so every time you boot the system the clock will be synchronized
 systemctl start ntpd.service # Start it immediately
+
+3.1 configure i3
+# Adding wallpaper to i3
+# install feh
+sudo pacman -S feh
+# ./config/i3/config
+
+# Set wallpaper
+exec_always feh --bg-scale /home/ghost1/Pictures/cyb_bg.jpg
