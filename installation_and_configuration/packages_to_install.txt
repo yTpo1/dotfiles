@@ -1,4 +1,5 @@
 vim
+neovim
 firefox
 neofetch
 feh - image viewer, wallpaper setter
