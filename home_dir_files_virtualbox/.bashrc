@@ -2,10 +2,9 @@
 # ~/.bashrc
 #
 
-# If not running interactively, don't do anything (was in .bashrc by default)
+# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# (was in .bashrc by default)
 alias ls='ls --color=auto'
 
 # color variables
@@ -14,12 +13,8 @@ green="\e[32;40m"
 cyan_bg_grey="\e[36;40m"
 cyan="\e[0;36m"
 
-# was default
-# PS1='[\u@\h \W]\$ '
-
-# my PS1 config
-PS1="$cyan\[\u~> $def_color\]"
-
+#PS1="$cyan\[\u~> $def_color\]"
+PS1="\[\e[36m\]\u\[\e[m\]\[\e[36m\]\\$\[\e[m\] "
 
 # Information:
 # \u - username

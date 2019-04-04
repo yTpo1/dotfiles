@@ -1,4 +1,4 @@
-
+To learn basics of vim use: vimtutor
 
 
 

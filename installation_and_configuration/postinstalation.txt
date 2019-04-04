@@ -32,6 +32,12 @@ exec i3
 pacman -S ttf-linux-libertine ttf-inconsolata 
 pacman -S noto-fonts
 
+# for FullWidth type of fonts (CJK, latin can't be like that) install
+# Sans fonts
+pacman -S adobe-source-han-sans-otc-fonts
+# or 
+noto-fonts-cjk
+
 # to configure
 #in ~/.config/fontconfig/fonts.conf
 
