@@ -1,0 +1,6 @@
+Open terminal in the same directory as last terminal
+First terminal:
+$ echo $PWD > ~/.last_dir
+Second terminal:
+$ cd `cat ~/.last_dir`
+
