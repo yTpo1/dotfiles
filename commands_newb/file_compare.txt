@@ -1,0 +1,14 @@
+Commands to compare files:
+--------------------------
+diff: This command is used to compare two files line by line.
+
+cmp: This command is used to compare two files character by character.
+
+comm: This command is used to compare two sorted files.
+
+uniq: This command is used to filter the repeated lines in a file which are adjacent to each other
+
+
+Commands to compare directories:
+----------------------------------
+dircmp: This command is used to compare the contents of directories.

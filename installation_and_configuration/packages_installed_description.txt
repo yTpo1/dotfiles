@@ -1,0 +1,86 @@
+Console Text editors
+-------------------
+Vim (Vi IMproved): vim
+
+Neovim: neovim
+
+
+Web browsers
+------------
+Firefox — Extensible browser from Mozilla based on Gecko with fast rendering.
+https://mozilla.com/firefox || firefox
+
+
+File managers
+--------------
+Ranger — Console-based file manager with vi bindings, customizability, and lots of features.
+https://ranger.github.io/ || ranger
+
+Thunar — File manager that can be run as a daemon with excellent start up and directory load times.
+http://docs.xfce.org/xfce/thunar/start || thunar
+
+
+System information viewers
+--------------------------
+neofetch — A fast, highly customizable system info script that supports displaying images with w3m.
+https://github.com/dylanaraps/neofetch || neofetch
+
+screenfetch — Similar to archey but has an option to take a screenshot. Written in bash.
+https://github.com/KittyKatt/screenFetch || screenfetch
+
+
+System Task managers
+-------------------
+htop — Simple, ncurses interactive process viewer.
+http://htop.sourceforge.net/ || htop
+
+
+Graphical image viewers / Wallpaper setters
+-------------------------------------------
+feh — Fast, lightweight image viewer that uses imlib2. Also can be used to manage the desktop wallpaper.
+https://feh.finalrewind.org/ || feh
+
+
+IRC clients
+----------------
+HexChat — Fork of XChat for Linux and Windows.
+https://hexchat.github.io/ || hexchat
+
+
+<<<Development>>>
+
+Python
+------
+python
+python-pip
+( then in command line
+python3 -m pip install --user virtualenv
+)
+
+
+Javascript
+-----------
+nodejs
+
+
+Other
+------
+git
+sqlite
+# SSH — SFTP is a network protocol that provides file access, file transfer, and file management over any reliable data stream.
+openssh
+# dotfiles manager
+stow
+
+
+bash-completion
+mps-youtube
+sqlitebrowser
+
+# to mount and use USB
+# https://wiki.archlinux.org/index.php/udisks
+udisks2
+
+<<<Installed from AUR>>>
+yay
+heroku-cli
