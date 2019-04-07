@@ -1,6 +1,9 @@
 # will print the source directories for a "i3blocks", and should work for any installed programs.
 whereis
 
+# To list the current environmental variables with values:
+printenv
+
 # see disk space usage (-h human readble form)
 df -h
 

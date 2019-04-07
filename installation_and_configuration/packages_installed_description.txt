@@ -71,7 +71,10 @@ sqlite
 openssh
 # dotfiles manager
 stow
-
+# LXAppearance — Desktop independent GTK+ 2 and GTK+ 3 style configuration tool from the LXDE project (it does not require other parts of the LXDE desktop).
+http://wiki.lxde.org/en/LXAppearance || lxappearance
+Arc — A flat theme with a modern look and transparent elements. Includes: Arc, Arc-Dark, Arc-Darker
+https://github.com/nicohood/arc-theme || with transparency: arc-gtk-theme, without transparency: arc-solid-gtk-theme
 
 bash-completion
 mps-youtube
