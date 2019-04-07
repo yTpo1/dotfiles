@@ -47,6 +47,11 @@ HexChat — Fork of XChat for Linux and Windows.
 https://hexchat.github.io/ || hexchat
 
 
+Fonts:
+-----------
+ttf-font-awesome
+
+
 <<<Development>>>
 
 Python
