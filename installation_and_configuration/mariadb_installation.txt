@@ -1,0 +1,21 @@
+1. Install using pacman mariadb
+
+2. afterwards run the following command before starting the mariadb.service:
+# mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+
+3. Now start Mariadb service.
+[root@archlinux ~]# systemctl start mariadb
+
+4. Now should follow secure like in below mentioned output.
+[root@archlinux ~]# /usr/bin/mysql_secure_installation
+
+5. So now Mariadb is installed and up and running on Archlinux machine as required . Let’s make it available on boot time.
+[root@archlinux ~]# systemctl enable mariadb
+
+6. We can login locally on MySQL to work on its SQL console.
+[root@archlinux ~]# mysql -u root -p
+MariaDB [(none)]> show databases;
+
+Sources:
+https://wiki.archlinux.org/index.php/MariaDB
+http://www.geekpills.com/operating-system/linux/install-configure-mariadb-mysql-archlinux

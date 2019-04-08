@@ -4,6 +4,9 @@ whereis
 # To list the current environmental variables with values:
 printenv
 
+# print system information -r(kernel-release) -m(machine hardware name)
+uname -rm 
+
 # see disk space usage (-h human readble form)
 df -h
 
