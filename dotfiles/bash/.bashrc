@@ -16,6 +16,9 @@ cyan="\e[0;36m"
 #PS1="$cyan\[\u~> $def_color\]"
 PS1="\[\e[36m\]\u\[\e[m\]\[\e[36m\]\\$\[\e[m\] "
 
+# import enviroment variables
+source ~/.profile
+
 # Information:
 # \u - username
 # \h - First part of hostname (such as "mybox")
