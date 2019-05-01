@@ -67,6 +67,7 @@ Other
 ------
 git
 sqlite
+wireshark-qt
 # SSH — SFTP is a network protocol that provides file access, file transfer, and file management over any reliable data stream.
 openssh
 # dotfiles manager
