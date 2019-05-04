@@ -34,6 +34,8 @@ System Task managers
 htop — Simple, ncurses interactive process viewer.
 http://htop.sourceforge.net/ || htop
 
+Lets you user pactree to see package dependencies
+pacman-contrib
 
 Graphical image viewers / Wallpaper setters
 -------------------------------------------
@@ -53,6 +55,13 @@ ttf-font-awesome
 
 
 <<<Development>>>
+Database
+--------
+postgresql
+pgadmin4
+
+mariadb
+phpmyadmin
 
 Python
 ------

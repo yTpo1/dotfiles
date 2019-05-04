@@ -15,4 +15,12 @@ set cursorline
 " show the matching part of the pair for [] {} and ()
 set showmatch
 " enable all Python syntax highlighting features
+
+" highlight all search matches
+set hlsearch
+" ignore case when searching
+set ic
+" show partial matches for a search phase
+set is
+
 let python_highlight_all = 1
