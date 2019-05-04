@@ -53,7 +53,14 @@ Fonts:
 -----------
 ttf-font-awesome
 
+Other:
+------------
+xsel is a clipboard manager, I install it because URxvt is not shipped with copy paste by default.
+XSel is a command-line program for getting and setting the contents of the X selection
+xsel
 
+URL and Mouseless text selection for rxvt-unicode
+urxvt-perls
 <<<Development>>>
 Database
 --------
