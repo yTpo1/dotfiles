@@ -1,10 +1,12 @@
-#if using udisks2
-# sdb or what ever disk
-lsblk
-udisksctl mount -b /dev/sdb
+Using mount
+$ sudo mount /dev/sd? /mnt
+$ sudo umount /dev/sd?
 
-$ udisksctl unmount -b /dev/sdc1
+Using udiscksctl  (package - udisks2)
+$ lsblk
+$ udisksctl mount -b /dev/sd?
+$ udisksctl unmount -b /dev/sd?
 
 
-# Burn an ISO File to a USB Stick
-sudo dd bs=4M if=/path/to/manjaro.iso of=/dev/sd[drive letter] status=progress
+Burn an ISO File to a USB Stick
+$ sudo dd bs=4M if=/path/to/manjaro.iso of=/dev/sd[drive letter] status=progress
