@@ -3,4 +3,3 @@
 * create backup. (like trash in windows)
 * show current layout in i3blocks
 * cron to post python-teleg
-* fix terminal-bash: (eating up first charater)  
