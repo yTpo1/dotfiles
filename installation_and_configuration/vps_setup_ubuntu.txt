@@ -1,3 +1,6 @@
+------------------
+<<__  __>>
+------------------
 log in to the vps
 # ssh root@ip_address
 
@@ -20,9 +23,67 @@ $ adduser newusername sudo
 Exit and login as the new user.
 # ssh newusername@id_address
 
+In the user home folder (-p make tree of the directory):
+# mkdir -p ~/.ssh
+
+In the local machine:
+#local_machine# ssh-keygen -b 4096
+
+move keys to server 
+#local_machine# scp ~/.ssh/id_rsa.pub newusername@ip_address:~/.ssh/authorized_keys
+
+Setting the permissions of the .ssh/ directory, where owner of the directory has rwx and owner of files has rw
+#server# sudo chmod 700 ~/.ssh/
+# sudo chmod 600 ~/.shh/*
+
+not allow root logins, and not allow password authentications
+# sudo vim /etc/ssh/sshd_config
+1. change: 
+  PermitRootLogin yes
+to
+  PermitRootLogin no
+2. unccoment and change to "no"
+  PasswordAuthentication
+
+restart ssh service
+# sudo systemctl restart sshd
+
+-------------------------------
+<<__ Setting up a firewall __>>
+-------------------------------
+# sudo apt-get install ufw
+
+# sudo ufw default allow outgoing
+
+!!Warning!! This can lock you out of your server. You must explicitly allow ssh.
+# sudo ufw default deny incoming
+
+Allow ssh
+# sudo ufw allow ssh
+
+To test, allow port 8000
+# sudo ufw allow 8000
+
+Enable firewall and rules
+# sudo ufw enable
+
+# sudo ufw status
+
+------------------
+<<__ move project to server __>>
+------------------
+# git clone
+or
+# scp -r my_project newusername@ip_address:~/
+
+------------------
+<<__ Setting up a django project __>>
+------------------
+# sudo apt-get install python3-pip
+# sudo apt-get install python3-venv
 
 
-
+--------------------------------------
 source: 
 Python Django Tutorial: Deploying Your Application (Option #1) - Deploy to a Linux Server
 Corey Schafer
