@@ -1,0 +1,21 @@
+source: http://www.linuxandubuntu.com/home/how-to-use-wireshark-to-inspect-network-traffic
+
+1) Install wireshark.
+If you run Wireshark as a non-root user (which you should) at this stage you will encounter an error message which says.
+“No interface can be used for capturing in this system with the current configuration”.
+
+The following steps will rectify this.
+
+2) Create the Wireshark group.
+$ sudo groupadd wireshark
+Add your username to the Wireshark group -
+$ sudo usermod -a -G wireshark USERNAME
+Change the group  ownership of file dumpcap to wireshark -
+$ sudo chgrp wireshark /usr/bin/dumpcap
+Change the mode of the file dumpcap to allow execution by the group wireshark -
+$ sudo chmod 750 /usr/bin/dumpcap
+Grant capabilities with setcap -
+$ sudo setcap cap_net_raw,cap_net_admin=eip /usr/bin/dumpcap
+Verify the change -
+$ sudo getcap /usr/bin/dumpcap
+
