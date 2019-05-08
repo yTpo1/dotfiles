@@ -1,1 +1,29 @@
-ya
+log in to the vps
+# ssh root@ip_address
+
+update and upgrade system
+$ apt-get update && apt-get upgrade
+
+sethost name of the machine
+$ hostnamectl set-hostname nameofhost(example django-server)
+
+$ vim /ect/hosts 
+below line (127.0....) put:
+ip_address nameofhost (example 1--.--.---.--- django-server)
+
+Add a new user:
+$ adduser newusername
+
+Add the new user to sudoers:
+$ adduser newusername sudo
+
+Exit and login as the new user.
+# ssh newusername@id_address
+
+
+
+
+source: 
+Python Django Tutorial: Deploying Your Application (Option #1) - Deploy to a Linux Server
+Corey Schafer
+https://www.youtube.com/watch?v=Sa_kQheCnds
