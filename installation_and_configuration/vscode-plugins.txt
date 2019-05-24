@@ -1,0 +1,8 @@
+* Auto Rename Tag - Automatically rename paired HTML/XML tag, same as Visual Studio IDE does.
+* Live Server - Launch a development local Server with live reload feature for static & dynamic pages
+* Better Comments - Improve your code commenting by annotating with alert, informational, TODOs, and more!
+* CSS Peek: (to use, hold ctrl over class in html) - Allow peeking to css ID and class strings as definitions from html files to respective CSS. Allows peek and goto definition.
+* "Prettier - Code formatter" - format your JavaScript / TypeScript / CSS
+  !! To set up: settings -> (search) "file on save" -> (enable/tick) Editor: Format On Save
+
+
