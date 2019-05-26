@@ -5,4 +5,5 @@
 * "Prettier - Code formatter" - format your JavaScript / TypeScript / CSS
   !! To set up: settings -> (search) "file on save" -> (enable/tick) Editor: Format On Save
 * Live Sass Compiler - Compile Sass or Scss to CSS at realtime with live browser reload.
+* Material Icon Theme -> activate in "Manage" 
 
