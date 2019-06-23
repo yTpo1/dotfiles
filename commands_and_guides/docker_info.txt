@@ -2,6 +2,8 @@
 docker ps
 # see all containers ever created
 docker ps --all
+# List all containers (only IDs)
+docker ps -aq
 
 # build a container
 docker build .
@@ -26,7 +28,7 @@ docker stop container_id
 # kill a container
 docker kill container_id
 # stop all running containers
-docker stop $(docker ps)
+docker stop $(docker ps -aq)
 
 # get logs of runned containers
 docker logs container_id
