@@ -1,0 +1,49 @@
+# see running containers
+docker ps
+# see all containers ever created
+docker ps --all
+
+# build a container
+docker build .
+docker build -t username/nameofproject .
+
+# run a container (docker run = docker create + docker build)
+docker run container_id
+docker run image_name
+docker run image_name command
+docker run -it busybox sh
+
+# create a container
+docker create image_name
+
+# start a container
+docker start container_id
+# start with print output to console
+docker start -a container_id
+
+# stop a container
+docker stop container_id
+# kill a container
+docker kill container_id
+# stop all running containers
+docker stop $(docker ps)
+
+# get logs of runned containers
+docker logs container_id
+
+# remove all stopped containers
+docker system prune
+
+# execute commands on a running container
+# connect to a running container
+# -i "standart input" -t "standat output"
+docker exec -it container_id sh
+docker exec -it container_id redis-cli
+
+# --== On Windows ==--
+
+# run a container
+# port mapping
+# on windows to access, I need to not be on localhost, but on provided ip from docker
+# 5000"route incoming requests to this port" : 8080"port inside the container"
+docker run -p 5000:8080 image_name
