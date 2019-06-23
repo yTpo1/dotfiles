@@ -2,6 +2,10 @@
 docker-compose up
 #if needed to rebuild the images in .yml
 docker-compose up --build
+# start a group of containers in the background
+docker-compose up -d
+# stop a group of containers
+docker-compose down
 
 # DOCKER
 # see running containers
