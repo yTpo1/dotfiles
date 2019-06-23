@@ -1,3 +1,9 @@
+# docker-compose #(similar to docker run myimage)
+docker-compose up
+#if needed to rebuild the images in .yml
+docker-compose up --build
+
+# DOCKER
 # see running containers
 docker ps
 # see all containers ever created
