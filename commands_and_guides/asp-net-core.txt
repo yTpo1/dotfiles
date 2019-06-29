@@ -18,6 +18,11 @@ update-database
 Example:
 update-database -verbose
 
+EF core Scaffolding DbContext
+---
+command to be run in project directory (where .csproj file is).
+dotnet ef dbcontext scaffold "Data Source=PCNAME\MSSQLSERVER01;initial catalog=AdventureWorks2016CTP3;integrated security=true" Microsoft.EntityFrameworkCore.SqlServer -d -c AdventureWorksContext -o EfStructures\Entities --force
+
 EF core cli tools
 ---
 add, to {ProjectName}.csproj file. Save and use command:
