@@ -1,0 +1,13 @@
+Package Manager Console
+
+Entity Framework Core - https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/powershell
+---
+add-migration
+-name is a required parameter!
+Example:
+add-migration CreateIdentitySchema
+add-migration -name CreateIdentitySchema
+
+update-database 
+Example:
+update-database -verbose
