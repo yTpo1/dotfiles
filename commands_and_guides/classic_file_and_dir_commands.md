@@ -1,8 +1,9 @@
 ## Size of files and directories
 du: Summarize disk usage of each FILE, recursively for directories.
+
 Example: du -sh filename
--h, --human-readable
--s, --summarize
+* -h, --human-readable
+* -s, --summarize
               display only a total for each argument
 
 ## Compare files:
