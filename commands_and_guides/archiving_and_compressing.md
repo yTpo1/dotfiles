@@ -1,5 +1,26 @@
 An archive file is a collection of files and directories that are stored in one file. The archive file is not compressed — it uses the same amount of disk space as all the individual files and directories combined. A compressed file is a collection of files and directories that are stored in one file and stored in a way that uses less disk space than all the individual files and directories combined. If you do not have enough disk space on your computer, you can compress files that you do not use very often or files that you want to save but do not use anymore. You can even create an archive file and then compress it to save disk space. 
 
+## Archiving and Compessing
+tar
+* -c : create new archive
+* -x : extract files from an archive.
+* -f : when used with the -c option, use the filename specified for the creation of the tar file. When used with the -x option, unarchive the specified file.
+* -t : show the list of files in the tar file.
+* -v : show the progress of the files being archived.
+* -z — compress the tar file with gzip.
+* -j — compress the tar file with bzip2. 
+
+example: 
+
+create a tar:
+tar -cvf filename.tar dir/file
+
+create a compressed with gzip - tar:
+tar -czvf filename.tgz dir/file
+
+unarchive and uncompress:
+tar -xzvf filename.tgz
+
 ## Archiving
 link - https://maker.pro/linux/projects/how-to-archive-files-and-directories-in-linux
 
