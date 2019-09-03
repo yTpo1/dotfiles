@@ -23,11 +23,11 @@ $ adduser newusername sudo
 Exit and login as the new user.
 # ssh newusername@id_address
 
+<-------------------------------------------->
+In the local machine:
 In the user home folder (-p make tree of the directory):
 # mkdir -p ~/.ssh
 
-<-------------------------------------------->
-In the local machine:
 #local_machine# ssh-keygen -b 4096
 
 move keys to server 
