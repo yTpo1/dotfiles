@@ -23,6 +23,8 @@ $ adduser newusername sudo
 Exit and login as the new user.
 # ssh newusername@id_address
 
+<-------------------------------------------->
+
 In the user home folder (-p make tree of the directory):
 # mkdir -p ~/.ssh
 
