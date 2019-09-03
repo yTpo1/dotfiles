@@ -123,7 +123,34 @@ To edit: right above ```</VirtualHost>``` add:
   # python-home is the location of the virtual environment
   WSGIDaemonProcess django_app python-path=/home/(username)/(django_project) python-home=/home/(username)/(django_project)/venv
   WSGIProcessGroup django_app
+  
 </VirtualHost>
 ```
+### Enable the site through apache
+a2-apache2 en-enable
+```$ sudo a2ensite <django-project>```
+disable the default site  
+```$ sudo a2dissite 0000-default.conf```
+While using sqlite3 database, need to allow read and write rights. Also allow write to media folder.  
+:www-data - is the apache user. make apache the group owner on the file.
+```
+$ sudo chown :www-data <django_project>/db.sqlite3  
+$ sudo chmod 664 <django_project>/db.sqlite3  
+$ sudo chmown :www-data <django_project>/
+$ sudo chmod 775 <django_project>/
+$ sudo chown -R :www-data <django_project>/media/
+$ sudo chmod -R 775 <django_project>/media
+```
 
+### move sensitive info to environment variables (ex. application secret_key, database, email username and pass)
+
+change debug to false  
+
+### Launch server
+```
+$ sudo service apache2 start  
+$ sudo service apache2 restart
+```
+
+google: django deployment checklist  
 source: https://www.youtube.com/watch?v=Sa_kQheCnds
