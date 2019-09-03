@@ -145,8 +145,9 @@ change debug to false
 ### Launch server
 ```
 $ sudo service apache2 start  
-$ sudo systemctl reload apache2
-$ sudo service apache2 restart
+$ sudo systemctl reload apache2  
+$ sudo systemctl restart apache2  
+$ sudo service apache2 restart  
 ```
 
 google: django deployment checklist  
