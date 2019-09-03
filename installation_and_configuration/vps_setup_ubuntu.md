@@ -1,18 +1,12 @@
-------------------
-<<__  __>>
-------------------
-log in to the vps
-# ssh root@ip_address
-
-update and upgrade system
-$ apt-get update && apt-get upgrade
-
-sethost name of the machine
-$ hostnamectl set-hostname nameofhost(example django-server)
-
-$ vim /ect/hosts 
-below line (127.0....) put:
-ip_address nameofhost (example 1--.--.---.--- django-server)
+Log in to the vps  
+> $ sudo ssh root@ip_address  
+Update and upgrade system  
+> $ apt-get update && apt-get upgrade
+Sethost name of the machine  
+> $ hostnamectl set-hostname nameofhost(example django-server)  
+> $ vim /ect/hosts 
+Below line (127.0....) put:  
+> ip_address nameofhost (example 1--.--.---.--- django-server)  
 
 Add a new user:
 $ adduser newusername
@@ -28,20 +22,23 @@ Exit and login as the new user.
 <-------------------------------------------->
 In the local machine:
 In the user home folder (-p make tree of the directory):
-# mkdir -p ~/.ssh
+$ mkdir -p ~/.ssh
 
-#local_machine# ssh-keygen -b 4096
+local_machine 
+$ ssh-keygen -b 4096
 
 move keys to server 
-#local_machine# scp ~/.ssh/id_rsa.pub newusername@ip_address:~/.ssh/authorized_keys
+local_machine  
+$ scp ~/.ssh/id_rsa.pub newusername@ip_address:~/.ssh/authorized_keys
 <-------------------------------------------->
 
 Setting the permissions of the .ssh/ directory, where owner of the directory has rwx and owner of files has rw
-#server# sudo chmod 700 ~/.ssh/
-# sudo chmod 600 ~/.shh/*
+server  
+$ sudo chmod 700 ~/.ssh/
+$ sudo chmod 600 ~/.shh/*
 
 not allow root logins, and not allow password authentications
-# sudo vim /etc/ssh/sshd_config
+$ sudo vim /etc/ssh/sshd_config
 1. change: 
   PermitRootLogin yes
 to
@@ -50,41 +47,41 @@ to
   PasswordAuthentication
 
 restart ssh service
-# sudo systemctl restart sshd
+$ sudo systemctl restart sshd
 
 -------------------------------
 <<__ Setting up a firewall __>>
 -------------------------------
-# sudo apt-get install ufw
+$ sudo apt-get install ufw
 
-# sudo ufw default allow outgoing
+$ sudo ufw default allow outgoing
 
 !!Warning!! This can lock you out of your server. You must explicitly allow ssh.
-# sudo ufw default deny incoming
+$ sudo ufw default deny incoming
 
 Allow ssh
-# sudo ufw allow ssh
+$ sudo ufw allow ssh
 
 To test, allow port 8000
-# sudo ufw allow 8000
+$ sudo ufw allow 8000
 
 Enable firewall and rules
-# sudo ufw enable
+$ sudo ufw enable
 
-# sudo ufw status
+$ sudo ufw status
 
 ------------------
 <<__ move project to server __>>
 ------------------
-# git clone
+$ git clone
 or
-# scp -r my_project newusername@ip_address:~/
+$ scp -r my_project newusername@ip_address:~/
 
 ------------------
 <<__ Setting up a django project __>>
 ------------------
-# sudo apt-get install python3-pip
-# sudo apt-get install python3-venv
+$ sudo apt-get install python3-pip
+$ sudo apt-get install python3-venv
 
 <-----Create new virtual environment in project folder------>
 $ python3 -m venv django_project/venv
