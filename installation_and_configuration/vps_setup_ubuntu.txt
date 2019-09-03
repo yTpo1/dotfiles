@@ -23,16 +23,16 @@ $ adduser newusername sudo
 Exit and login as the new user.
 # ssh newusername@id_address
 
-<-------------------------------------------->
-
 In the user home folder (-p make tree of the directory):
 # mkdir -p ~/.ssh
 
+<-------------------------------------------->
 In the local machine:
 #local_machine# ssh-keygen -b 4096
 
 move keys to server 
 #local_machine# scp ~/.ssh/id_rsa.pub newusername@ip_address:~/.ssh/authorized_keys
+<-------------------------------------------->
 
 Setting the permissions of the .ssh/ directory, where owner of the directory has rwx and owner of files has rw
 #server# sudo chmod 700 ~/.ssh/
