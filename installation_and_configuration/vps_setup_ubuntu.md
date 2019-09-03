@@ -97,8 +97,8 @@ $ cd /etc/apache2/sites-available
 $ sudo cp 000-default.conf django_project.conf
 $ sudo vim django_project.conf
 ```
-Info: <VirtualHost *:80> is what will happen when we reach the website, as port 80 is a http port  
-To edit: right above "</VirtualHost>" add:
+Info: ```<VirtualHost *:80>``` is what will happen when we reach the website, as port 80 is a http port  
+To edit: right above ```</VirtualHost>``` add:
 ```
   Alias /static /home/username/projectname/static
   <Direcotry /home/username/projectname/static>
@@ -123,6 +123,7 @@ To edit: right above "</VirtualHost>" add:
   # python-home is the location of the virtual environment
   WSGIDaemonProcess django_app python-path=/home/myusername/django_project python-home=/home/myusername/mydjango_project/venv
   WSGIProcessGroup django_app
+</VirtualHost>
 ```
 
 source: https://www.youtube.com/watch?v=Sa_kQheCnds
