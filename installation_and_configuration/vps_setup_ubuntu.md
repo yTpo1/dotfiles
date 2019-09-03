@@ -50,15 +50,24 @@ $ sudo ufw default allow outgoing
 ```
 **!!Warning!!** This can lock you out of your server. You must explicitly allow ssh.
 ```$ sudo ufw default deny incoming```
-Allow ssh
-```$ sudo ufw allow ssh```
-For testing purposes, allow port 8000
+Allow ssh  
+```$ sudo ufw allow ssh```  
+For testing purposes, allow port 8000  
 ```$ sudo ufw allow 8000```
-Enable firewall and rules
+```$ sudo ufw delete allow 8000```  
+Entable http or port 80  
+```$ sudo ufw allow http```  
+Enable firewall and rules  
 ```
 $ sudo ufw enable  
 $ sudo ufw status
-```
+```  
+### change default port number
+```$ vim /etc/ssh/sshd_config ```  
+Locate the following line: **# Port 22**. Remove # and change 22 to desired port number.
+```$ service sshd restart```  
+
+You can see all ports and their service names in the file "/etc/services".
 
 ### Step 5 - move project to server
 ```
