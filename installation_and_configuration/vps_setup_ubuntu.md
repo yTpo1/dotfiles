@@ -122,6 +122,8 @@ To edit: right above ```</VirtualHost>``` add:
 
 </VirtualHost>
 ```
+To check validity of apache config file  
+``` $ apachectl configtest ```
 ### Enable the site through apache
 a2-apache2 en-enable
 ```$ sudo a2ensite <django-project>```
