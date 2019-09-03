@@ -86,9 +86,16 @@ or
 # sudo apt-get install python3-pip
 # sudo apt-get install python3-venv
 
+<-----Create new virtual environment in project folder------>
+$ python3 -m venv django_project/venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+insert ip address of the server in: ALLOWED_HOSTS = ['IP ADRESS OF THE SERVER']
+add static configurations
+$ vim setting.py
+$ python manage.py collectstatic
+test it out
+$ python manage.py runserver 0.0.0.0:800
 
 --------------------------------------
-source: 
-Python Django Tutorial: Deploying Your Application (Option #1) - Deploy to a Linux Server
-Corey Schafer
-https://www.youtube.com/watch?v=Sa_kQheCnds
+source: https://www.youtube.com/watch?v=Sa_kQheCnds
