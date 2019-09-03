@@ -100,30 +100,26 @@ $ sudo vim django_project.conf
 Info: ```<VirtualHost *:80>``` is what will happen when we reach the website, as port 80 is a http port  
 To edit: right above ```</VirtualHost>``` add:
 ```
-  Alias /static /home/(username)/(projectname)/static
-  <Direcotry /home/(username)/(projectname)/static>
+  Alias /static /home/YOURUSER/YOURPROJECT/static
+  <Directory /home/YOURUSER/YOURPROJECT/static>
     Require all granted
   </Directory>
-  
-  Alias /static /home/(username)/(projectname)/media
-  <Direcotry /home/(username)/(projectname)/media>
+
+  Alias /media /home/YOURUSER/YOURPROJECT/media
+  <Directory /home/YOURUSER/YOURPROJECT/media>
     Require all granted
   </Directory>
-  
-  <Direcotry /home/(username)/(projectname)/(django_project)>
+
+  <Directory /home/YOURUSER/YOURPROJECT/YOURPROJECT>
     <Files wsgi.py>
       Require all granted
     </Files>
   </Directory>
-  
-  # here / is the base url path we will serve in the application 
-  # indicates our root url
-  # /home/.. is the full path to wsgi
-  WSGIScriptAlias / /home/(username)/(django_project)/(django_project)/wsgi.py
-  # python-home is the location of the virtual environment
-  WSGIDaemonProcess django_app python-path=/home/(username)/(django_project) python-home=/home/(username)/(django_project)/venv
+
+  WSGIScriptAlias / /home/YOURUSER/YOURPROJECT/YOURPROJECT/wsgi.py
+  WSGIDaemonProcess django_app python-path=/home/YOURUSER/YOURPROJECT python-home=/home/YOURUSER/YOURPROJECT/venv
   WSGIProcessGroup django_app
-  
+
 </VirtualHost>
 ```
 ### Enable the site through apache
