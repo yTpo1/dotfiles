@@ -20,6 +20,8 @@ $ adduser newusername
 Add the new user to sudoers:
 $ adduser newusername sudo
 
+# mkdir -p /home/username/.ssh
+
 Exit and login as the new user.
 # ssh newusername@id_address
 
