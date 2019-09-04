@@ -132,7 +132,7 @@ To edit: right above ```</VirtualHost>``` add:
 </VirtualHost>
 ```
 To check validity of apache config file  
-``` $ apachectl configtest ```
+``` $ sudo apachectl configtest ```
 ### Enable the site through apache
 a2-apache2 en-enable
 ```$ sudo a2ensite <django-project>```
@@ -181,8 +181,33 @@ Restart server $ sudo service apache2 restart
 
 ### Set Up a SSL/TLS Certificate and enable HTTPS  
 Using service LetsEncrypt https://letsencrypt.org/  
+With shell access use certbot client. https://certbot.eff.org/ Choose apache and ubuntu. Follow the given instructions.  
+```
+$ sudo apt-get update
+$ sudo apt-get install software-properties-common
+$ sudo add-apt-repository universe
+$ sudo add-apt-repository ppa:certbot/certbot
+$ sudo apt-get update
+$ sudo apt-get install certbot python-certbot-apache 
+```
+Change config file in /etc/apache2/sites-available/<django_project>.conf:  
+uncomment and change to ServerName www.<mywebsite>.com  
+comment-out 3 WSGI lines.  
+  
+```$ sudo certbot --apache ```
+Enter email, and go through togles.
+```$ sudo certbot renew --dry-run```  
 
-
+Change configuration - remove aliases and configuration and commented WSGI commands:   
+```$ sudo vim /etc/apache2/sites-available/<django_project>.conf ```  
+Change configuration - uncomment out WSGI commands:  
+```$ sudo vim /etc/apache2/sites-available/<django_project>-le-ssl.conf ```
+To check validity of apache config file  
+```$ sudo apachectl configtest ```
+Allow HTTPS trafic in the firewall
+```$ sudo ufw allow https```
+Restart web server
+```$ sudo systemctl restart apache2.service```
 
 google: django deployment checklist  
 source: https://www.youtube.com/watch?v=Sa_kQheCnds , https://www.youtube.com/watch?v=D2lwk1Ukgz0&t=838s , https://www.linode.com/docs/platform/manager/dns-manager/
