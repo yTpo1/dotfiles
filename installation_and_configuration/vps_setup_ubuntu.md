@@ -161,5 +161,28 @@ $ sudo systemctl restart apache2
 $ sudo service apache2 restart  
 ```
 
+### Set Up a Custom Domain Name  
+https://www.linode.com/docs/platform/manager/dns-manager/  
+1. Register (purchase) a domain name if you haven’t already. (namecheap, domains.google.com, goddady)  
+2. Set your domain name to use Linode’s name servers. You’ll need to do this on your domain registrar’s website and then wait up to 24 hours for the change to take effect.  
+>
+3. Use the DNS Manager to add a domain, and then start adding some basic DNS records.  
+> Go to domains. Click add domain. 
+> ---
+> Go to domains. Add an AAAA Record:  
+> hostname - www  
+> ip address - (the ip address of the server)  
+4. Set reverse DNS.  
+> Go to linodes. Go to sever. Go to networking. Go to IPv4 address. Edit RDNS. Paste in domain name (with or without www).  
+5. If you have any special DNS requirements, such as when using a third-party email server, add additional DNS records for your specific needs.  
+6. SSH into server. Go to django settings.py, in allowed_hosts add domain name.
+Restart server $ sudo service apache2 restart  
+7. (if site isn't reacheble without www) Go to domains. Edit DNS records. add another AAAA with ip address but no www.
+
+### Set Up a SSL/TLS Certificate and enable HTTPS  
+Using service LetsEncrypt https://letsencrypt.org/  
+
+
+
 google: django deployment checklist  
-source: https://www.youtube.com/watch?v=Sa_kQheCnds
+source: https://www.youtube.com/watch?v=Sa_kQheCnds , https://www.youtube.com/watch?v=D2lwk1Ukgz0&t=838s , https://www.linode.com/docs/platform/manager/dns-manager/
