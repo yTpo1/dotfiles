@@ -207,7 +207,12 @@ To check validity of apache config file
 Allow HTTPS trafic in the firewall
 ```$ sudo ufw allow https```
 Restart web server
-```$ sudo systemctl restart apache2.service```
+```$ sudo systemctl restart apache2.service```  
+
+### Set Up automatic SSL/TLS Certificate renewal  
+```$ sudo crontab -e```
+Insert:  
+``` 30 4 1 * * sudo certbot renew --quiet ```   
 
 google: django deployment checklist  
 source: https://www.youtube.com/watch?v=Sa_kQheCnds , https://www.youtube.com/watch?v=D2lwk1Ukgz0&t=838s , https://www.linode.com/docs/platform/manager/dns-manager/
