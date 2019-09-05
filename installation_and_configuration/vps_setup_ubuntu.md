@@ -211,5 +211,8 @@ Restart web server
 Insert:  
 ``` 30 4 1 * * sudo certbot renew --quiet ```   
 
+### Remove access to http
+``` $ sudo ufw delete allow http ```  
+
 google: django deployment checklist  
 source: https://www.youtube.com/watch?v=Sa_kQheCnds , https://www.youtube.com/watch?v=D2lwk1Ukgz0&t=838s , https://www.linode.com/docs/platform/manager/dns-manager/
