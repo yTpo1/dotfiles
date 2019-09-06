@@ -149,7 +149,7 @@ $ sudo chown -R :www-data <django_project>/media/
 $ sudo chmod -R 775 <django_project>/media
 ```  
 
-### move sensitive info to environment variables (ex. application secret_key, database, email username and pass)
+### move sensitive info to environment variables or config.json (ex. application secret_key, database, email username and pass)
 
 change debug to false  
 
