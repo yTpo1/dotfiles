@@ -1,3 +1,7 @@
+call plug#begin('~/.vim/plugged')
+
+call plug#end()
+
 " enable syntax highlighting
 syntax enable
 " show line numbers

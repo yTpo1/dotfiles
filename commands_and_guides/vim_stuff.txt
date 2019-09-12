@@ -1,6 +1,0 @@
-To learn basics of vim use: vimtutor
-
-
-
-# detect file type
-:filetype detect
