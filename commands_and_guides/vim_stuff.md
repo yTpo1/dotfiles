@@ -6,6 +6,10 @@ Plug in manager: https://github.com/junegunn/vim-plug
 Markdown: https://github.com/suan/vim-instant-markdown  
 
 
+## Hotkeys
+Duplicate line  
+> YP  
+
 ## Commands
 Detect file type  
 > :filetype detect  
