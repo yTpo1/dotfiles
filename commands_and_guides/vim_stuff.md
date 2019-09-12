@@ -1,5 +1,12 @@
 To learn basics of vim use: vimtutor
 
+## Plugins
+Plug in manager: https://github.com/junegunn/vim-plug  
+
+Markdown: https://github.com/suan/vim-instant-markdown  
+
+
+## Commands
 Detect file type  
 > :filetype detect  
 
