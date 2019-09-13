@@ -1,3 +1,4 @@
 #!/bin/sh
+# !!IMPORTANT!! Make sure a cron job or a systemd timer is set to sync the files database regularly.
 
 echo $(pacman -Sup | wc -l)

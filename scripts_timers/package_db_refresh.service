@@ -1,0 +1,7 @@
+[Unit]
+Description=Refreshes local available packages ready to update
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c 'pacman -Sy'
+ExecStart=/usr/bin/sh -c '/usr/bin/date >> /tmp/date'

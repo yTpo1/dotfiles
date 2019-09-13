@@ -1,0 +1,5 @@
+[Unit]
+Description=Run date.service every 15 minutes
+
+[Timer]
+OnCalendar=*:0/15

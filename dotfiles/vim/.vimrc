@@ -43,3 +43,11 @@ set ic
 set is
 
 let python_highlight_all = 1
+
+" For quicker movements in insertion mode, map the following keys:
+" https://vim.fandom.com/wiki/Quick_command_in_insert_mode
+inoremap II <Esc>I
+inoremap AA <Esc>A
+inoremap OO <Esc>O
+inoremap DD <Esc>dd
+inoremap UU <Esc>u
