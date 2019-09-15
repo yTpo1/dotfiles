@@ -1,3 +1,11 @@
+" Vim-plug automated installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" To install plugins call :PlugInstall or reload file
 call plug#begin('~/.vim/plugged')
 
 Plug 'suan/vim-instant-markdown', {'for':'markdown'}
