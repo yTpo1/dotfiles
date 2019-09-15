@@ -2,10 +2,10 @@
 Download with curl  
 > $ curl -LO https://github.com/yTpo1/my_arch_install_config/archive/master.zip  
 
-you must use -L to follow redirects
-you must use -k if your certificate file is missing
+you must use -L to follow redirects  
+you must use -k if your certificate file is missing  
 
-Unzip
+Unzip and run script  
 > $ pacman -Sy unzip  
 > $ unzip master.zip  
 > $ cd /my_arch_install_config/scripts  
