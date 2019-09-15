@@ -11,6 +11,11 @@ Unzip and run script
 > $ cd /my_arch_install_config/scripts  
 > $ ./install.sh
 
+After the script finishes
+> $ exit
+> $ umount -R /mnt
+> $ reboot
+
 ## Set Up Desktop
 !!Warning!! Make sure none of the files already exists, otherwise the command will not work.  
 #### Option 1
