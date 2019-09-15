@@ -1,5 +1,18 @@
-Warning: Make sure none of the files already exists, otherwise the command will not work.  
+## Installation
+Download with curl  
+> $ curl -LO https://github.com/yTpo1/my_arch_install_config/archive/master.zip  
 
+you must use -L to follow redirects
+you must use -k if your certificate file is missing
+
+Unzip
+> $ pacman -Sy unzip  
+> $ unzip master.zip  
+> $ cd /my_arch_install_config/scripts  
+> $ ./install.sh
+
+## Set Up Desktop
+!!Warning!! Make sure none of the files already exists, otherwise the command will not work.  
 #### Option 1
 Run script at /scripts/set_up.sh  
 
