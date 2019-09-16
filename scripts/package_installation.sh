@@ -5,6 +5,19 @@
 pacman -S vim
 #pacman -S neovim
 
+# GUI
+pacman -S xorg-server xorg-xinit
+pacman -S i3-gaps i3blocks rxvt-unicode dmenu
+
+# Fonts
+pacman -S ttf-linux-libertine ttf-inconsolata
+pacman -S noto-fonts
+#pacman -S ttf-font-awesome
+# for FullWidth type of fonts (CJK, latin can't be like that) install Sans fonts
+#pacman -S adobe-source-han-sans-otc-fonts
+# or 
+#pacman -S noto-fonts-cjk
+
 # Development
 # -----------
 pacman -S bash-completion
@@ -48,10 +61,6 @@ pacman -S feh
 # ----------------
 #pacman -S weechat
 #pacman -S hexchat
-
-# Fonts:
-# -----------
-#pacman -S ttf-font-awesome
 
 # Database
 # --------
