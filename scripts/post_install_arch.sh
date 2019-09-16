@@ -1,13 +1,16 @@
 #!/usr/bin/sh
 
 # Add a new user
+echo "Creating user ghost1"
 useradd -m -g wheel ghost1
+echo "Enter password for ghost1"
 passwd ghost1
 # copy file in which group wheel is given sudo rights
-cp ./root/files/sudoers /etc/
+#cp files/sudoers /etc/
 
 # Install packages
-./root/package_installation.sh
+echo "Install packages"
+./package_installation.sh
 
 # System time - Network Time Protocol (NTP)
 pacman -S ntp
