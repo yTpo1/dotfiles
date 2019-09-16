@@ -46,7 +46,7 @@ esac
 # 2.1 Select the mirrors
 # 2.2 Install the base packages
 echo " 2.2 Install the base packages"
-pacstrap /mnt base base-devel vim git
+pacstrap /mnt base base-devel
 
 # 3 Configure the system
 echo "3 Configure the system"
