@@ -1,4 +1,4 @@
-## Installation
+## 1. Installation
 Download with curl  
 > $ curl -LO https://github.com/yTpo1/my_arch_install_config/archive/master.zip  
 
@@ -19,7 +19,10 @@ After scripts finish run:
 > $ umount -R /mnt  
 > $ reboot  
 
-## Set Up Desktop
+After reboot run script to install packages and set up user
+> $ ./root/post_install_arch.sh  
+
+## 2. Desktop Set Up
 !!Warning!! Make sure none of the files already exists, otherwise the command will not work.  
 #### Option 1
 Run script at /scripts/set_up.sh  
