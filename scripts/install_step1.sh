@@ -56,5 +56,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 # 3.2 Chroot
 echo " 3.2 Chroot"
-cp -R install_step2.sh /mnt/root/
+# copy files needed to finish set up
+cp -R install_step2.sh package_installation.sh post_install_arch.sh  /mnt/root/
 arch-chroot /mnt
