@@ -8,7 +8,8 @@ endif
 " To install plugins call :PlugInstall or reload file
 call plug#begin('~/.vim/plugged')
 
-Plug 'suan/vim-instant-markdown', {'for':'markdown'}
+" one of the dependencies needed breaks xorg in virtualbox
+" Plug 'suan/vim-instant-markdown', {'for':'markdown'}
 
 call plug#end()
 
