@@ -9,9 +9,12 @@ Unzip and run script
 > $ pacman -Sy unzip  
 > $ unzip master.zip  
 > $ cd /my_arch_install_config/scripts  
-> $ ./install.sh
+> $ ./install_step1.sh  
 
-After the script finishes
+After install_step1 finishes, run:
+> $ ./root/install_step2.sh  
+
+After scripts finish run:
 > $ exit
 > $ umount -R /mnt
 > $ reboot
