@@ -12,15 +12,10 @@ pacman -S git
 pacman -S openssh
 pacman -S python
 pacman -S python-pip
-pacman -S nodejs
-pacman -S npm
+#pacman -S nodejs
+#pacman -S npm
 # dotfiles manager
 pacman -S stow
-
-# Vim markdown
-# ------------
-pacman -S xdg-utils
-npm -g install instant-markdown-d
 
 # Web browsers
 # ------------
@@ -94,3 +89,12 @@ pacman -S feh
 #<<<Installed from AUR>>>
 # yay
 # heroku-cli
+
+
+# ---------
+
+# Vim markdown
+# ------------
+# xdg-utils breaks xorg server after restart
+#pacman -S xdg-utils
+#npm -g install instant-markdown-d
