@@ -22,6 +22,8 @@ After scripts finish run:
 After reboot run script to install packages and set up user
 > $ ./root/post_install_arch.sh  
 
+Add sudo rights to wheen in /etc/sudoers
+
 ## 2. Desktop Set Up
 !!Warning!! Make sure none of the files already exists, otherwise the command will not work.  
 #### Option 1
