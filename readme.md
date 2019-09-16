@@ -11,13 +11,13 @@ Unzip and run script
 > $ cd /my_arch_install_config/scripts  
 > $ ./install_step1.sh  
 
-After install_step1 finishes, run:
+After install_step1 finishes, run:  
 > $ ./root/install_step2.sh  
 
-After scripts finish run:
-> $ exit
-> $ umount -R /mnt
-> $ reboot
+After scripts finish run:  
+> $ exit  
+> $ umount -R /mnt  
+> $ reboot  
 
 ## Set Up Desktop
 !!Warning!! Make sure none of the files already exists, otherwise the command will not work.  
