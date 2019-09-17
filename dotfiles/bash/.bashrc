@@ -17,7 +17,7 @@ cyan="\e[0;36m"
 PS1="\[\e[36m\]\u\[\e[m\]\[\e[36m\]\\$\[\e[m\] "
 
 # import enviroment variables
-source ~/.profile
+#source ~/.profile
 
 # Information:
 # \u - username

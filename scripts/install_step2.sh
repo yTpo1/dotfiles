@@ -1,6 +1,9 @@
 #!/bin/sh
 # To be run after Arch Chroot
 
+# Copy file required to run xorg without root
+cp ./files/Xwrapper.config /etc/X11/
+
 # 3.3 Time zone
 echo " 3.3 Time zone"
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
