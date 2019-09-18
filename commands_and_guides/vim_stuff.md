@@ -57,7 +57,7 @@ Source / Execute command or file. https://stackoverflow.com/questions/803464/how
 
 ## Nerdtree
 https://code.tutsplus.com/tutorials/vim-essential-plugin-nerdtree--net-19692  
-Start nerd tree  
+Start nerdtree  
 > :NERDTree  
 
 Open any file by typing o, or with the more convenient alias, the Enter key.  
@@ -65,4 +65,6 @@ Open any file by typing o, or with the more convenient alias, the Enter key.
 #### Menu
 Press the letter m to bring up a menu that will allow you to quickly add, move, copy, and delete nodes (or files). So, for example, if I want to create a new html file within a particular directory, I can type ma newfile.html.
 
-
+## Tagbar
+Start tagbar  
+> :Tagbar

@@ -6,6 +6,8 @@ pacman -S vim
 #pacman -S neovim
 # Tree explorer plugin for navigating the filesystem 
 pacman -S vim-nerdtree
+# Plugin to browse the tags of the current file and get an overview of its structure
+pacman -S vim-tagbar
 
 # GUI
 pacman -S xorg-server xorg-xinit
