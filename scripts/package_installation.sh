@@ -41,8 +41,13 @@ pacman -S firefox
 
 #pacman -S thunar
 
-# System information viewers
+# System 
 # --------------------------
+# BackUp
+pacman -S rsync
+# USB mounting
+pacman -S udisks2
+# System information viewer
 pacman -S neofetch
 # screenfetch — Similar to archey but has an option to take a screenshot. Written in bash.
 #pacman -S creenfetch

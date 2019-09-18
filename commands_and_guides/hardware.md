@@ -1,6 +1,13 @@
 ## Managing USB and Removable Devices
 
 Mounting
+
+Without sudo. Using udiscksctl  (package - udisks2)  
+> $ lsblk  
+> $ udisksctl mount -b /dev/sd?  
+> $ udisksctl unmount -b /dev/sd?  
+
+With sudo  
 > $ sudo mount /dev/sd? /mnt   
 > $ sudo umount /dev/sd?  
 
@@ -37,12 +44,6 @@ Remove modules and all that depend on them
 ## Other
 Logging with systemd
 > $ journalctl
-
-Using udiscksctl  (package - udisks2)  
-> $ lsblk  
-> $ udisksctl mount -b /dev/sd?  
-> $ udisksctl unmount -b /dev/sd?  
-
 
 Burn an ISO File to a USB Stick  
 > $ sudo dd bs=4M if=/path/to/manjaro.iso of=/dev/sd[drive letter] status=progress  
