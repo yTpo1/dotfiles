@@ -4,6 +4,8 @@
 # -------------------
 pacman -S vim
 #pacman -S neovim
+# Tree explorer plugin for navigating the filesystem 
+pacman -S vim-nerdtree
 
 # GUI
 pacman -S xorg-server xorg-xinit
@@ -29,6 +31,8 @@ pacman -S python-pip
 #pacman -S npm
 # dotfiles manager
 pacman -S stow
+# terminal multiplexer: it enables a number of terminals (or windows), each running a separate program, to be created, accessed, and controlled from a single screen
+pacman -S tmux
 
 # Web browsers
 # ------------

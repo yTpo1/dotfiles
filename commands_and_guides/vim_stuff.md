@@ -30,7 +30,14 @@ CTRL-n and CTRL-p (:help CTRL-N) will invoke Vim's auto completion, displaying a
 <Esc>A - go to the end of the line 
 <Esc>O - start editing on a new line above the current line 
 
-
+#### Splitting viewport
+https://www.linux.com/tutorials/vim-tips-using-viewports/  
+**:sp** will split the Vim window horizontally. Can be written out entirely as **:split**
+**:vsp** will split the Vim window vertically. Can be written out as **:vspliti**.
+**:sp** filename
+**Ctrl-w q** will close the active window.
+**Ctrl-w n** - create new   
+**Ctrl-w Ctrl-w** - moves between Vim viewports.   
 
 ## Commands
 Detect file type  
@@ -46,4 +53,16 @@ Source / Execute command or file. https://stackoverflow.com/questions/803464/how
 > :source  
 > :so 
 > :so %
+
+
+## Nerdtree
+https://code.tutsplus.com/tutorials/vim-essential-plugin-nerdtree--net-19692  
+Start nerd tree  
+> :NERDTree  
+
+Open any file by typing o, or with the more convenient alias, the Enter key.  
+
+#### Menu
+Press the letter m to bring up a menu that will allow you to quickly add, move, copy, and delete nodes (or files). So, for example, if I want to create a new html file within a particular directory, I can type ma newfile.html.
+
 
