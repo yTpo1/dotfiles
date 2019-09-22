@@ -49,6 +49,9 @@ pacman -S firefox
 
 # System 
 # --------------------------
+pacman -S unzip
+# locate functionality. TODO: run $ sudo updatedb
+pacman -S mlocate
 # BackUp
 pacman -S rsync
 # USB mounting
