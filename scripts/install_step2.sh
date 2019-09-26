@@ -10,7 +10,11 @@ ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 
 # 3.4 Localization
 echo " 3.4 Localization"
-cp ./files/locale.gen /etc/
+# for some reason, the file isn't copied
+#cp ./files/locale.gen /etc/
+# so make user make changes on his own
+echo "please uncomment lines with en_US*"
+vi /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 

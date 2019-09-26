@@ -8,14 +8,28 @@ pacman -S vim
 pacman -S vim-nerdtree
 # Plugin to browse the tags of the current file and get an overview of its structure
 pacman -S vim-tagbar
+pacman -S vim-airline 
 
 # GUI
 pacman -S xorg-server xorg-xinit
 pacman -S i3-gaps i3blocks rxvt-unicode dmenu
 
 # Fonts
-pacman -S ttf-linux-libertine ttf-inconsolata
+# Latin script
+# Families. (noto-fonts - Unicode)
 pacman -S noto-fonts
+# Bitstream Vera modified for greater Unicode coverage
+pacman -S ttf-dejavu 
+#pacman -S ttf-liberation
+#ttf-croscore
+# Sans-serif. (ttf-linux-libertine - Free substitute for Times New Roman)
+pacman -S ttf-linux-libertine
+# Monospaced (ttf-inconsolata - inspired by Consolas)
+pacman -S ttf-inconsolata
+
+# Emoji and symbols
+#pacman -S ttf-joypixels
+
 #pacman -S ttf-font-awesome
 # for FullWidth type of fonts (CJK, latin can't be like that) install Sans fonts
 #pacman -S adobe-source-han-sans-otc-fonts
