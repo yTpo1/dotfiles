@@ -9,35 +9,47 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " one of the dependencies needed breaks xorg in virtualbox
-" Plug 'suan/vim-instant-markdown', {'for':'markdown'}
+"Plug 'suan/vim-instant-markdown', {'for':'markdown'}
+" Better file browser
+"Plug 'scrooloose/nerdtree'
+" Class/module browser
+"Plug 'majutsushi/tagbar'
+" Airline
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+" Python autocompletion, go to definition.
+Plug 'davidhalter/jedi-vim'
+
 
 call plug#end()
 
+" allow plugins by file type (required for plugins!)
 filetype plugin on
-"Uncomment to override defaults:
-"let g:instant_markdown_slow = 1
-"let g:instant_markdown_autostart = 0
-"let g:instant_markdown_open_to_the_world = 1
-"let g:instant_markdown_allow_unsafe_content = 1
-"let g:instant_markdown_allow_external_content = 0
-"let g:instant_markdown_mathjax = 1
-"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
-"let g:instant_markdown_autoscroll = 0
-"let g:instant_markdown_port = 8888
-"let g:instant_markdown_python = 1
+filetype indent on            
+
+" tabs and spaces handling
+" expand tabs into spaces
+set expandtab
+" set tabs to have 4 spaces
+set tabstop=4
+set softtabstop=4
+" when using the >> or << commands, shift lines by 4 spaces
+set shiftwidth=4
+
+" tab length exceptions on some file types
+autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
+
+" always show status bar
+set ls=2
 
 " enable syntax highlighting
 syntax enable
 " show line numbers
 set number
-" set tabs to have 4 spaces
-set ts=4
 " indent when moving to the next line while writing code
 set autoindent
-" expand tabs into spaces
-set expandtab
-" when using the >> or << commands, shift lines by 4 spaces
-set shiftwidth=4
 " show a visual line under the cursor's current line
 set cursorline
 " show the matching part of the pair for [] {} and ()
