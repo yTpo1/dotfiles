@@ -7,6 +7,9 @@ Markdown: https://github.com/suan/vim-instant-markdown
 
 
 ## Hotkeys
+Append text at the end of the line 
+> A  
+
 Duplicate line  
 > YP  
 
