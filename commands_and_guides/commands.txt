@@ -4,6 +4,9 @@ whereis
 # To list the current environmental variables with values:
 printenv
 
+# to list font on system
+fc-list | grep -i "name of font"
+
 # print system information -r(kernel-release) -m(machine hardware name)
 uname -rm 
 

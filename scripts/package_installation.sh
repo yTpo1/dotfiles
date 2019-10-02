@@ -10,8 +10,10 @@ pacman -S vim-nerdtree
 pacman -S vim-tagbar
 # powerline for vim written in vim-script
 pacman -S vim-airline 
+pacman -S vim-airline-themes
 # fonts required for powerline
 pacman -S powerline-fonts
+pacman -S awesome-terminal-fonts
 
 # GUI
 pacman -S xorg-server xorg-xinit
@@ -32,6 +34,7 @@ pacman -S ttf-inconsolata
 
 # Emoji and symbols
 #pacman -S ttf-joypixels
+pacman -S noto-fonts-emoji
 
 #pacman -S ttf-font-awesome
 # for FullWidth type of fonts (CJK, latin can't be like that) install Sans fonts

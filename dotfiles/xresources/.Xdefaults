@@ -7,8 +7,11 @@ Xft.dpi: 150
 
 !! TERMINAL CONFIGURATION
 ! increses font and font size in the terminal
-URxvt.font: xft:monospace:size=14
+!URxvt.font: xft:monospace:size=14
+!URxvt.font: xft:Consolas:size=13
+URxvt.font: xft:Consolas:size=13, xft:Inconsolata for Powerline:pixelsize=3
 
+URxvt*font: xft:Terminess Powerline:size=13
 !! changes the color of the text in the terminal
 ! white
 !*.foreground: #f8f8f2
@@ -26,7 +29,7 @@ URxvt.tintColor: white
 URxvt.shading: 20
 
 !! URxvt Appearance
-URxvt.letterSpace: 0
+URxvt.letterSpace: 1
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
 URxvt.internalBorder: 24
