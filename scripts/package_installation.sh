@@ -12,8 +12,9 @@ pacman -S vim-tagbar
 pacman -S vim-airline 
 pacman -S vim-airline-themes
 # fonts required for powerline
-pacman -S powerline-fonts
-pacman -S awesome-terminal-fonts
+# From AUR install https://aur.archlinux.org/packages/ttf-dejavu-sans-mono-powerline-git/
+#pacman -S powerline-fonts
+#pacman -S awesome-terminal-fonts
 
 # GUI
 pacman -S xorg-server xorg-xinit

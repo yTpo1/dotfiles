@@ -7,6 +7,9 @@ printenv
 # to list font on system
 fc-list | grep -i "name of font"
 
+# see how many threads are available in the system
+nproc
+
 # print system information -r(kernel-release) -m(machine hardware name)
 uname -rm 
 
