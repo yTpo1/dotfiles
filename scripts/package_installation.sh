@@ -8,7 +8,10 @@ pacman -S vim
 pacman -S vim-nerdtree
 # Plugin to browse the tags of the current file and get an overview of its structure
 pacman -S vim-tagbar
+# powerline for vim written in vim-script
 pacman -S vim-airline 
+# fonts required for powerline
+pacman -S powerline-fonts
 
 # GUI
 pacman -S xorg-server xorg-xinit

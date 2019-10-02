@@ -72,3 +72,6 @@ inoremap AA <Esc>A
 inoremap OO <Esc>O
 inoremap DD <Esc>dd
 inoremap UU <Esc>u
+
+let g:NERDTreeWinSize=15
+let g:tagbar_width = 20
