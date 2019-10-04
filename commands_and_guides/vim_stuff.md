@@ -57,6 +57,12 @@ Source / Execute command or file. https://stackoverflow.com/questions/803464/how
 > :so 
 > :so %
 
+Open shell
+> :!sh  
+
+:! launches an external process -- in this case sh, another shell. Control will return to vim once you exit the shell. If you want to use the shell concurrently with vim, add & to the end of the sh command:  
+> :!sh&
+
 
 ## Nerdtree
 https://code.tutsplus.com/tutorials/vim-essential-plugin-nerdtree--net-19692  
