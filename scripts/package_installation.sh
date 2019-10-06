@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Shell
+pacman -S zsh
+
 # Text editors
 # -------------------
 pacman -S vim

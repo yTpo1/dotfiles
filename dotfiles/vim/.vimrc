@@ -116,7 +116,8 @@ set cursorline
 " syntax highlighting
 syntax enable
 
-colorscheme desert
+"colorscheme desert
+colorscheme ron
 
 "----------------------------------------------------------------
 " 6. Files and backup
