@@ -71,6 +71,11 @@ pacman -S firefox
 
 #pacman -S thunar
 
+# Document Viewers
+#--------------------------
+pacman -S zathura
+pacman -S zathura-pdf-poppler
+
 # System 
 # --------------------------
 pacman -S unzip

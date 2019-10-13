@@ -23,6 +23,12 @@
 "----------------------------------------------------------------
 " 2. Plugins (Plug)
 "----------------------------------------------------------------
+" Guide: To install 
+" :so % 
+" :PlugInstall
+" To delete
+" :PlugClean
+
 " Vim-plug automated installation
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -50,7 +56,9 @@ call plug#begin('~/.vim/plugged')
 "Plug 'majutsushi/tagbar'
 
 " Python autocompletion, go to definition.
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
+" Autocompletion for C/C++
+"Plug 'valloric/youcompleteme'
 
 call plug#end()
 
@@ -58,7 +66,15 @@ call plug#end()
 " 3. Plugins settings
 "----------------------------------------------------------------
 let g:NERDTreeWinSize=15
+
 let g:tagbar_width = 20
+" Width of the Tagbar window when zoomed.
+" 0: Use the width of the longest currently visible tag.
+let g:tagbar_zoomwidth = 0
+" The number of spaces by which each level is indented. This allows making the display more compact or more spacious.
+let g:tagbar_indent = 1
+" Show the visibility symbols (public/protected/private) to the left of the tag name. Default: 1.
+let g:tagbar_show_visibility = 0
 
 " air-line
 let g:airline_powerline_fonts = 1
