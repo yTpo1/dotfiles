@@ -65,6 +65,7 @@ call plug#end()
 "----------------------------------------------------------------
 " 3. Plugins settings
 "----------------------------------------------------------------
+" NERDTree
 let g:NERDTreeWinSize=15
 
 let g:tagbar_width = 20
@@ -76,7 +77,7 @@ let g:tagbar_indent = 1
 " Show the visibility symbols (public/protected/private) to the left of the tag name. Default: 1.
 let g:tagbar_show_visibility = 0
 
-" air-line
+" vim air-line
 let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
@@ -85,6 +86,8 @@ endif
 
 " theme
 let g:airline_theme='jellybeans'
+" enable tabline
+let g:airline#extensions#tabline#enabled = 1
 
 if $TERM=='rxvt-unicode-256color'
     " unicode symbols

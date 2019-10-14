@@ -7,6 +7,19 @@ Markdown: https://github.com/suan/vim-instant-markdown
 
 
 ## Hotkeys
+Refactor - change variable name
+**gd** or **gD**  
+then  
+**c** + **gn** + esc 
+then  
+**.**  
+https://vi.stackexchange.com/questions/18004/renaming-variables  
+
+
+Go to declaration of the variable
+Place cursor at name to rename and type
+> gd (or gD if you're rename a global variable).  
+
 Append text at the end of the line 
 > A  
 
