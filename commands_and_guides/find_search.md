@@ -1,0 +1,4 @@
+grep
+whereis
+find
+locate
