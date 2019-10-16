@@ -2,6 +2,8 @@
 
 # Shell
 pacman -S zsh
+# plugin
+pacman -S zsh-syntax-highlighting
 
 # Text editors
 # -------------------
