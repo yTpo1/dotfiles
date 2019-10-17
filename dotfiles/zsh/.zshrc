@@ -4,7 +4,7 @@ autoload -U colors && colors
 PROMPT="%F{cyan}%n%f%F{cyan}$%f "
 
 # History in cache directory
-HISTFILE=~/.cache/zsh/.histfile
+HISTFILE=~/.cache/zsh/.zsh_history
 HISTSIZE=5000
 SAVEHIST=5000
 

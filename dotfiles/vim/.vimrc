@@ -45,6 +45,9 @@ call plug#begin('~/.vim/plugged')
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 
+" Colorscheme
+Plug 'rafi/awesome-vim-colorschemes'
+
 " Markdown editor live viewer browser
 " one of the dependencies needed breaks xorg in virtualbox
 "Plug 'suan/vim-instant-markdown', {'for':'markdown'}
@@ -136,7 +139,8 @@ set cursorline
 syntax enable
 
 "colorscheme desert
-colorscheme ron
+"colorscheme ron
+colorscheme nord
 
 "----------------------------------------------------------------
 " 6. Files and backup
