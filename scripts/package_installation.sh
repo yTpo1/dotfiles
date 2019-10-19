@@ -76,7 +76,15 @@ pacman -S firefox
 # Document Viewers
 #--------------------------
 pacman -S zathura
-pacman -S zathura-pdf-poppler
+#pacman -S zathura-pdf-poppler
+pacman -S zathura-pdf-mupdf
+pacman -S zathura-djvu
+# comics/manga reader
+pacman -S zathura-cb
+
+# Archive compress encrypt
+pacman -S unrar
+
 
 # System 
 # --------------------------
@@ -94,7 +102,7 @@ pacman -S neofetch
 
 # System Task managers
 # -------------------
-#pacman -S htop
+pacman -S htop
 # Lets you user pactree to see package dependencies
 #pacman -S pacman-contrib
 
