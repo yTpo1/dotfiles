@@ -1,27 +1,13 @@
 "----------------------------------------------------------------
 "  Index:
-"   1. General settings
-"   2. Plugins (Plug)
-"   3. Plugins settings
-"   4. User interface
-"   5. Scheme and colors
-"   6. Files and backup
-"   7. Buffers management
-"   8. Tabs management
-"   9. Multiple windows
-"  10. Indentation tabs
-"  11. Moving around lines
-"  12. Paste mode
-"  13. Search, vimgrep and grep
-"  14. Text edition
-"  15. Make settings
-"  16. Filetype settings
-"  17. Helper functions
-"  18. External tools integration
+"   1. Plugins (Plug)
+"   2. Plugins settings
+"   3. User interface
+"   4. Other
 "----------------------------------------------------------------
 
 "----------------------------------------------------------------
-" 2. Plugins (Plug)
+" 1. Plugins (Plug)
 "----------------------------------------------------------------
 " Guide: To install 
 " :so % 
@@ -66,7 +52,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 call plug#end()
 
 "----------------------------------------------------------------
-" 3. Plugins settings
+" 2. Plugins settings
 "----------------------------------------------------------------
 " NERDTree
 let g:NERDTreeWinSize=15
@@ -125,15 +111,11 @@ if $TERM=='rxvt-unicode-256color'
 end
 
 "----------------------------------------------------------------
-" 4. User interface
+" 3. User interface
 "----------------------------------------------------------------
 
 " show a visual line under the cursor's current line
 set cursorline
-
-"----------------------------------------------------------------
-" 5. Scheme and colors
-"----------------------------------------------------------------
 
 " syntax highlighting
 syntax enable
@@ -143,16 +125,16 @@ syntax enable
 colorscheme nord
 
 "----------------------------------------------------------------
-" 6. Files and backup
+" 4. Other
 "----------------------------------------------------------------
 
 " allow plugins by file type (required for plugins!)
 filetype plugin on
 filetype indent on            
 
-"----------------------------------------------------------------
-" Other
-"----------------------------------------------------------------
+" enable spell check if filetype .md .txt
+autocmd BufRead,BufNewFile *.md setlocal spell
+autocmd BufRead,BufNewFile *.txt setlocal spell
 
 " tabs and spaces handling
 " expand tabs into spaces
