@@ -9,15 +9,15 @@ passwd ghost1
 #cp files/sudoers /etc/
 
 # Install packages
-echo "Install packages"
-./package_installation.sh
+#echo "Install packages"
+#./package_installation.sh
 
 # System time - Network Time Protocol (NTP)
 pacman -S ntp
 # Enable it at boot
 systemctl enable ntpd.service
 # Start it immediately
-systemctl start ntpd.service
+#systemctl start ntpd.service
 
 
 # GUI
