@@ -37,3 +37,18 @@ echo "3.8 Boot loader"
 pacman -S grub
 grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
+
+# Add a new user
+echo "Creating user ghost1"
+useradd -m -g wheel ghost1
+echo "Enter password for ghost1"
+passwd ghost1
+# copy file in which group wheel is given sudo rights
+#cp files/sudoers /etc/
+
+# System time - Network Time Protocol (NTP)
+pacman -S ntp
+# Enable it at boot
+systemctl enable ntpd.service
+# Start it immediately
+#systemctl start ntpd.service
