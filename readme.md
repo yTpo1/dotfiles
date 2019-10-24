@@ -14,15 +14,14 @@ Unzip and run script
 After install_step1 finishes, run:  
 > $ ./root/install_step2.sh  
 
-Install packages and set up user  
-> $ ./root/post_install_arch.sh   
-
 Add sudo rights to wheen in /etc/sudoers  
 
 After scripts finish run:  
 > $ exit  
 > $ umount -R /mnt  
 > $ reboot  
+
+Install packages
 
 ## 2. Desktop Set Up
 !!Warning!! Make sure none of the files already exists, otherwise the command will not work.  
