@@ -123,6 +123,8 @@ syntax enable
 "colorscheme desert
 "colorscheme ron
 colorscheme nord
+" Windows set up
+"colorscheme OceanicNext
 
 "----------------------------------------------------------------
 " 4. Other
