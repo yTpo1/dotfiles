@@ -28,8 +28,8 @@ call plug#begin('~/.vim/plugged')
 
 " Statusbar
 " Airline
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Colorscheme
 Plug 'rafi/awesome-vim-colorschemes'
@@ -40,9 +40,9 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 " Tools
 " File browser
-"Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " Class/module browser
-"Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 " Python autocompletion, go to definition.
 "Plug 'davidhalter/jedi-vim'
@@ -110,6 +110,36 @@ if $TERM=='rxvt-unicode-256color'
     let g:airline_symbols.linenr = ''
 end
 
+if $TERM=='xterm-256color'
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '>'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '<'
+    let g:airline_symbols.crypt = 'cry'
+    let g:airline_symbols.linenr = '='
+    let g:airline_symbols.linenr = 'LF'
+    let g:airline_symbols.linenr = 'NL'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.maxlinenr = ''
+    let g:airline_symbols.maxlinenr = 'ln'
+    let g:airline_symbols.branch = 'br'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '||'
+    let g:airline_symbols.spell = 'Sp'
+    let g:airline_symbols.notexists = 'Ɇ'
+    let g:airline_symbols.whitespace = 'Ξ'
+    
+    " airline symbols
+    let g:airline_left_sep = '>>'
+    let g:airline_left_alt_sep = '>'
+    let g:airline_right_sep = '<<'
+    let g:airline_right_alt_sep = '<'
+    let g:airline_symbols.branch = 'Br'
+    let g:airline_symbols.readonly = 'readonly'
+    let g:airline_symbols.linenr = '='
+end
+
 "----------------------------------------------------------------
 " 3. User interface
 "----------------------------------------------------------------
@@ -122,9 +152,9 @@ syntax enable
 
 "colorscheme desert
 "colorscheme ron
-colorscheme nord
+"colorscheme nord
 " Windows set up
-"colorscheme OceanicNext
+colorscheme OceanicNext
 
 "----------------------------------------------------------------
 " 4. Other

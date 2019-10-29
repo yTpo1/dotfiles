@@ -10,12 +10,12 @@ pacman -S zsh-syntax-highlighting
 pacman -S vim
 #pacman -S neovim
 # Tree explorer plugin for navigating the filesystem 
-pacman -S vim-nerdtree
+#pacman -S vim-nerdtree
 # Plugin to browse the tags of the current file and get an overview of its structure
-pacman -S vim-tagbar
+#pacman -S vim-tagbar
 # powerline for vim written in vim-script
-pacman -S vim-airline 
-pacman -S vim-airline-themes
+#pacman -S vim-airline 
+#pacman -S vim-airline-themes
 # fonts required for powerline
 # From AUR install https://aur.archlinux.org/packages/ttf-dejavu-sans-mono-powerline-git/
 #pacman -S powerline-fonts
