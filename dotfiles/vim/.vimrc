@@ -44,6 +44,10 @@ Plug 'scrooloose/nerdtree'
 " Class/module browser
 Plug 'majutsushi/tagbar'
 
+" Editing tools
+" NERD Commenter
+Plug 'scrooloose/nerdcommenter'
+
 " Python autocompletion, go to definition.
 "Plug 'davidhalter/jedi-vim'
 " Autocompletion for C/C++
