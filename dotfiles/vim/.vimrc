@@ -172,6 +172,11 @@ filetype indent on
 autocmd BufRead,BufNewFile *.md setlocal spell
 autocmd BufRead,BufNewFile *.txt setlocal spell
 
+" auto write on each ":next", ":rewind", ":last", ":first", ":previous" etc..
+set autowrite
+" auto write on each ":edit", ":quit" etc..
+" set autowriteall
+
 " tabs and spaces handling
 " expand tabs into spaces
 set expandtab
