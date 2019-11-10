@@ -33,12 +33,18 @@ Display variable: **>print varname**
 Step to next line in the immediate scope: **>next** or **>n**
 Step inside of a function: **>step**
 
-Set breakpoint: **>break functionname**
+Set breakpoint: **>break functionname** or **>b funcname**
+Clear breakpoint: **>clear nameofbreak**  
 
 If tui display is broken **>refresh**
 
 watch a variable **>watch varname**
 
+print an array print \*arrayname@10  (10 is size)
+
+If segmentation fault: **>backtrace full** tells exactly what functions have been called and prints out in one command
+
 To quit: **>quit** or **>q**
 
-
+Tutorial:  
+https://www.youtube.com/watch?v=bWH-nL7v5F4&list=PL6qqFPx9xQ1hLOoYAiQ-Me0xa2nlDTjys&index=21&t=726s  

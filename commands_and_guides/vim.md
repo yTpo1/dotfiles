@@ -15,6 +15,11 @@ Place cursor at name to rename and type
 
 Redraw screen: **Ctrl+l**
 
+Line forward/backward **)** **(**
+Paragraph forward/backward **}** **{**
+Go to next/previous start of method **]m** **[m**
+Go to next/previous end of method **]M** **[M**
+
 Append text at the end of the line: **A**  
 
 Duplicate line: **YP**  
