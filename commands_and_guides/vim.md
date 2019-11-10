@@ -1,12 +1,6 @@
 To learn basics of vim use: vimtutor
 
-## Plugins
-Plug in manager: https://github.com/junegunn/vim-plug  
-
-Markdown: https://github.com/suan/vim-instant-markdown  
-
-
-## Hotkeys
+## Normal Mode Hotkeys 
 Refactor - change variable name
 **gd** or **gD**  
 then  
@@ -15,31 +9,37 @@ then
 **.**  
 https://vi.stackexchange.com/questions/18004/renaming-variables  
 
-
 Go to declaration of the variable
 Place cursor at name to rename and type
-> gd (or gD if you're rename a global variable).  
+**gd** (or **gD** if you're renaming a global variable).  
 
-Append text at the end of the line 
-> A  
+Redraw screen: **Ctrl+l**
 
-Duplicate line  
-> YP  
+Append text at the end of the line: **A**  
 
+Duplicate line: **YP**  
+
+Guide to remember **Ctrl+\_** - **u**p **d**own **f**orward **b**ack **H**ome **M**iddle **L**ast  
 https://medium.com/usevim/vim-101-quick-movement-c12889e759e0  
-Guide to remember (Ctrl+_): **u**p **d**own **f**orward **b**ack **H**ome **M**iddle **L**ast  
 
-Go to Top/Middle/Bottom of the screen  
-> H, M, L  
+Go to Top/Middle/Bottom of the screen: **H** **M** **L**  
 
-Move screep Up/Down with one line  
-> Ctrl+y , Ctrl+e  
+Move screen Up/Down with one line: **Ctrl+y** **Ctrl+e**  
 
-Moves cursor & screen Up/Down half a page  
-> Ctrl+u , Ctrl+d 
+Moves cursor & screen Up/Down half a page **Ctrl+u** **Ctrl+d** 
 
 #### Insertion mode
-CTRL-n and CTRL-p (:help CTRL-N) will invoke Vim's auto completion, displaying a menu of matches.
+Auto-completion
+**ctrl-n** and **ctrl-p** (:help CTRL-N) will invoke Vim's auto completion, displaying a menu of matches.
+
+**ctrl-x ctrl-n** auto-complete just for this file.
+**ctrl-x ctrl-f** for filenames
+**ctrl-x ctrl-]** for tags only (need tags file)
+
+
+
+
+
 
 #### Quick movements
 <Esc>I - go to just before the first non-blank text of the line  
@@ -76,6 +76,10 @@ Open shell
 :! launches an external process -- in this case sh, another shell. Control will return to vim once you exit the shell. If you want to use the shell concurrently with vim, add & to the end of the sh command:  
 > :!sh&
 
+## Plugins
+Plug in manager: https://github.com/junegunn/vim-plug  
+
+Markdown: https://github.com/suan/vim-instant-markdown  
 
 ## Nerdtree
 https://code.tutsplus.com/tutorials/vim-essential-plugin-nerdtree--net-19692  
@@ -95,3 +99,4 @@ Start tagbar
 
 ## Vim-airline
 Installed with pacman.  
+
