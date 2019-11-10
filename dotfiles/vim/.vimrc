@@ -44,6 +44,9 @@ Plug 'scrooloose/nerdtree'
 " Class/module browser
 Plug 'majutsushi/tagbar'
 
+" Syntax check
+Plug 'scrooloose/syntastic'
+
 " Editing tools
 " NERD Commenter
 Plug 'scrooloose/nerdcommenter'
@@ -76,6 +79,21 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
+" syntastic
+" rethink these settings after reading the manual
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" By default syntastic doesn't fill the |location-list| with the errors found by the checkers, in order to reduce clashes with other plugins. Enable this option to tell syntastic to always stick any detected errors into the |location-list|:
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+" If this variable is enabled, syntastic in active mode will run syntax checks when buffers are first loaded, as well as on saving:
+let g:syntastic_check_on_open = 1
+" In active mode syntax checks are normally run whenever buffers are written to disk, even when the writes happen just before quitting Vim. If you want to skip checks when you issue `:wq`, `:x`, and `:ZZ`, set this variable to 0:
+let g:syntastic_check_on_wq = 0
+
 
 " theme
 let g:airline_theme='jellybeans'
