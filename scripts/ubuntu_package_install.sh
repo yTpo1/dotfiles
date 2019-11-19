@@ -6,3 +6,5 @@ sudo apt install tmux
 sudo apt install curl
 sudo apt install zsh
 sudo apt install stow
+sudo apt install htop
+sudo apt install neofetch

@@ -41,6 +41,7 @@ Plug 'rafi/awesome-vim-colorschemes'
 " Tools
 " File browser
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " Class/module browser
 Plug 'majutsushi/tagbar'
 
@@ -63,7 +64,12 @@ call plug#end()
 "----------------------------------------------------------------
 " NERDTree
 let g:NERDTreeWinSize=15
+" autostart NERDTree
+"autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+" Tagbar
 let g:tagbar_width = 20
 " Width of the Tagbar window when zoomed.
 " 0: Use the width of the longest currently visible tag.
@@ -234,7 +240,10 @@ let python_highlight_all = 1
 inoremap II <Esc>I
 inoremap AA <Esc>A
 inoremap OO <Esc>O
-inoremap DD <Esc>dd
-inoremap UU <Esc>u
+""inoremap DD <Esc>dd
+"inoremap UU <Esc>u
 
-
+" The <Leader> key is mapped to \ by default.
+" open toggle nerdtree
+nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <Leader>t :TagbarToggle<Enter>
