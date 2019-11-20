@@ -1,9 +1,10 @@
 # C development
 
 ## Tools:
-* vim
 * gcc
 * gdb
+* vim
+* ctags
 
 ## GCC
 To compile to something other than a.out use -o flag. Example:
@@ -48,3 +49,6 @@ To quit: **>quit** or **>q**
 
 Tutorial:  
 https://www.youtube.com/watch?v=bWH-nL7v5F4&list=PL6qqFPx9xQ1hLOoYAiQ-Me0xa2nlDTjys&index=21&t=726s  
+
+#### ctags
+Generate tags for current project **>ctags -R .**
