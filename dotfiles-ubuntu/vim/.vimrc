@@ -25,14 +25,14 @@ endif
 " List of plugins installed
 " To install plugins call :PlugInstall or reload file
 call plug#begin('~/.vim/plugged')
+" Colorscheme
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'ryanoasis/vim-devicons'
 
 " Statusbar
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" Colorscheme
-Plug 'rafi/awesome-vim-colorschemes'
 
 " Markdown editor live viewer browser
 " one of the dependencies needed breaks xorg in virtualbox

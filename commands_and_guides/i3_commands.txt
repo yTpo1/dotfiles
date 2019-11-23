@@ -1,2 +1,0 @@
-shift + mod + space: toggle floating window
-

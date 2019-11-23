@@ -1,33 +1,45 @@
-# will print the source directories for a "i3blocks", and should work for any installed programs.
-whereis
+Size of files and directories
+$ du: Summarize disk usage of each FILE, recursively for directories.
 
-# To list the current environmental variables with values:
-printenv
+Example: du -sh filename
+* -h, --human-readable
+* -s, --summarize
+              display only a total for each argument
 
-# to list font on system
-fc-list | grep -i "name of font"
+Compare files:
+| Command | Explanation |
+| --- | --- |
+$ diff | This command is used to compare two files line by line.
+$ cmp | This command is used to compare two files character by character.
+$ comm | This command is used to compare two sorted files.
+$ uniq | This command is used to filter the repeated lines in a file which are adjacent to each other
 
-# see how many threads are available in the system
-nproc
+Compare directories:
+dircmp: This command is used to compare the contents of directories.
+ will print the source directories for a "i3blocks", and should work for any installed programs.
+$ whereis
 
-# print system information -r(kernel-release) -m(machine hardware name)
-uname -rm 
+To list the current environmental variables with values:
+$ printenv
 
-# see disk space usage (-h human readble form)
-df -h
+see how many threads are available in the system
+$ nproc
 
-# i use to see hardware information. 
-# (-F --full)(-G --graphics)(-x extra)
-inxi -FGx
+print system information -r(kernel-release) -m(machine hardware name)
+$ uname -rm 
+
+see disk space usage (-h human readble form)
+$ df -h
+
+i use to see hardware information. 
+(-F --full)(-G --graphics)(-x extra)
+$ inxi -FGx
 
 # list pluged in devices
 lsblk
 
 # 
 mhwd
-
-# print working directory
-pwd
 
 # rename a folder
 mv oldname/ newname/
@@ -41,9 +53,6 @@ xradr
 # dd if=Downloads/myfile.iso of=/dev/sdb status="progress"
 dd
 
-# system info
-neofetch
-
 ######### Information
 $ man %command%
 $ info %command%
@@ -53,19 +62,6 @@ $ %command% --help
 
 Don't know what to look for?
 $ apropos %something%
-
-######### no explanation needed
-cd
-ls
-touch
-less
-
-######### Arch distro specific ########
-# uprgade system
-sudo pacman -Syu
-
-# download an package (app/program)
-sudo pacman -S [name]
 
 ###### other
 Check the Wikis (most troubleshoots work for all distros):

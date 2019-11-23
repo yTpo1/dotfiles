@@ -3,7 +3,7 @@ autoload -U colors && colors
 # my PS1
 #PROMPT="%F{cyan}%n%f%F{cyan}$%f "
 #PROMPT="{cyan}%{cyan}~$ "
-PROMPT="%F{cyan}%d ~$%f "
+PROMPT="%F{cyan}%~$%f "
 
 # History in cache directory
 HISTFILE=~/.cache/zsh/.zsh_history
