@@ -9,12 +9,6 @@
 "----------------------------------------------------------------
 " 1. Plugins (Plug)
 "----------------------------------------------------------------
-" Guide: To install 
-" :so % 
-" :PlugInstall
-" To delete
-" :PlugClean
-
 " Vim-plug automated installation
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -23,7 +17,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " List of plugins installed
-" To install plugins call :PlugInstall or reload file
+" To install plugins ":so %" Then ":PlugInstall" To delete ":PlugClean"
 call plug#begin('~/.vim/plugged')
 " Colorscheme
 Plug 'rafi/awesome-vim-colorschemes'
@@ -63,7 +57,7 @@ call plug#end()
 " 2. Plugins settings
 "----------------------------------------------------------------
 " NERDTree
-let g:NERDTreeWinSize=15
+let g:NERDTreeWinSize=20
 " autostart NERDTree
 "autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
@@ -101,87 +95,25 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 
-" theme
+" Theme
 let g:airline_theme='jellybeans'
-" enable tabline
+" Enable tabline
 let g:airline#extensions#tabline#enabled = 1
 
-if $TERM=='rxvt-unicode-256color'
-    " unicode symbols
-    " The unicode symbols section is unnecessary here if you already have a patched font but it gives you a nice fallback if you try to use other font which doesn't have the appropriate symbols.
-    let g:airline_left_sep = '»'
-    let g:airline_left_sep = '▶'
-    let g:airline_right_sep = '«'
-    let g:airline_right_sep = '◀'
-    let g:airline_symbols.crypt = 'cry'
-    let g:airline_symbols.linenr = '='
-    let g:airline_symbols.linenr = 'LF'
-    let g:airline_symbols.linenr = 'NL'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.maxlinenr = ''
-    let g:airline_symbols.maxlinenr = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.paste = 'Þ'
-    let g:airline_symbols.paste = '∥'
-    let g:airline_symbols.spell = 'Ꞩ'
-    let g:airline_symbols.notexists = 'Ɇ'
-    let g:airline_symbols.whitespace = 'Ξ'
-    
-    " airline symbols
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.linenr = ''
-end
-
-if $TERM=='xterm-256color'
-    let g:airline_left_sep = '»'
-    let g:airline_left_sep = '>'
-    let g:airline_right_sep = '«'
-    let g:airline_right_sep = '<'
-    let g:airline_symbols.crypt = 'cry'
-    let g:airline_symbols.linenr = '='
-    let g:airline_symbols.linenr = 'LF'
-    let g:airline_symbols.linenr = 'NL'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.maxlinenr = ''
-    let g:airline_symbols.maxlinenr = 'ln'
-    let g:airline_symbols.branch = 'br'
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.paste = 'Þ'
-    let g:airline_symbols.paste = '||'
-    let g:airline_symbols.spell = 'Sp'
-    let g:airline_symbols.notexists = 'Ɇ'
-    let g:airline_symbols.whitespace = 'Ξ'
-    
-    " airline symbols
-    let g:airline_left_sep = '>>'
-    let g:airline_left_alt_sep = '>'
-    let g:airline_right_sep = '<<'
-    let g:airline_right_alt_sep = '<'
-    let g:airline_symbols.branch = 'Br'
-    let g:airline_symbols.readonly = 'readonly'
-    let g:airline_symbols.linenr = '='
-end
 
 "----------------------------------------------------------------
 " 3. User interface
 "----------------------------------------------------------------
 
-" show a visual line under the cursor's current line
+" Show a visual line under the cursor's current line
 set cursorline
 
-" syntax highlighting
+" Syntax highlighting
 syntax enable
 
 "colorscheme desert
 "colorscheme ron
 "colorscheme nord
-" Windows set up
 colorscheme OceanicNext
 
 "----------------------------------------------------------------

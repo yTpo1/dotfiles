@@ -1,9 +1,23 @@
 # Enable colors and change prompt:
 autoload -U colors && colors
+
+# function to return current branch name while suppressing errors.
+function git_branch() {
+    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+    if [[ $branch == "" ]]; then
+        :
+    else
+        echo ' (' $branch ') '
+    fi
+}
+
+setopt prompt_subst             # allow command substitution inside the prompt
+PROMPT='%F{cyan}%~%F{green}$(git_branch)%f '     # set the prompt value
+
 # my PS1
 #PROMPT="%F{cyan}%n%f%F{cyan}$%f "
 #PROMPT="{cyan}%{cyan}~$ "
-PROMPT="%F{cyan}%~$%f "
+#PROMPT="%F{cyan}%~$%f "
 
 # History in cache directory
 HISTFILE=~/.cache/zsh/.zsh_history
