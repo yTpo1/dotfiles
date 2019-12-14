@@ -114,6 +114,12 @@ set cursorline
 " Syntax highlighting
 syntax enable
 
+" Visual ruler, reminder to not write lines of code, too big in length
+set cc=80 
+
+" Display entered commands at the bottom
+set showcmd
+
 "colorscheme desert
 "colorscheme ron
 "colorscheme nord
