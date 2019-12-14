@@ -20,9 +20,11 @@ PROMPT='%F{cyan}%~%F{green}$(git_branch)%f '     # set the prompt value
 #PROMPT="%F{cyan}%~$%f "
 
 # History in cache directory
-HISTFILE=~/.cache/zsh/.zsh_history
-HISTSIZE=5000
-SAVEHIST=5000
+#HISTFILE=~/.cache/zsh/.zsh_history
+HISTFILE=~/.zsh_history
+HISTSIZE=5000 #10000
+SAVEHIST=5000 #10000
+setopt appendhistory
 
 # Auto/tab complete
 #autoload -Uz compinit

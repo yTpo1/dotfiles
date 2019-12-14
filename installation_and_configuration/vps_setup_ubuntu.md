@@ -27,10 +27,8 @@ move keys to server
 ### Step 3
 Setting the permissions of the .ssh/ directory, where owner of the directory has rwx and owner of files has rw  
 server
-```
-$ sudo chmod 700 ~/.ssh/  
-$ sudo chmod 600 ~/.shh/*
-```
+```$ sudo chmod 700 ~/.ssh/```  
+```$ sudo chmod 600 ~/.shh/*```
 dis-allow root logins, and not allow password authentications  
 ```$ sudo vim /etc/ssh/sshd_config```
 1. change:  

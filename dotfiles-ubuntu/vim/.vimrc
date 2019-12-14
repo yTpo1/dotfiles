@@ -23,6 +23,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ryanoasis/vim-devicons'
 
+" To close buffers but not close current window structure
+Plug 'qpkorr/vim-bufkill'
+
 " Statusbar
 " Airline
 Plug 'vim-airline/vim-airline'
