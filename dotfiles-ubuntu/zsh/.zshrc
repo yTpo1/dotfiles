@@ -35,8 +35,16 @@ compinit
 _comp_options+=(globdots) # Include hidden files.
 #zstyle :compinstall filename '/home/ghost1/.zshrc'
 
+# =============================================================================
+# Aliases
+
 # make ls output colorfull (example: folders and files different colors)
 alias ls='ls --color=auto' 
+alias ll='ls -l'
+
+alias v='vim'
+
+
 
 # vi mode
 bindkey -v

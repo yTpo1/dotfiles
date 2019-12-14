@@ -65,6 +65,8 @@ let g:NERDTreeWinSize=20
 "autocmd vimenter * NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"ignore files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$'] 
 
 " Tagbar
 let g:tagbar_width = 20
@@ -151,10 +153,15 @@ set softtabstop=4
 " when using the >> or << commands, shift lines by 4 spaces
 set shiftwidth=4
 
+
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
 " tab length exceptions on some file types
-autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
-autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
+"autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
+"autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
+"autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 " always show status bar
 "set ls=2
@@ -175,6 +182,14 @@ set ic
 set is
 
 let python_highlight_all = 1
+
+" Key remaps
+
+" Easy split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " For quicker movements in insertion mode, map the following keys:
 " https://vim.fandom.com/wiki/Quick_command_in_insert_mode
