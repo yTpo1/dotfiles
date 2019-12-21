@@ -10,15 +10,17 @@
 " 1. Plugins (Plug)
 "----------------------------------------------------------------
 " Vim-plug automated installation
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " List of plugins installed
 " To install plugins ":so %" Then ":PlugInstall" To delete ":PlugClean"
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 " Colorscheme
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ryanoasis/vim-devicons'
@@ -42,10 +44,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Class/module browser
 Plug 'majutsushi/tagbar'
 
-" Automatic ctags generation
-Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
-
 " Syntax check
 Plug 'scrooloose/syntastic'
 
@@ -53,12 +51,10 @@ Plug 'scrooloose/syntastic'
 " NERD Commenter
 Plug 'scrooloose/nerdcommenter'
 
-" AutoCompletion
 " Python autocompletion, go to definition.
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 " Autocompletion for C/C++
 "Plug 'valloric/youcompleteme'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
 call plug#end()
 
@@ -131,7 +127,7 @@ set showcmd
 "colorscheme desert
 "colorscheme ron
 "colorscheme nord
-colorscheme OceanicNext
+"colorscheme OceanicNext
 
 "----------------------------------------------------------------
 " 4. Other
@@ -159,9 +155,6 @@ set softtabstop=4
 " when using the >> or << commands, shift lines by 4 spaces
 set shiftwidth=4
 
-" Python
-" omnicompletion - vim standard module
-set omnifunc=syntaxcomplete#Complete
 
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2

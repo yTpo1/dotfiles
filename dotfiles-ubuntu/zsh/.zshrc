@@ -1,3 +1,4 @@
+source .zprofile
 # Enable colors and change prompt:
 autoload -U colors && colors
 
@@ -42,7 +43,7 @@ _comp_options+=(globdots) # Include hidden files.
 alias ls='ls --color=auto' 
 alias ll='ls -l'
 
-alias v='vim'
+#alias v='/home/ghost/Downloads/neovim/build/bin/nvim'
 
 
 
