@@ -41,7 +41,6 @@ _comp_options+=(globdots) # Include hidden files.
 
 # make ls output colorfull (example: folders and files different colors)
 alias ls='ls --color=auto' 
-alias ll='ls -l'
 
 #alias v='/home/ghost/Downloads/neovim/build/bin/nvim'
 
