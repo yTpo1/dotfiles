@@ -26,8 +26,7 @@ Plug 'ryanoasis/vim-devicons'
 " To close buffers but not close current window structure
 Plug 'qpkorr/vim-bufkill'
 
-" Statusbar
-" Airline
+" Statusbar - Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -42,12 +41,18 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Class/module browser
 Plug 'majutsushi/tagbar'
 
+"Fuzzy files, buffer etc
+Plug 'kien/ctrlp.vim'
+
 " Automatic ctags generation
 Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 
 " Syntax check
 Plug 'scrooloose/syntastic'
+
+" Python pep syntax check
+Plug 'nvie/vim-flake8'
 
 " Editing tools
 " NERD Commenter

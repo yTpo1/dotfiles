@@ -1,4 +1,4 @@
-source .zprofile
+source ~/.zprofile
 # Enable colors and change prompt:
 autoload -U colors && colors
 
@@ -8,7 +8,7 @@ function git_branch() {
     if [[ $branch == "" ]]; then
         :
     else
-        echo ' (' $branch ') '
+        echo ' ('$branch') '
     fi
 }
 
