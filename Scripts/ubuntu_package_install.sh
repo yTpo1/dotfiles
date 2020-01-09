@@ -18,3 +18,5 @@ sudo apt install sqlite3
 sudo apt-get install libncurses5-dev libncursesw5-dev
 sudo apt-get install python3-venv
 sudo apt install python3-tk
+
+sudo apt install screenkey
