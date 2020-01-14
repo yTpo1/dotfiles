@@ -16,10 +16,6 @@ function git_branch() {
 setopt prompt_subst             # allow command substitution inside the prompt
 PROMPT='%F{cyan}%~%F{green}$(git_branch)%f '     # set the prompt value
 
-# my PS1
-#PROMPT="%F{cyan}%n%f%F{cyan}$%f "
-#PROMPT="{cyan}%{cyan}~$ "
-#PROMPT="%F{cyan}%~$%f "
 
 # History in cache directory
 #HISTFILE=~/.cache/zsh/.zsh_history
@@ -35,23 +31,12 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files.
-#zstyle :compinstall filename '/home/ghost1/.zshrc'
-
-# =============================================================================
-# Aliases
-
-# make ls output colorfull (example: folders and files different colors)
-alias ls='ls --color=auto' 
-
-#alias v='/home/ghost/Downloads/neovim/build/bin/nvim'
-
-
 
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
 
-# cd without typing cd :D
+# cd without typing cd
 setopt autocd
 
 # Use vim keys in tab complete menu instead of arrows
@@ -88,8 +73,6 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# export environment variables
-#source ~/.zshenv
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
