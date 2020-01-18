@@ -14,9 +14,11 @@ HISTSIZE=5000 #10000
 SAVEHIST=5000 #10000
 setopt appendhistory
 
-# Auto/tab complete
-#autoload -Uz compinit
-autoload -U compinit
+# Auto(tab) command completetion
+# "-U" prevents the expansion of aliases
+# "-z" means use zsh (rather than ksh) style
+autoload -Uz compinit
+# For autocompletion with an arrow-key driven interface
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
