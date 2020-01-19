@@ -49,6 +49,7 @@ Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 
 " Syntax check
+" Usage: vims :lfirst :llast :lnext :lprevious
 Plug 'scrooloose/syntastic'
 
 " Python pep syntax check

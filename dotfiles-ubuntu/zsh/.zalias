@@ -1,6 +1,6 @@
 alias pyact='source venv/bin/activate'
 
-alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,venv}'
 alias diff='diff --color=auto'
 
 # make ls output colorfull (example: folders and files different colors)
