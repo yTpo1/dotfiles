@@ -58,6 +58,9 @@ Plug 'nvie/vim-flake8'
 " NERD Commenter
 Plug 'scrooloose/nerdcommenter'
 
+Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips'
+
 " AutoCompletion
 " Python autocompletion, go to definition.
 Plug 'davidhalter/jedi-vim'
@@ -70,6 +73,12 @@ call plug#end()
 "----------------------------------------------------------------
 " 2. Plugins settings
 "----------------------------------------------------------------
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
 " NERDTree
 let g:NERDTreeWinSize=20
 " autostart NERDTree
