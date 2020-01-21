@@ -42,7 +42,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
 
 "Fuzzy files, buffer etc
-Plug 'kien/ctrlp.vim'
+" <c-p> to invoke
+"Plug 'kien/ctrlp.vim' " Project unmaintained
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Automatic ctags generation
 Plug 'xolox/vim-easytags'
@@ -74,10 +76,11 @@ call plug#end()
 "----------------------------------------------------------------
 " 2. Plugins settings
 "----------------------------------------------------------------
+" UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
 " NERDTree
@@ -101,7 +104,6 @@ let g:tagbar_show_visibility = 0
 
 " vim air-line
 let g:airline_powerline_fonts = 1
-
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -111,7 +113,6 @@ endif
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 " By default syntastic doesn't fill the |location-list| with the errors found by the checkers, in order to reduce clashes with other plugins. Enable this option to tell syntastic to always stick any detected errors into the |location-list|:
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -120,12 +121,10 @@ let g:syntastic_check_on_open = 1
 " In active mode syntax checks are normally run whenever buffers are written to disk, even when the writes happen just before quitting Vim. If you want to skip checks when you issue `:wq`, `:x`, and `:ZZ`, set this variable to 0:
 let g:syntastic_check_on_wq = 0
 
-
 " Theme
 let g:airline_theme='jellybeans'
 " Enable tabline
 let g:airline#extensions#tabline#enabled = 1
-
 
 "----------------------------------------------------------------
 " 3. User interface
@@ -145,8 +144,10 @@ set showcmd
 
 "colorscheme desert
 "colorscheme ron
-"colorscheme nord
-colorscheme OceanicNext
+colorscheme nord
+"colorscheme OceanicNext
+
+"colorscheme iceberg
 
 "----------------------------------------------------------------
 " 4. Other
