@@ -57,6 +57,15 @@ setopt autocd
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# load antibody plugins
+source ~/.zsh_plugins.sh
+
+source .cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-djui-SLASH-alias-tips/alias-tips.plugin.zsh 
+
+source .cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+# use ctrl+space to accect autosuggestion
+bindkey '^ ' autosuggest-accept
+
 
 # Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
