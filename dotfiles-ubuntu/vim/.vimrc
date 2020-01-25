@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
 " Colorscheme
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " To close buffers but not close current window structure
 Plug 'qpkorr/vim-bufkill'
@@ -91,6 +92,10 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$'] 
+
+" vim-nerdtree-syntax-highlight (Devicons + NerdTree)
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
 
 " Tagbar
 let g:tagbar_width = 20
