@@ -125,6 +125,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 " In active mode syntax checks are normally run whenever buffers are written to disk, even when the writes happen just before quitting Vim. If you want to skip checks when you issue `:wq`, `:x`, and `:ZZ`, set this variable to 0:
 let g:syntastic_check_on_wq = 0
+" Window height
+:let g:syntastic_loc_list_height=3
 
 " Theme
 let g:airline_theme='jellybeans'
@@ -155,7 +157,7 @@ colorscheme nord
 "colorscheme iceberg
 
 "----------------------------------------------------------------
-" 4. Other
+" 4. Vim internal settings
 "----------------------------------------------------------------
 
 " allow plugins by file type (required for plugins!)
@@ -179,6 +181,9 @@ set tabstop=4
 set softtabstop=4
 " when using the >> or << commands, shift lines by 4 spaces
 set shiftwidth=4
+
+" will change the 'completeopt' option so that Vim's popup menu doesn't select the first completion item, but rather just inserts the longest common text of all matches; and the menu will come up even if there's only one match.
+set completeopt=longest,menuone
 
 " Python
 " omnicompletion - vim standard module

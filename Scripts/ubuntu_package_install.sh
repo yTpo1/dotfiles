@@ -24,6 +24,8 @@ sudo apt install python3-tk
 
 sudo apt install screenkey
 
+sudo apt install pass
+
 # Python global packages
 #------------------------
 python3 -m pip install flake8
