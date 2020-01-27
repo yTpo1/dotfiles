@@ -1,17 +1,52 @@
-alias pyact='source venv/bin/activate'
+# -F, --classify append indicator (one of */=>@|) to entries
+# / is a directory
+# @ is a symlink
+# | is a named pipe (fifo)
+# = is a socket.
+# * for executable files
+
+# make ls output colorfull (example: folders and files different colors)
+alias ls='ls --color=auto' 
+# -A, --almost-all | do not list implied . and ..
+alias ll='ls -lhA'
+# Show hidden files
+alias la='ls -a'
+# -s, --size print the allocated size of each file, in blocks
+# -1 list one file per line.
+# -S sort by file size, largest first.
+# -F, --classify append indicator (one of */=>@|) to entries
+alias lt='ls --human-readable --size -1 -S --classify'
+
+# count files in directory
+alias countf='find . -type f | wc -l'
+
+alias v='vim'
+alias c='clear'
+alias g='git'
+
+# prompt user if overwriting during copy
+alias cp='cp -i'
+# copy progress bar
+alias cpv='rsync -ah --info=progress2'
+# prompt user when deleting a file
+alias rm='rm -i'
+
+#alias fhere="find . -name "
 
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,venv}'
 alias diff='diff --color=auto'
 
-# make ls output colorfull (example: folders and files different colors)
-alias ls='ls --color=auto' 
-alias ll='ls -lhA'
-alias v='vim'
-alias c='clear'
-#alias fhere="find . -name "
 # list our disk usage in human-readable units including filesystem type, and print a total at the bottom:
 #alias df="df -Tha --total"
 #alias du="du -ach | sort -h"
-alias py='python3'
 
-alias g='git'
+alias free="free -mt"
+
+alias py='python3'
+alias pyact='source venv/bin/activate'
+alias pycr='python3 -m venv ./venv'
+
+alias ping='ping -c 5'
+
+# generate a random, 8-character password for a new online account
+alias getpass="openssl rand -base64 8"

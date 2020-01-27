@@ -26,6 +26,8 @@ sudo apt install screenkey
 
 sudo apt install pass
 
+sudo apt install adb
+
 # Python global packages
 #------------------------
 python3 -m pip install flake8
