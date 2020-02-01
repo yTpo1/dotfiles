@@ -20,7 +20,8 @@ alias lt='ls --human-readable --size -1 -S --classify'
 # count files in directory
 alias countf='find . -type f | wc -l'
 
-alias v='vim'
+#alias v='vim'
+alias v='nvim'
 alias c='clear'
 alias g='git'
 

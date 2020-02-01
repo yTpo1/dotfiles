@@ -1,10 +1,10 @@
+set nocompatible " use vim defaults
+
 "----------------------------------------------------------------
 "  Index:
 "   1. Plugins (Plug)
 "   2. Plugins settings
-"   3. User interface
-"   4. Other
-"----------------------------------------------------------------
+"   3. Vim internal settings
 
 "----------------------------------------------------------------
 " 1. Plugins (Plug)
@@ -93,6 +93,11 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$'] 
 
+" The <Leader> key is mapped to \ by default.
+" open toggle nerdtree
+nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <Leader>t :TagbarToggle<Enter>
+
 " vim-nerdtree-syntax-highlight (Devicons + NerdTree)
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
@@ -134,61 +139,64 @@ let g:airline_theme='jellybeans'
 let g:airline#extensions#tabline#enabled = 1
 
 "----------------------------------------------------------------
-" 3. User interface
+" 3. Vim internal settings
 "----------------------------------------------------------------
-
-" Show a visual line under the cursor's current line
-set cursorline
-
-" Syntax highlighting
-syntax enable
-
-" Visual ruler, reminder to not write lines of code, too big in length
-set cc=80 
-
-" Display entered commands at the bottom
-set showcmd
-
 "colorscheme desert
 "colorscheme ron
 colorscheme nord
 "colorscheme OceanicNext
-
 "colorscheme iceberg
-
-"----------------------------------------------------------------
-" 4. Vim internal settings
-"----------------------------------------------------------------
 
 " allow plugins by file type (required for plugins!)
 filetype plugin on
 filetype indent on            
-
-" enable spell check if filetype .md .txt
-autocmd BufRead,BufNewFile *.md setlocal spell
-autocmd BufRead,BufNewFile *.txt setlocal spell
 
 " auto write on each ":next", ":rewind", ":last", ":first", ":previous" etc..
 set autowrite
 " auto write on each ":edit", ":quit" etc..
 " set autowriteall
 
-" tabs and spaces handling
-" expand tabs into spaces
-set expandtab
-" set tabs to have 4 spaces
-set tabstop=4
-set softtabstop=4
-" when using the >> or << commands, shift lines by 4 spaces
-set shiftwidth=4
-
 " will change the 'completeopt' option so that Vim's popup menu doesn't select the first completion item, but rather just inserts the longest common text of all matches; and the menu will come up even if there's only one match.
 set completeopt=longest,menuone
+set omnifunc=syntaxcomplete#Complete " omnicompletion - vim standard module
 
-" Python
-" omnicompletion - vim standard module
-set omnifunc=syntaxcomplete#Complete
+" always show status bar
+"set ls=2
 
+set cursorline " Show a visual line under the cursor's current line
+syntax enable  " Syntax highlighting
+set cc=80      " Visual ruler, reminder to not write lines of code, too big in length
+set showcmd    " Display entered commands at the bottom
+
+set number     " show line numbers
+set ruler      " show the current row and column
+set autoindent "(set ai) indent when moving to the next line while writing code
+
+"filetype on        " detect type of file
+"filetype indent on " load indent file for specific file type
+
+" --SEARCH--
+set showmatch  " show the matching part of the pair for [] {} and ()
+set hlsearch   " highlight search matches
+set incsearch  "(set is) show partial matches for a search phase
+set ignorecase "(set ic) ignore case when searching
+set smartcase  " no ignorecase if Uppercase char present
+
+" --File Type/Languages--
+" --MD,TXT--
+autocmd BufRead,BufNewFile *.md setlocal spell  " enable spell check
+autocmd BufRead,BufNewFile *.txt setlocal spell " enable spell check
+
+" --PYTHON--
+" enable all Python syntax highlighting features
+let python_highlight_all = 1
+au BufNewFile,BufRead *.py
+	\ set expandtab     " expand tabs into spaces
+	\ set tabstop=4     " set tabs to have 4 spaces
+	\ set softtabstop=4
+	\ set shiftwidth=4  " when using >> << commands, shift lines by 4 spaces
+
+" --HTML,CSS,JS--
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
     \ set softtabstop=2
@@ -198,28 +206,7 @@ au BufNewFile,BufRead *.js, *.html, *.css
 "autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
 "autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
-" always show status bar
-"set ls=2
-
-" show line numbers
-set number
-" indent when moving to the next line while writing code
-set autoindent
-" show the matching part of the pair for [] {} and ()
-set showmatch
-" enable all Python syntax highlighting features
-
-" highlight all search matches
-set hlsearch
-" ignore case when searching
-set ic
-" show partial matches for a search phase
-set is
-
-let python_highlight_all = 1
-
-" Key remaps
-
+" --KEY REMAPS--
 " Easy split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -233,8 +220,3 @@ inoremap AA <Esc>A
 inoremap OO <Esc>O
 ""inoremap DD <Esc>dd
 "inoremap UU <Esc>u
-
-" The <Leader> key is mapped to \ by default.
-" open toggle nerdtree
-nnoremap <Leader>f :NERDTreeToggle<Enter>
-nnoremap <Leader>t :TagbarToggle<Enter>
