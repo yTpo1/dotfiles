@@ -10,26 +10,24 @@
 " 1. Plugins (Plug)
 "----------------------------------------------------------------
 " Vim-plug automated installation
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " List of plugins installed
 " To install plugins ":so %" Then ":PlugInstall" To delete ":PlugClean"
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 " Colorscheme
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " To close buffers but not close current window structure
 Plug 'qpkorr/vim-bufkill'
 
-" Statusbar
-" Airline
+" Statusbar - Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -44,23 +42,48 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Class/module browser
 Plug 'majutsushi/tagbar'
 
+"Fuzzy files, buffer etc
+" <c-p> to invoke
+"Plug 'kien/ctrlp.vim' " Project unmaintained
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Automatic ctags generation
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+
 " Syntax check
+" Usage: vims :lfirst :llast :lnext :lprevious
 Plug 'scrooloose/syntastic'
+
+" Python pep syntax check
+Plug 'nvie/vim-flake8'
 
 " Editing tools
 " NERD Commenter
 Plug 'scrooloose/nerdcommenter'
 
+Plug 'honza/vim-snippets'
+Plug 'sirver/ultisnips'
+
+" AutoCompletion
 " Python autocompletion, go to definition.
-"Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 " Autocompletion for C/C++
 "Plug 'valloric/youcompleteme'
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
 call plug#end()
 
 "----------------------------------------------------------------
 " 2. Plugins settings
 "----------------------------------------------------------------
+" UltiSnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
 " NERDTree
 let g:NERDTreeWinSize=20
 " autostart NERDTree
@@ -69,6 +92,10 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$'] 
+
+" vim-nerdtree-syntax-highlight (Devicons + NerdTree)
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
 
 " Tagbar
 let g:tagbar_width = 20
@@ -82,7 +109,6 @@ let g:tagbar_show_visibility = 0
 
 " vim air-line
 let g:airline_powerline_fonts = 1
-
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -92,7 +118,6 @@ endif
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 " By default syntastic doesn't fill the |location-list| with the errors found by the checkers, in order to reduce clashes with other plugins. Enable this option to tell syntastic to always stick any detected errors into the |location-list|:
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -100,13 +125,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 " In active mode syntax checks are normally run whenever buffers are written to disk, even when the writes happen just before quitting Vim. If you want to skip checks when you issue `:wq`, `:x`, and `:ZZ`, set this variable to 0:
 let g:syntastic_check_on_wq = 0
-
+" Window height
+:let g:syntastic_loc_list_height=3
 
 " Theme
 let g:airline_theme='jellybeans'
 " Enable tabline
 let g:airline#extensions#tabline#enabled = 1
-
 
 "----------------------------------------------------------------
 " 3. User interface
@@ -126,11 +151,13 @@ set showcmd
 
 "colorscheme desert
 "colorscheme ron
-"colorscheme nord
+colorscheme nord
 "colorscheme OceanicNext
 
+"colorscheme iceberg
+
 "----------------------------------------------------------------
-" 4. Other
+" 4. Vim internal settings
 "----------------------------------------------------------------
 
 " allow plugins by file type (required for plugins!)
@@ -155,6 +182,12 @@ set softtabstop=4
 " when using the >> or << commands, shift lines by 4 spaces
 set shiftwidth=4
 
+" will change the 'completeopt' option so that Vim's popup menu doesn't select the first completion item, but rather just inserts the longest common text of all matches; and the menu will come up even if there's only one match.
+set completeopt=longest,menuone
+
+" Python
+" omnicompletion - vim standard module
+set omnifunc=syntaxcomplete#Complete
 
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
