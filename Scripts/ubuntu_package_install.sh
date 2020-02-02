@@ -28,6 +28,8 @@ sudo apt install pass
 
 sudo apt install adb
 
+sudo apt newsboat
+
 # Python global packages
 #------------------------
 python3 -m pip install flake8
