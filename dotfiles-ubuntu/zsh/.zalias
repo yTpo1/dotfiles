@@ -20,8 +20,11 @@ alias lt='ls --human-readable --size -1 -S --classify'
 # count files in directory
 alias countf='find . -type f | wc -l'
 
-#alias v='vim'
-alias v='nvim'
+if [ $OSTYPE != "linux-android" ]; then
+	alias v='nvim'
+else
+	alias v='vim';
+fi
 alias c='clear'
 alias g='git'
 
