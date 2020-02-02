@@ -1,4 +1,6 @@
-source ~/.zprofile
+if [ $OSTYPE != "linux-android" ]; then
+	source ~/.zprofile
+fi
 source ~/.zalias
 # Enable colors and change prompt:
 autoload -U colors && colors
@@ -66,6 +68,7 @@ source ~/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SL
 # use ctrl+space to accect autosuggestion
 bindkey '^ ' autosuggest-accept
 
+# linux-android
 
 # Load zsh-syntax-highlighting; should be last.
 #source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
