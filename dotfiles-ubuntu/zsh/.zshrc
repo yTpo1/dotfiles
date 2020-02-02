@@ -5,7 +5,8 @@ source ~/.zalias
 # Enable colors and change prompt:
 autoload -U colors && colors
 
-setopt prompt_subst             # allow command substitution inside the prompt
+# allow command substitution inside the prompt
+setopt prompt_subst 
 #PROMPT='%F{cyan}%~%F{green}$(git_branch)%f '     # set the prompt value
 PROMPT='%F{cyan}%~%F{green}$%f '     # set the prompt value
 
@@ -46,29 +47,15 @@ zle -N down-line-or-beginning-search
 # cd without typing cd
 setopt autocd
 
-
-# Use vim keys in tab complete menu instead of arrows
-# (Downside: can't use these keys to type characters while menuselecting)
-#bindkey -M menuselect 'h' vi-backward-char
-#bindkey -M menuselect 'k' vi-up-line-or-history
-#bindkey -M menuselect 'l' vi-forward-char
-#bindkey -M menuselect 'j' vi-down-line-or-history
-#bindkey -v '^?' backward-delete-char
-
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# load antibody plugins
-source ~/.zsh_plugins.sh
-
-source ~/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-djui-SLASH-alias-tips/alias-tips.plugin.zsh 
-
-source ~/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-# use ctrl+space to accect autosuggestion
-bindkey '^ ' autosuggest-accept
-
-# linux-android
-
-# Load zsh-syntax-highlighting; should be last.
-#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+if [ $OSTYPE != "linux-android" ]; then
+	# load antibody plugins
+	source ~/.zsh_plugins.sh
+	source ~/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-djui-SLASH-alias-tips/alias-tips.plugin.zsh 
+	source ~/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+	# Autosuggestion - use ctrl+space to accect autosuggestion
+	bindkey '^ ' autosuggest-accept
+fi
