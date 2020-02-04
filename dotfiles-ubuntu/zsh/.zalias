@@ -47,6 +47,13 @@ alias diff='diff --color=auto'
 #alias df="df -Tha --total"
 #alias du="du -ach | sort -h"
 
+# -T, --print-type : print file system type
+# -h : in human readble form
+# -x [fs], --exclude-type=[fs] : exclude
+# tmpfs is a temporary file storage paradigm. Similar to RAM disk.
+# devtmpfs - This is an improved devfs. The purpose of devtmpfs is to boost boot-time. devtmpfs is more like tmpfs than devfs.
+alias df="df -h --print-type -x squashfs -x tmpfs -x devtmpfs --total"
+
 alias free="free -mt"
 
 alias py='python3'
