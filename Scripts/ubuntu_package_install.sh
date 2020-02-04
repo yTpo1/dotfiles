@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Not in package manager:
+# fzf - https://github.com/junegunn/fzf 
+
 sudo apt install vim
 sudo apt install git
 sudo apt install gcc
@@ -28,7 +31,9 @@ sudo apt install pass
 
 sudo apt install adb
 
-sudo apt newsboat
+sudo apt install newsboat
+
+sudo apt install ranger
 
 # Python global packages
 #------------------------

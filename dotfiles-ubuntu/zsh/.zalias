@@ -25,6 +25,9 @@ if [ $OSTYPE != "linux-android" ]; then
 else
 	alias v='vim';
 fi
+
+alias vfzf='v $(fzf)'
+
 alias c='clear'
 alias g='git'
 

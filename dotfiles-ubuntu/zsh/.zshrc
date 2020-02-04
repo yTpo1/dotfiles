@@ -59,3 +59,5 @@ if [ $OSTYPE != "linux-android" ]; then
 	# Autosuggestion - use ctrl+space to accect autosuggestion
 	bindkey '^ ' autosuggest-accept
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
