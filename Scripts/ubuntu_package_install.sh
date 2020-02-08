@@ -42,3 +42,4 @@ python3 -m pip install flake8
 # Ubuntu Specific
 # ------------------------------
 sudo apt install gnome-tweak-tool
+sudo apt install nodejs

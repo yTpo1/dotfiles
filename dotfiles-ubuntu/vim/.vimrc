@@ -71,6 +71,7 @@ Plug 'davidhalter/jedi-vim'
 " Autocompletion for C/C++
 "Plug 'valloric/youcompleteme'
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
