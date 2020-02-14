@@ -2,6 +2,8 @@
 
 # Not in package manager:
 # fzf - https://github.com/junegunn/fzf 
+# neovim - https://github.com/neovim/neovim
+# ccls - https://github.com/MaskRay/ccls
 
 sudo apt install vim
 sudo apt install git
@@ -17,6 +19,8 @@ sudo apt install stow
 sudo apt install htop
 sudo apt install neofetch
 sudo apt install sqlite3
+sudo apt install nodejs
+sudo apt install npm
 
 sudo apt install python3-pip
 
@@ -35,6 +39,10 @@ sudo apt install newsboat
 
 sudo apt install ranger
 
+sudo apt install zathura
+sudo add-apt-repository ppa:spvkgn/zathura-mupdf
+sudo apt-get install zathura zathura-pdf-mupdf
+
 # Python global packages
 #------------------------
 python3 -m pip install flake8
@@ -42,4 +50,3 @@ python3 -m pip install flake8
 # Ubuntu Specific
 # ------------------------------
 sudo apt install gnome-tweak-tool
-sudo apt install nodejs
