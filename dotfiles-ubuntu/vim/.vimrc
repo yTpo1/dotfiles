@@ -1,13 +1,11 @@
 set nocompatible " use vim defaults
-
 "----------------------------------------------------------------
 "  Index:
 "   1. Plugins (Plug)
 "   2. Plugins settings
 "   3. Vim internal settings
-
 "----------------------------------------------------------------
-" 1. Plugins (Plug)
+" 1. Plugins
 "----------------------------------------------------------------
 " Vim-plug automated installation
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -15,8 +13,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
-" List of plugins installed
 " To install plugins ":so %" Then ":PlugInstall" To delete ":PlugClean"
 call plug#begin('~/.vim/plugged')
 " Colorscheme
@@ -32,10 +28,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Markdown editor live viewer browser
-" one of the dependencies needed breaks xorg in virtualbox
-"Plug 'suan/vim-instant-markdown', {'for':'markdown'}
+" Install the mini-server by running:
+" > [sudo] npm -g install instant-markdown-d
+Plug 'suan/vim-instant-markdown', {'for':'markdown'}
 
-" Tools
 " File browser
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -58,7 +54,6 @@ Plug 'scrooloose/syntastic'
 " Python pep syntax check
 Plug 'nvie/vim-flake8'
 
-" Editing tools
 " NERD Commenter
 Plug 'scrooloose/nerdcommenter'
 
@@ -71,10 +66,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Python autocompletion, go to definition.
 Plug 'davidhalter/jedi-vim'
-
-" Autocompletion for C/C++
-"Plug 'valloric/youcompleteme'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 call plug#end()
 
 "----------------------------------------------------------------
@@ -85,7 +76,6 @@ call plug#end()
 let g:UltiSnipsExpandTrigger="<tab>"
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 
 " NERDTree
 let g:NERDTreeWinSize=20
@@ -269,15 +259,10 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
 "----------------------------------------------------------------
 " 3. Vim internal settings
 "----------------------------------------------------------------
-"colorscheme desert
-"colorscheme ron
-colorscheme nord
-"colorscheme OceanicNext
-"colorscheme iceberg
+colorscheme gruvbox "desert ron nord OceanicNext iceberg
 
 " allow plugins by file type (required for plugins!)
 filetype plugin on

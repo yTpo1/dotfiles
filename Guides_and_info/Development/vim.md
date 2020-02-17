@@ -1,17 +1,6 @@
 To learn basics of vim use: vimtutor
 
 ## Normal Mode Hotkeys 
-Refactor - change variable name
-**gd** or **gD**  
-then  
-**c** + **gn** + esc 
-then  
-**.**  
-https://vi.stackexchange.com/questions/18004/renaming-variables  
-
-Go to declaration of the variable
-Place cursor at name to rename and type
-**gd** (or **gD** if you're renaming a global variable).  
 
 Redraw screen: **Ctrl+l**
 
@@ -40,11 +29,6 @@ Auto-completion
 **ctrl-x ctrl-n** auto-complete just for this file.
 **ctrl-x ctrl-f** for filenames
 **ctrl-x ctrl-]** for tags only (need tags file)
-
-
-
-
-
 
 #### Quick movements
 <Esc>I - go to just before the first non-blank text of the line  
@@ -104,4 +88,3 @@ Start tagbar
 
 ## Vim-airline
 Installed with pacman.  
-

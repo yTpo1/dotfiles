@@ -1,3 +1,11 @@
+Tags: extract tar tar.gz gz zip
+## Exract tag.gz 
+In current directory  
+> tar -xvf yourfile  
+to another directory  
+> tar -C /myfolder -xvf yourfile
+
+
 An archive file is a collection of files and directories that are stored in one file. The archive file is not compressed — it uses the same amount of disk space as all the individual files and directories combined. A compressed file is a collection of files and directories that are stored in one file and stored in a way that uses less disk space than all the individual files and directories combined. If you do not have enough disk space on your computer, you can compress files that you do not use very often or files that you want to save but do not use anymore. You can even create an archive file and then compress it to save disk space. 
 
 > No point in compressing most images, music, videos and PDF files, as they are already compressed
