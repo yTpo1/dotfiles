@@ -285,7 +285,7 @@ syntax enable  " Syntax highlighting
 set cc=80      " Visual ruler, reminder to not write lines of code, too big in length
 set showcmd    " Display entered commands at the bottom
 
-set number     " show line numbers
+set number relativenumber " show line numbers
 set ruler      " show the current row and column
 set autoindent "(set ai) indent when moving to the next line while writing code
 
