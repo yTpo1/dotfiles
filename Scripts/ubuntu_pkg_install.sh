@@ -32,6 +32,7 @@ sudo add-apt-repository ppa:spvkgn/zathura-mupdf
 sudo apt-get install zathura zathura-pdf-mupdf
 sudo apt install screenkey
 sudo apt install curl 
+sudo apt install flameshot # screenshot tool
 
 # c/c++ development
 sudo apt install gcc

@@ -43,7 +43,8 @@ watch a variable **>watch varname**
 
 print an array print \*arrayname@10  (10 is size)
 
-If segmentation fault: **>backtrace full** tells exactly what functions have been called and prints out in one command
+If segmentation fault: >**backtrace full** tells exactly what functions have been called and prints out in one command  
+To print code listing >**list** (Very usefull after **backtrace**) 
 
 To quit: **>quit** or **>q**
 
