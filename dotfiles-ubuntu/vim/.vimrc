@@ -84,7 +84,7 @@ let g:NERDTreeWinSize=20
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "ignore files in NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$'] 
+let NERDTreeIgnore=['.out', '\.pyc$', '\~$'] 
 
 " The <Leader> key is mapped to \ by default.
 " open toggle nerdtree
@@ -183,7 +183,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -334,6 +334,6 @@ nnoremap <C-H> <C-W><C-H>
 " https://vim.fandom.com/wiki/Quick_command_in_insert_mode
 inoremap II <Esc>I
 inoremap AA <Esc>A
-inoremap OO <Esc>O
-""inoremap DD <Esc>dd
+"inoremap OO <Esc>O
+"inoremap DD <Esc>dd
 "inoremap UU <Esc>u
