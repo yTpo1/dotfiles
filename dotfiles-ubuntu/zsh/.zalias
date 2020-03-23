@@ -29,6 +29,7 @@ fi
 alias vfzf='v $(fzf)'
 alias cquery='~/Downloads/cquery/build/cquery'
 
+alias t='touch'
 alias c='clear'
 alias g='git'
 

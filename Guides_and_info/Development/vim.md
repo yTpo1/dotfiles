@@ -44,6 +44,20 @@ https://www.linux.com/tutorials/vim-tips-using-viewports/
 **Ctrl-w n** - create new   
 **Ctrl-w Ctrl-w** - moves between Vim viewports.   
 
+#### Pasting
+https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim  
+To avoid messed up indentation after pasing use:  
+> :set paste  
+Then paste your code. Note that the text in the tooltip now says -- INSERT (paste) --.
+
+And turn it off after:
+> :set nopaste
+
+However, I always found that cumbersome. That's why I map <F3> such that it can switch between paste and nopaste modes while editing the text! I add this to .vimrc
+
+set pastetoggle=<F3>
+
+
 ## Commands
 Detect file type  
 > :filetype detect  

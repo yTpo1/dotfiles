@@ -6,6 +6,7 @@ sudo apt-get install build-essential
 # telegram   -
 # mpv        - video and audio player
 # quod libet - music player
+# youtube-dl - https://github.com/ytdl-org/youtube-dl
 # qbittorrent-
 # gimp       - image editor
 # st         - https://st.suckless.org/
@@ -71,3 +72,7 @@ sudo apt-get install libgtk-3-dev
 # Ubuntu Specific
 # ------------------------------
 sudo apt install gnome-tweak-tool
+
+# new other
+sudo apt install manpages-posix-dev
+sudo apt install unrar
