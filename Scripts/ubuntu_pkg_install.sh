@@ -76,3 +76,5 @@ sudo apt install gnome-tweak-tool
 # new other
 sudo apt install manpages-posix-dev
 sudo apt install unrar
+sudo apt install mutt
+sudo apt install neomutt

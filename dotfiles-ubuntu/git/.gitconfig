@@ -4,11 +4,14 @@
 [core]
     editor = vim
 [alias]
+    s = status -sb # --short --branch
     st = status
+    sta = status -uall
     ci = commit
     co = checkout
     br = branch
     fe = fetch
+    dc  = diff --cached  # Display the staged changes
 [color]
     diff = auto
     status = auto
