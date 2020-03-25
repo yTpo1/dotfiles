@@ -78,3 +78,4 @@ sudo apt install manpages-posix-dev
 sudo apt install unrar
 sudo apt install mutt
 sudo apt install neomutt
+sudo apt install transmission-cli transmission-common transmission-daemon
