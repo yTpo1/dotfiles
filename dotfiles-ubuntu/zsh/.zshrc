@@ -47,6 +47,17 @@ zle -N down-line-or-beginning-search
 # cd without typing cd
 setopt autocd
 
+# Colorful manpages
+# Color codes: 31 - red. 32 - green. 33 - yellow. 
+# Escape codes: 0 - reset/normal. 1 - bold. 4 - underlined
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line

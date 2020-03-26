@@ -79,3 +79,6 @@ sudo apt install unrar
 sudo apt install mutt
 sudo apt install neomutt
 sudo apt install transmission-cli transmission-common transmission-daemon
+sudo apt install lmms
+sudo apt install clementine
+sudo apt install weechat
