@@ -72,27 +72,30 @@ n
 # write. Do all the changes
 w
 ```
+
 1.6 Format the partitions
 
-boot
-> $ mkfs.ext4 /dev/sd(?)1
- root
-> $ mkfs.ext4 /dev/sd(?)3
- home
-> $ mkfs.ext4 /dev/sd(?)4
- swap
-> $ mkswap /dev/sd(?)2
-> $ swapon /dev/sd(?)2
+boot  
+> $ mkfs.ext4 /dev/sd(?)1  
+
+root  
+> $ mkfs.ext4 /dev/sd(?)3  
+
+home  
+> $ mkfs.ext4 /dev/sd(?)4  
+
+swap  
+> $ mkswap /dev/sd(?)2  
+> $ swapon /dev/sd(?)2  
 
 1.7 Mount the file systems
 
-# root
-mount /dev/sd(?)3 /mnt
-
-mkdir /mnt/home
-mkdir /mnt/boot
-mount /dev/sd(?)1 /mnt/boot
-mount /dev/sd(?)4 /mnt/home
+root  
+> mount /dev/sd(?)3 /mnt  
+> mkdir /mnt/home  
+> mkdir /mnt/boot  
+> mount /dev/sd(?)1 /mnt/boot  
+> mount /dev/sd(?)4 /mnt/home  
 
 ## 2 Instalation
 install arch linux where i tell it to. And install additional packages
