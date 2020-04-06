@@ -4,6 +4,8 @@ Config file. The  user-specific  one  is  ~/.config/mpv/mpv.conf
 
 | Options | Definition |
 |--|--|
+| --audio-display=no | flag to disable the display of cover art |
+| --no-video | No video |
 | --shuffle | Play files in random order. |
 
 

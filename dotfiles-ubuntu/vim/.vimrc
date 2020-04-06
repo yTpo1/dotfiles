@@ -289,7 +289,7 @@ set number relativenumber " show line numbers
 set ruler      " show the current row and column
 set autoindent "(set ai) indent when moving to the next line while writing code
 
-"filetype on        " detect type of file
+filetype on        " detect type of file
 "filetype indent on " load indent file for specific file type
 
 " --SEARCH--
@@ -301,23 +301,23 @@ set smartcase  " no ignorecase if Uppercase char present
 
 " --File Type/Languages--
 " --MD,TXT--
-autocmd BufRead,BufNewFile *.md setlocal spell  " enable spell check
-autocmd BufRead,BufNewFile *.txt setlocal spell " enable spell check
+:autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 
-" --PYTHON--
+"" --PYTHON--
+"au BufNewFile,BufRead *.py
+"	\ set expandtab     " expand tabs into spaces
+"	\ set tabstop=4     " set tabs to have 4 spaces
+"	\ set softtabstop=4
+"	\ set shiftwidth=4  " when using >> << commands, shift lines by 4 spaces
+"
+"" --HTML,CSS,JS--
+"autocmd BufRead,BufNewFile *.js, *.html, *.css
+"    \ setlocal expandtab     " expand tabs into spaces
+"    \ setlocal tabstop=2
+"    \ setlocal softtabstop=2
+"    \ setlocal shiftwidth=2
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
-au BufNewFile,BufRead *.py
-	\ set expandtab     " expand tabs into spaces
-	\ set tabstop=4     " set tabs to have 4 spaces
-	\ set softtabstop=4
-	\ set shiftwidth=4  " when using >> << commands, shift lines by 4 spaces
-
-" --HTML,CSS,JS--
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
 " tab length exceptions on some file types
 "autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
 "autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4

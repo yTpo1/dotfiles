@@ -67,3 +67,4 @@ alias ping='ping -c 5'
 
 # generate a random, 8-character password for a new online account
 alias getpass="openssl rand -base64 8"
+alias mpvm="mpv --shuffle --audio-display=no"

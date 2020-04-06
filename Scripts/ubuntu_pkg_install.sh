@@ -84,3 +84,4 @@ sudo apt install clementine
 sudo apt install weechat
 sudo apt install isync
 sudo apt install python3-pip
+sudo apt install feh

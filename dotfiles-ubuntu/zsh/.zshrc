@@ -1,6 +1,4 @@
-if [ $OSTYPE != "linux-android" ]; then
-	source ~/.zprofile
-fi
+# .zprofile is being sourced automatically
 source ~/.zalias
 # Enable colors and change prompt:
 autoload -U colors && colors
@@ -13,8 +11,8 @@ PROMPT='%F{cyan}%~%F{green}$%f '     # set the prompt value
 # History in cache directory
 #HISTFILE=~/.cache/zsh/.zsh_history
 HISTFILE=~/.zsh_history
-HISTSIZE=5000 #10000
-SAVEHIST=5000 #10000
+HISTSIZE=10000 #5000
+SAVEHIST=10000 #5000
 setopt appendhistory
 
 # Auto(tab) command completetion

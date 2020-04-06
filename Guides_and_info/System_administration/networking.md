@@ -3,6 +3,16 @@ List IP addresses:
 > $ ip address  
 > $ ip address show  
 
+### Ports  
+Run any one of the following command on Linux to see open ports:  
+sudo lsof -i -P -n | grep LISTEN  
+sudo netstat -tulpn | grep LISTEN  
+sudo lsof -i:22 ## see a specific port such as 22 ##  
+sudo nmap -sTU -O IP-address-Here  
+For the latest version of Linux use the ss command. For example, ss -tulw  
+
+https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/  
+
 ### ss command (netstat replacement)
 See used ports:ss 
 > ss -tulwn  
