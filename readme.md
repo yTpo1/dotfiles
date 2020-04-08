@@ -44,3 +44,9 @@ or (if created in git repo):
 > $ stow -D *  
 
 read: https://gist.github.com/jonlaing/26798917e073cc8f799f6d40922d90a0  
+
+## 3. Hotkeys
+|Keys|Command|
+|--|--|
+| alt + d | rofi -show run |
+| alt + w | rofi -show window |
