@@ -32,7 +32,7 @@ alias cquery='~/Downloads/cquery/build/cquery'
 alias t='touch'
 alias c='clear'
 alias g='git'
-alias mutt='neomutt'
+alias mutt='cd ~/Downloads && neomutt' # By default Mutt will save attachments to the folder it was started from.
 
 # prompt user if overwriting during copy
 alias cp='cp -i'

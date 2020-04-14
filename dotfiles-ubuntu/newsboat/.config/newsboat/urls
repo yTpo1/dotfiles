@@ -1,54 +1,72 @@
 https://lwn.net/headlines/rss Linux
 https://ubuntu.com/blog/feed Linux
 https://developers.redhat.com/blog/feed/atom/ Linux
-https://begriffs.com/atom.xml Programming
-http://geoff.greer.fm/feed.atom Programming
-https://www.lucalampariello.com/feed/ Programming
-http://blog.bonnieeisenman.com/feed.xml Programming
-https://feeds.feedburner.com/codinghorror?format=xml Programming
-https://www.calebcurry.com/feed/ Programming
-https://pixlcore.com/feed.rss Programming
-http://brandon.invergo.net/atom.xml Programming
-https://lukesmith.xyz/rss.xml Programming
-https://www.taniarascia.com/rss.xml Programming
-https://www.patricksoftwareblog.com/feed/ Programming
-http://feeds.bradoncode.com/bradoncode Programming
-https://www.blinkingcaret.com/feed Programming
-https://jrs-s.net/feed Programming
-https://nanx.me/index.xml Programming
-https://rwmj.wordpress.com/feed Programming
-https://blog.oddbit.com/rss.xml Programming
-https://vincent.bernat.ch/en/blog/atom.xml Programming
-https://spacemorgue.com/feed SciFi RU 
-https://daringfireball.net/feeds/main Programming
-https://dmerej.info/blog/index.xml
-https://nanxiao.me/en/feed/
-https://ajoybharath.in/feed
-https://vdwaa.nl/feeds/all.atom.xml
-https://linderud.dev/index.com
-https://allanmcrae.com/feed
-https://xyne.archlinux.ca/blog/blog.atom
-https://xyne.archlinux.ca/news/news.atom
-https://kobelnet.ch/feed
-https://feeds.feedburner.com/jeremymorgan/NJwt
-https://peerlator.com/feed.xml
-https://blog.burntsushi.net/index.xml
-https://andre.blaatschaap.be/feed
-https://hacks.mozilla.org/feed
-https://lemire.me/blog/feed
-https://ralfj.de/blog/feed.xlm
-https://nullprogram.com/feed
-https://willcrichton.net/feed
-https://blog.feabhs.com/feed
-https://emertxe.com/blog/feed
-https://xoofx.com/feed.xml
-https://nethack4.org/blog/atom.xml
-https://otoviovaladares.com/feed.xml
-https://blog.quarkslab.com/feeds/all.rss.xml
-https://lingpipe-blog.com/feed
-https://blog.nelhage.com/atom.xml
-https://wozniak.ca/blog/atom.xml
 https://communityblog.fedoraproject.org/feed
 https://planet.ubuntu.com/rss20.xml
-https://alex.dzyoba.com/feed
-https://inconsolation.wordpress.com/feed
+https://hacks.mozilla.org/feed
+https://begriffs.com/atom.xml Blog BlogFavorite CS
+https://lukesmith.xyz/rss.xml Blog BlogFavorite CS
+https://sanctum.geek.nz/arabesque/feed Blog CS
+http://moparx.com/atom.xml Blog CS
+https://stevelosh.com/rss.xml Blog CS
+https://lukespear.co.uk/index.xml Blog CS
+https://www.brendanlong.com/feeds/all.atom.xml Blog CS
+https://people.kernel.org/mcgrof/feed/ Blog CS
+https://feeds.feedburner.com/roylez Blog CS
+http://nidkil.me/feed Blog CS
+https://inodes.org/feed Blog CS
+https://upsilon.cc/%7Ezack/index/hilights.atom Blog CS
+https://hobo.house/feed/ Blog CS
+https://pbrisbin.com/feed/index.xml Blog CS
+http://139.162.142.19/en/rss.xml Blog CS
+https://webgefrickel.de/blog/feed Blog CS
+https://www.omh.cc/feeds/latest/ Blog CS
+https://ianding.io/feed.xml Blog CS
+https://www.kieranbamforth.me/feed.xml Blog CS
+https://clintonminton.com/feed Blog CS
+https://monicalent.com/index.xml Blog CS
+https://dougblack.io/rss.xml Blog CS
+https://addy-dclxvi.github.io/index.xml Blog CS
+http://geoff.greer.fm/feed.atom Blog CS
+http://blog.bonnieeisenman.com/feed.xml Blog CS
+https://feeds.feedburner.com/codinghorror?format=xml Blog CS
+http://brandon.invergo.net/atom.xml Blog CS
+https://www.taniarascia.com/rss.xml Blog CS JS
+https://www.patricksoftwareblog.com/feed/ Blog CS
+http://feeds.bradoncode.com/bradoncode Blog CS
+https://www.blinkingcaret.com/feed Blog CS
+https://jrs-s.net/feed Blog CS
+https://nanx.me/index.xml Blog CS
+https://rwmj.wordpress.com/feed Blog CS
+https://blog.oddbit.com/rss.xml Blog CS
+https://vincent.bernat.ch/en/blog/atom.xml Blog CS
+https://spacemorgue.com/feed SciFi RU 
+https://daringfireball.net/feeds/main Blog CS
+https://dmerej.info/blog/index.xml Blog CS
+https://nanxiao.me/en/feed/ Blog CS
+https://ajoybharath.in/feed Blog CS
+https://vdwaa.nl/feeds/all.atom.xml Blog CS
+https://linderud.dev/index.xml Blog CS
+https://allanmcrae.com/feed Blog CS
+https://xyne.archlinux.ca/blog/blog.atom Blog CS
+https://xyne.archlinux.ca/news/news.atom Blog CS
+https://kobelnet.ch/feed Blog CS
+https://feeds.feedburner.com/jeremymorgan/NJwt Blog CS
+https://peerlator.com/feed.xml Blog CS
+https://blog.burntsushi.net/index.xml Blog CS
+https://andre.blaatschaap.be/feed Blog CS
+https://lemire.me/blog/feed Blog CS
+https://ralfj.de/blog/feed.xlm Blog CS
+https://nullprogram.com/feed Blog CS
+https://willcrichton.net/feed Blog CS
+https://blog.feabhs.com/feed Blog CS
+https://emertxe.com/blog/feed Blog CS
+https://xoofx.com/feed.xml Blog CS
+https://nethack4.org/blog/atom.xml Blog CS
+https://otoviovaladares.com/feed.xml Blog CS
+https://blog.quarkslab.com/feeds/all.rss.xml Blog CS
+https://lingpipe-blog.com/feed Blog CS
+https://blog.nelhage.com/atom.xml Blog CS
+https://wozniak.ca/blog/rss.xml Blog CS
+https://alex.dzyoba.com/feed Blog CS
+https://inconsolation.wordpress.com/feed Blog CS
