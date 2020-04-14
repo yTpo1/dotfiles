@@ -32,6 +32,7 @@ alias cquery='~/Downloads/cquery/build/cquery'
 alias t='touch'
 alias c='clear'
 alias g='git'
+alias mutt='neomutt'
 
 # prompt user if overwriting during copy
 alias cp='cp -i'

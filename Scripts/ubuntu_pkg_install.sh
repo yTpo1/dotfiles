@@ -35,6 +35,15 @@ sudo apt install screenkey
 sudo apt install curl 
 sudo apt install flameshot # screenshot tool
 
+# email
+sudo apt install mutt
+sudo apt install neomutt
+sudo apt install isync
+sudo apt install msmtp
+
+# irc
+sudo apt install weechat
+
 # c/c++ development
 sudo apt install gcc
 sudo apt install gdb
@@ -76,12 +85,8 @@ sudo apt install gnome-tweak-tool
 # new other
 sudo apt install manpages-posix-dev
 sudo apt install unrar
-sudo apt install mutt
-sudo apt install neomutt
 sudo apt install transmission-cli transmission-common transmission-daemon
 sudo apt install lmms
 sudo apt install clementine
-sudo apt install weechat
-sudo apt install isync
 sudo apt install python3-pip
 sudo apt install feh

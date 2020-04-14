@@ -60,6 +60,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'honza/vim-snippets'
 Plug 'sirver/ultisnips'
 
+" Pairs of handy bracket mappings
+Plug 'tpope/vim-unimpaired'
+
 " AutoCompletion
 " :CocConfig to open the configuration file of coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -282,7 +285,6 @@ set omnifunc=syntaxcomplete#Complete " omnicompletion - vim standard module
 
 set cursorline " Show a visual line under the cursor's current line
 syntax enable  " Syntax highlighting
-set cc=80      " Visual ruler, reminder to not write lines of code, too big in length
 set showcmd    " Display entered commands at the bottom
 
 set number relativenumber " show line numbers
@@ -329,6 +331,9 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+nnoremap <C-H> <C-W><C-H>
+" ZZ does :wq
+nnoremap <Leader>x :wqall<Enter>
 
 " For quicker movements in insertion mode, map the following keys:
 " https://vim.fandom.com/wiki/Quick_command_in_insert_mode
