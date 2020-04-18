@@ -1,12 +1,8 @@
-https://lwn.net/headlines/rss Linux
-https://ubuntu.com/blog/feed Linux
-https://developers.redhat.com/blog/feed/atom/ Linux
-https://communityblog.fedoraproject.org/feed
-https://planet.ubuntu.com/rss20.xml
-https://hacks.mozilla.org/feed
 https://begriffs.com/atom.xml Blog BlogFavorite CS
 https://lukesmith.xyz/rss.xml Blog BlogFavorite CS
 https://sanctum.geek.nz/arabesque/feed Blog CS
+https://cor3ntin.github.io/index.xml
+https://www.saminiir.com/feed.xml
 http://moparx.com/atom.xml Blog CS
 https://stevelosh.com/rss.xml Blog CS
 https://lukespear.co.uk/index.xml Blog CS
@@ -70,3 +66,10 @@ https://blog.nelhage.com/atom.xml Blog CS
 https://wozniak.ca/blog/rss.xml Blog CS
 https://alex.dzyoba.com/feed Blog CS
 https://inconsolation.wordpress.com/feed Blog CS
+https://www.bugsnag.com/blog/rss.xml
+https://lwn.net/headlines/rss Linux
+https://ubuntu.com/blog/feed Linux
+https://developers.redhat.com/blog/feed/atom/ Linux
+https://communityblog.fedoraproject.org/feed
+https://planet.ubuntu.com/rss20.xml
+https://hacks.mozilla.org/feed

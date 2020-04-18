@@ -136,6 +136,12 @@ let g:airline#extensions#tabline#enabled = 1
 " if hidden is not set, TextEdit might fail.
 set hidden
 
+" vim-instant-markdown
+let g:instant_markdown_autostart = 0
+nnoremap <Leader>m :InstantMarkdownPreview<Enter>
+
+":InstantMarkdownStop
+
 " coc.nvim
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -280,9 +286,6 @@ set autowrite
 set completeopt=longest,menuone
 set omnifunc=syntaxcomplete#Complete " omnicompletion - vim standard module
 
-" always show status bar
-"set ls=2
-
 set cursorline " Show a visual line under the cursor's current line
 syntax enable  " Syntax highlighting
 set showcmd    " Display entered commands at the bottom
@@ -301,29 +304,6 @@ set incsearch  "(set is) show partial matches for a search phase
 set ignorecase "(set ic) ignore case when searching
 set smartcase  " no ignorecase if Uppercase char present
 
-" --File Type/Languages--
-" --MD,TXT--
-:autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
-
-"" --PYTHON--
-"au BufNewFile,BufRead *.py
-"	\ set expandtab     " expand tabs into spaces
-"	\ set tabstop=4     " set tabs to have 4 spaces
-"	\ set softtabstop=4
-"	\ set shiftwidth=4  " when using >> << commands, shift lines by 4 spaces
-"
-"" --HTML,CSS,JS--
-"autocmd BufRead,BufNewFile *.js, *.html, *.css
-"    \ setlocal expandtab     " expand tabs into spaces
-"    \ setlocal tabstop=2
-"    \ setlocal softtabstop=2
-"    \ setlocal shiftwidth=2
-" enable all Python syntax highlighting features
-let python_highlight_all = 1
-" tab length exceptions on some file types
-"autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4
-"autocmd FileType htmldjango setlocal shiftwidth=4 tabstop=4 softtabstop=4
-"autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 " --KEY REMAPS--
 " Easy split navigations
@@ -342,3 +322,6 @@ inoremap AA <Esc>A
 "inoremap OO <Esc>O
 "inoremap DD <Esc>dd
 "inoremap UU <Esc>u
+
+" Toggle spell check
+:map <F5> :setlocal spell! spelllang=en_us<CR>
