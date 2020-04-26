@@ -7,10 +7,11 @@
 
 # make ls output colorfull (example: folders and files different colors)
 alias ls='ls --color=auto' 
+alias ldir='ls -d */ --color=auto'
 # -A, --almost-all | do not list implied . and ..
-alias ll='ls -lhA'
+alias ll='ls -lhA --color=auto'
 # Show hidden files
-alias la='ls -a'
+alias la='ls -a --color=auto'
 # -s, --size print the allocated size of each file, in blocks
 # -1 list one file per line.
 # -S sort by file size, largest first.
