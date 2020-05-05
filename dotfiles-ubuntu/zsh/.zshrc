@@ -67,10 +67,10 @@ if [ $OSTYPE != "linux-android" ]; then
 	source ~/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 	# Autosuggestion - use ctrl+space to accect autosuggestion
 	bindkey '^ ' autosuggest-accept
-	# start tmux session
-	if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-	    tmux attach -t default || tmux new -s default
-	fi
+	## start tmux session
+	#if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+	#    tmux attach -t default || tmux new -s default
+	#fi
 
 fi
 

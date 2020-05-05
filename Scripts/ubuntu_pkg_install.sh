@@ -90,3 +90,5 @@ sudo apt install lmms
 sudo apt install clementine
 sudo apt install python3-pip
 sudo apt install feh
+sudo apt install whois
+sudo apt install valgrind

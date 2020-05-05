@@ -31,6 +31,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Install the mini-server by running:
 " > [sudo] npm -g install instant-markdown-d
 Plug 'suan/vim-instant-markdown', {'for':'markdown'}
+"Plug 'vimwiki/vimwiki'
 
 " File browser
 Plug 'scrooloose/nerdtree'
@@ -39,9 +40,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
 
 "Fuzzy files, buffer etc
+" note: haven't used it much, so I'll remove it for now
 " <c-p> to invoke
 "Plug 'kien/ctrlp.vim' " Project unmaintained
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 
 " Automatic ctags generation
 Plug 'xolox/vim-easytags'
@@ -55,13 +57,17 @@ Plug 'scrooloose/syntastic'
 Plug 'nvie/vim-flake8'
 
 " NERD Commenter
-Plug 'scrooloose/nerdcommenter'
+" note: haven't used it much, so I'll remove it for now
+"Plug 'scrooloose/nerdcommenter'
 
 Plug 'honza/vim-snippets'
 Plug 'sirver/ultisnips'
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
+
+" tmux movement integration
+Plug 'christoomey/vim-tmux-navigator'
 
 " AutoCompletion
 " :CocConfig to open the configuration file of coc.nvim
@@ -74,7 +80,7 @@ call plug#end()
 "----------------------------------------------------------------
 " 2. Plugins settings
 "----------------------------------------------------------------
-" UltiSnips
+" ultiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -89,30 +95,31 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "ignore files in NERDTree
 let NERDTreeIgnore=['.out', '\.pyc$', '\~$'] 
 
-" The <Leader> key is mapped to \ by default.
-" open toggle nerdtree
-nnoremap <Leader>g :NERDTreeToggle<Enter>
-nnoremap <Leader>t :TagbarToggle<Enter>
 
 " vim-nerdtree-syntax-highlight (Devicons + NerdTree)
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
 " Tagbar
-let g:tagbar_width = 20
+let g:tagbar_width = 30
 " Width of the Tagbar window when zoomed.
-" 0: Use the width of the longest currently visible tag.
+" 0: Use the width of the longest currently visible tag. Default: 1.
 let g:tagbar_zoomwidth = 0
+" By default the Tagbar window will be opened on the right-hand side of vim. Default: 0.
+let g:tagbar_left = 1
 " The number of spaces by which each level is indented. This allows making the display more compact or more spacious.
 let g:tagbar_indent = 1
 " Show the visibility symbols (public/protected/private) to the left of the tag name. Default: 1.
 let g:tagbar_show_visibility = 0
 
-" vim air-line
+" vim-airline
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+"let g:airline#extensions#tabline#buffer_idx_mode = 1
+" to use buff numbers from :ls
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " syntastic
 " rethink these settings after reading the manual
@@ -139,8 +146,11 @@ set hidden
 " vim-instant-markdown
 let g:instant_markdown_autostart = 0
 nnoremap <Leader>m :InstantMarkdownPreview<Enter>
-
 ":InstantMarkdownStop
+
+" vimwiki
+"let g:vimwiki_list = [{'path': '~/Documents/notes/Vimwiki/',
+"                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " coc.nvim
 " Some servers have issues with backup files, see #649
@@ -304,8 +314,15 @@ set incsearch  "(set is) show partial matches for a search phase
 set ignorecase "(set ic) ignore case when searching
 set smartcase  " no ignorecase if Uppercase char present
 
+" make vsplit put the new buffer on the right of the current buffer:
+"set splitright
+" make split put the new buffer below the current buffer:
+"set splitbelow
 
 " --KEY REMAPS--
+" The <Leader> key is mapped to \ by default.
+" note: to see remaps ":map"
+
 " Easy split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -315,13 +332,38 @@ nnoremap <C-H> <C-W><C-H>
 " ZZ does :wq
 nnoremap <Leader>x :wqall<Enter>
 
+" Buffers
+" For quicker buffer switching
+" Important: space left after :b
+nnoremap <Leader>z :b 
+
+" vsplit <num>
+nnoremap <C-J>j :vsplit 
+nnoremap <C-J>k :belowright vsplit 
+" vsplit buffer <num>
+" Important: space left a the end
+" will open a left vertical split
+nnoremap <C-K>j :vert sb 
+" open a split to the right
+nnoremap <C-K>k :vert belowright sb 
+			
+" Open the .h file of the same name on the left
+" https://stackoverflow.com/questions/17170902/in-vim-how-to-switch-quickly-between-h-and-cpp-files-with-the-same-name
+nnoremap <Leader>h :40vsplit %:r.h<CR>
+" Open the .c file of the same name on the right
+nnoremap <Leader>c :belowright vsplit %:r.c<CR>
+
 " For quicker movements in insertion mode, map the following keys:
 " https://vim.fandom.com/wiki/Quick_command_in_insert_mode
 inoremap II <Esc>I
 inoremap AA <Esc>A
-"inoremap OO <Esc>O
-"inoremap DD <Esc>dd
-"inoremap UU <Esc>u
 
-" Toggle spell check
-:map <F5> :setlocal spell! spelllang=en_us<CR>
+" search for visually selected text
+" explanation: visually select the characters that are wanted in the search, then type //
+" source: https://vim.fandom.com/wiki/Search_for_visually_selected_text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
+" Plugin Remaps
+" open toggle nerdtree
+nnoremap <Leader>g :NERDTreeToggle<Enter>
+nnoremap <Leader>t :TagbarToggle<Enter>
