@@ -27,6 +27,10 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Git inegration
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+
 " Markdown editor live viewer browser
 " Install the mini-server by running:
 " > [sudo] npm -g install instant-markdown-d
@@ -93,8 +97,7 @@ let g:NERDTreeWinSize=20
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "ignore files in NERDTree
-let NERDTreeIgnore=['.out', '\.pyc$', '\~$'] 
-
+let NERDTreeIgnore=['.out', '.o', '\.pyc$', '\~$'] 
 
 " vim-nerdtree-syntax-highlight (Devicons + NerdTree)
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
@@ -120,6 +123,17 @@ endif
 "let g:airline#extensions#tabline#buffer_idx_mode = 1
 " to use buff numbers from :ls
 let g:airline#extensions#tabline#buffer_nr_show = 1
+" defines whether the preview window should be excluded from have its window statusline modified
+let g:airline_exclude_preview = 0
+" --Customization of what is displaying in the line--
+let g:airline_section_warning = ''
+" dont need the file name at the bottom, since im using tabline
+let g:airline_section_c = ''
+let g:airline_section_x = '' 
+" configure the fileformat output
+" By default, it will display something like 'utf-8[unix]', however, you can
+" skip displaying it, if the output matches a configured string. To do so,
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
 " syntastic
 " rethink these settings after reading the manual
@@ -349,9 +363,9 @@ nnoremap <Leader>k :belowright vsplit
 " vsplit buffer <num>
 " Important: space left a the end
 " will open a left vertical split
-nnoremap <Leader>j :vert sb 
+nnoremap <Leader>u :vert sb 
 " open a split to the right
-nnoremap <Leader>k :vert belowright sb 
+nnoremap <Leader>i :vert belowright sb 
 
 			
 " Open the .h file of the same name on the left
