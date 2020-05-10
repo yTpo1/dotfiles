@@ -45,6 +45,11 @@ zle -N down-line-or-beginning-search
 # cd without typing cd
 setopt autocd
 
+# Ignore certain file types when autocompletion
+# https://www.reddit.com/r/zsh/comments/5ghouo/is_there_a_way_to_have_zsh_ignore_certain_file/
+# ignore certain extensions only for certain programs
+zstyle ':completion:*:*:nvim:*' file-patterns '^*.(o|out|pdf):source-files' '*:all-files'
+
 # Colorful manpages
 # Color codes: 31 - red. 32 - green. 33 - yellow. 
 # Escape codes: 0 - reset/normal. 1 - bold. 4 - underlined

@@ -319,6 +319,12 @@ set smartcase  " no ignorecase if Uppercase char present
 " make split put the new buffer below the current buffer:
 "set splitbelow
 
+" exclude certain file extensions from completion
+set wildignore+=*.pdf,*.o,*.out,*.obj,*.jpg,*.png
+" to list them, but give low priority – list at end
+" set suffixes+=.pdf
+"https://vi.stackexchange.com/questions/2426/how-do-i-exclude-certain-file-extensions-from-completion
+
 " --KEY REMAPS--
 " The <Leader> key is mapped to \ by default.
 " note: to see remaps ":map"
@@ -338,14 +344,15 @@ nnoremap <Leader>x :wqall<Enter>
 nnoremap <Leader>z :b 
 
 " vsplit <num>
-nnoremap <C-J>j :vsplit 
-nnoremap <C-J>k :belowright vsplit 
+nnoremap <Leader>j :vsplit 
+nnoremap <Leader>k :belowright vsplit 
 " vsplit buffer <num>
 " Important: space left a the end
 " will open a left vertical split
-nnoremap <C-K>j :vert sb 
+nnoremap <Leader>j :vert sb 
 " open a split to the right
-nnoremap <C-K>k :vert belowright sb 
+nnoremap <Leader>k :vert belowright sb 
+
 			
 " Open the .h file of the same name on the left
 " https://stackoverflow.com/questions/17170902/in-vim-how-to-switch-quickly-between-h-and-cpp-files-with-the-same-name
