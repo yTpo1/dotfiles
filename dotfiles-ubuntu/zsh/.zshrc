@@ -8,8 +8,9 @@ autoload -U colors && colors
 
 # allow command substitution inside the prompt
 setopt prompt_subst 
-PROMPT='%F{cyan}%~%F{green}$(git_branch)%f '     # set the prompt value
-#PROMPT='%F{cyan}%~%F{green}$%f '     # set the prompt value
+# PROMPT is set in zfunctions under git
+#PROMPT='%F{cyan}%~%F{green}$%f '
+#PROMPT='%F{cyan}%~%F{green}$(git_branch)%f '
 
 # History in cache directory
 #HISTFILE=~/.cache/zsh/.zsh_history

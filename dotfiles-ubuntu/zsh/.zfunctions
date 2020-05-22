@@ -1,0 +1,105 @@
+# -------------------------------------------------------------------
+# Audio / Sound PulseAudio
+pa-list() { pacmd list-sinks | awk '/index/ || /name:/' ;}
+pa-set() { 
+	# list all apps in playback tab (ex: cmus, mplayer, vlc)
+	inputs=($(pacmd list-sink-inputs | awk '/index/ {print $2}')) 
+	# set the default output device
+	pacmd set-default-sink $1 &> /dev/null
+	# apply the changes to all running apps to use the new output device
+	for i in ${inputs[*]}; do pacmd move-sink-input $i $1 &> /dev/null; done
+}
+pa-playbacklist() { 
+	# list individual apps
+	echo "==============="
+	echo "Running Apps"
+	pacmd list-sink-inputs | awk '/index/ || /application.name /'
+
+	# list all sound device
+	echo "==============="
+	echo "Sound Devices"
+	pacmd list-sinks | awk '/index/ || /name:/'
+}
+pa-playbackset() { 
+	# set the default output device
+	pacmd set-default-sink "$2" &> /dev/null
+	# apply changes to one running app to use the new output device
+	pacmd move-sink-input "$1" "$2" &> /dev/null
+}
+
+# -------------------------------------------------------------------
+# Torrents - Transmission
+tsm() { transmission-remote -n $TSM_USR_PASS --list ;}
+tsm-st() { transmission-remote -n $TSM_USR_PASS -st;}
+tsm-stf() { transmission-remote -n $TSM_USR_PASS -si;}
+tsm-dir() { cd /var/lib/transmission-daemon/downloads; ls --color=auto ;}
+
+tsmd-start() { sudo systemctl start transmission-daemon.service ;}
+tsmd-status() { sudo systemctl status transmission-daemon.service ;}
+tsmd-stop() { sudo systemctl stop transmission-daemon.service ;}
+tsmd-reload() { sudo systemctl reload transmission-daemon.service ;}
+tsmd-config() { sudo nvim /var/lib/transmission-daemon/info/settings.json ;}
+tsm-blocklist() { $HOME/blocklist.sh ;}		# update blocklist
+
+# add magnet link
+tsm-add() { transmission-remote -n $TSM_USR_PASS --add "$1" ;} # <link>
+tsm-start() { transmission-remote -n $TSM_USR_PASS -t"$1" --start ;} # <id> or all
+tsm-pause() { transmission-remote -n $TSM_USR_PASS -t"$1" --stop ;} # <id> or all
+tsm-purge() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove-and-delete ;} # delete data also
+tsm-remove() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove ;}		# leaves data alone
+tsm-info() { transmission-remote -n $TSM_USR_PASS -t"$1" --info ;}
+
+# -------------------------------------------------------------------
+# Git integration
+# https://arjanvandergaag.nl/blog/customize-zsh-prompt-with-vcs-info.html
+
+autoload -Uz vcs_info
+#zstyle ':vcs_info:*' enable git # mininal and default
+#zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git*' formats " (%b)"
+precmd() {
+	vcs_info
+	if [[ -n ${vcs_info_msg_0_} ]]; then
+		STATUS=$(command git status --porcelain 2> /dev/null | tail -n1)
+		if [[ -n $STATUS ]]; then
+			PROMPT='%F{cyan}%~%F{red}${vcs_info_msg_0_}%f '
+		else
+			PROMPT='%F{cyan}%~%F{green}${vcs_info_msg_0_}%f'
+		fi
+	else
+		PROMPT='%F{cyan}%~%F{green}%f '
+	fi
+}
+
+# not using
+function git_branch() {
+    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+    if [[ $branch == "" ]]; then
+        :
+    else
+        echo ' ('$branch') '
+    fi
+}
+
+# -------------------------------------------------------------------
+# Zsh vim cursor type
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
