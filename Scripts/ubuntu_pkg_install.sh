@@ -92,3 +92,7 @@ sudo apt install python3-pip
 sudo apt install feh
 sudo apt install whois
 sudo apt install valgrind
+sudo apt install urlscan
+sudo apt install notmuch
+sudo apt install mpd
+sudo apt install mpc

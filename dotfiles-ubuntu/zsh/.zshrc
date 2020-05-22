@@ -1,20 +1,25 @@
 # .zprofile is being sourced automatically
 source ~/.zalias
+source ~/.zfunctions
+source ~/.zsensitive
+
 # Enable colors and change prompt:
 autoload -U colors && colors
 
 # allow command substitution inside the prompt
 setopt prompt_subst 
-#PROMPT='%F{cyan}%~%F{green}$(git_branch)%f '     # set the prompt value
-PROMPT='%F{cyan}%~%F{green}$%f '     # set the prompt value
+PROMPT='%F{cyan}%~%F{green}$(git_branch)%f '     # set the prompt value
+#PROMPT='%F{cyan}%~%F{green}$%f '     # set the prompt value
 
 # History in cache directory
 #HISTFILE=~/.cache/zsh/.zsh_history
 HISTFILE=~/.zsh_history
-HISTSIZE=10000 #5000
-SAVEHIST=10000 #5000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt appendhistory
 
+# ----------------------------------
+# Completion
 # Auto(tab) command completetion
 # "-U" prevents the expansion of aliases
 # "-z" means use zsh (rather than ksh) style
@@ -25,15 +30,23 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots) # Include hidden files.
 
-# Use beam shape cursor on startup.
-echo -ne '\e[5 q' 
+# Ignore certain file types when autocompletion
+# https://www.reddit.com/r/zsh/comments/5ghouo/is_there_a_way_to_have_zsh_ignore_certain_file/
+# ignore certain extensions only for certain programs
+zstyle ':completion:*:*:nvim:*' file-patterns '^*.(o|out|pdf):source-files' '*:all-files'
 
+# Use beam shape cursor on startup.
+#echo -ne '\e[5 q' 
+
+# -------------------------------------
 # vi mode
 bindkey -v
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
 # Eliminate delays on ESC
 export KEYTIMEOUT=1
-
-#source .zfunctions
 
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -45,25 +58,6 @@ zle -N down-line-or-beginning-search
 # cd without typing cd
 setopt autocd
 
-# Ignore certain file types when autocompletion
-# https://www.reddit.com/r/zsh/comments/5ghouo/is_there_a_way_to_have_zsh_ignore_certain_file/
-# ignore certain extensions only for certain programs
-zstyle ':completion:*:*:nvim:*' file-patterns '^*.(o|out|pdf):source-files' '*:all-files'
-
-# Colorful manpages
-# Color codes: 31 - red. 32 - green. 33 - yellow. 
-# Escape codes: 0 - reset/normal. 1 - bold. 4 - underlined
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
-
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
 
 if [ $OSTYPE != "linux-android" ]; then
 	# load antibody plugins
@@ -76,6 +70,9 @@ if [ $OSTYPE != "linux-android" ]; then
 	#if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
 	#    tmux attach -t default || tmux new -s default
 	#fi
+	
+	# default is screen, so colors will be shit
+	#if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
 
 fi
 
