@@ -28,12 +28,14 @@ sudo apt install tmux
 sudo apt install rofi
 sudo apt install pass
 sudo apt install newsboat
+sudo apt install feh
 sudo apt install zathura
 sudo add-apt-repository ppa:spvkgn/zathura-mupdf
 sudo apt-get install zathura zathura-pdf-mupdf
 sudo apt install screenkey
 sudo apt install curl 
 sudo apt install flameshot # screenshot tool
+sudo apt install transmission-cli transmission-common transmission-daemon
 
 # email
 sudo apt install mutt
@@ -48,6 +50,7 @@ sudo apt install weechat
 sudo apt install gcc
 sudo apt install gdb
 sudo apt install make
+sudo apt install valgrind
 
 # databases
 sudo apt install sqlite3
@@ -62,13 +65,14 @@ sudo apt install nodejs
 sudo apt install npm
 
 # python development
+sudo apt install python3
 sudo apt install python3-pip
+sudo apt-get install python3-venv
 # Python global package, for pep8 linting
-python3 -m pip install flake8
+#python3 -m pip install flake8
 
 # curses library need to compile with "$ make"
 sudo apt-get install libncurses5-dev libncursesw5-dev
-sudo apt-get install python3-venv
 sudo apt install python3-tk
 
 # android
@@ -85,13 +89,9 @@ sudo apt install gnome-tweak-tool
 # new other
 sudo apt install manpages-posix-dev
 sudo apt install unrar
-sudo apt install transmission-cli transmission-common transmission-daemon
 sudo apt install lmms
 sudo apt install clementine
-sudo apt install python3-pip
-sudo apt install feh
 sudo apt install whois
-sudo apt install valgrind
 sudo apt install urlscan
 sudo apt install notmuch
 sudo apt install mpd
