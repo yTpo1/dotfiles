@@ -96,3 +96,4 @@ sudo apt install urlscan
 sudo apt install notmuch
 sudo apt install mpd
 sudo apt install mpc
+sudo apt install lynx

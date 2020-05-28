@@ -65,7 +65,7 @@ Plug 'nvie/vim-flake8'
 "Plug 'scrooloose/nerdcommenter'
 
 Plug 'honza/vim-snippets'
-Plug 'sirver/ultisnips'
+"Plug 'sirver/ultisnips' " replaced with coc-snip
 
 " Pairs of handy bracket mappings
 Plug 'tpope/vim-unimpaired'
@@ -78,7 +78,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Python autocompletion, go to definition.
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 "----------------------------------------------------------------
@@ -140,6 +140,8 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set statusline^=%{coc#status}
+
 " By default syntastic doesn't fill the |location-list| with the errors found by the checkers, in order to reduce clashes with other plugins. Enable this option to tell syntastic to always stick any detected errors into the |location-list|:
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1

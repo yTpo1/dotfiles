@@ -56,18 +56,24 @@ tsm-info() { transmission-remote -n $TSM_USR_PASS -t"$1" --info ;}
 autoload -Uz vcs_info
 #zstyle ':vcs_info:*' enable git # mininal and default
 #zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*' formats " (%b)"
+zstyle ':vcs_info:git*' formats " %b"
 precmd() {
 	vcs_info
+	DEFAULT_PROMPT='%F{cyan}%~'
+	PYVENV='(venv) '
 	if [[ -n ${vcs_info_msg_0_} ]]; then
 		STATUS=$(command git status --porcelain 2> /dev/null | tail -n1)
 		if [[ -n $STATUS ]]; then
 			PROMPT='%F{cyan}%~%F{red}${vcs_info_msg_0_}%f '
 		else
-			PROMPT='%F{cyan}%~%F{green}${vcs_info_msg_0_}%f'
+			PROMPT='%F{cyan}%~%F{blue}${vcs_info_msg_0_}%f '
 		fi
 	else
-		PROMPT='%F{cyan}%~%F{green}%f '
+		#PROMPT='%F{cyan}%~%F{green}%f '
+		PROMPT=$DEFAULT_PROMPT'%f '
+	fi
+	if [[ -n $VIRTUAL_ENV ]]; then
+		PROMPT=$PYVENV$PROMPT
 	fi
 }
 
