@@ -75,6 +75,10 @@ precmd() {
 	if [[ -n $VIRTUAL_ENV ]]; then
 		PROMPT=$PYVENV$PROMPT
 	fi
+	if [[ -n $SSH_CLIENT ]]; then
+		PROMPT=SSH>$PROMPT
+	fi
+
 }
 
 # not using
