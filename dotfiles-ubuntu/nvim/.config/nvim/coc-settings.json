@@ -1,6 +1,7 @@
 {
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
+  "snippets.userSnippetsDirectory": "~/.config/nvim/my_snippets/",
   "languageserver": {
     "cquery": {
       "command": "~/Downloads/cquery/build/cquery",

@@ -18,7 +18,6 @@ call plug#begin('~/.vim/plugged')
 " Colorscheme
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " To close buffers but not close current window structure
 Plug 'qpkorr/vim-bufkill'
@@ -38,8 +37,12 @@ Plug 'suan/vim-instant-markdown', {'for':'markdown'}
 "Plug 'vimwiki/vimwiki'
 
 " File browser
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" built-in tree view
+" https://shapeshed.com/vim-netrw/
+
+"Plug 'scrooloose/nerdtree'
+"Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
 " Class/module browser
 Plug 'majutsushi/tagbar'
 
@@ -55,7 +58,7 @@ Plug 'xolox/vim-misc'
 
 " Syntax check
 " Usage: vims :lfirst :llast :lnext :lprevious
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 
 " Python pep syntax check
 Plug 'nvie/vim-flake8'
@@ -84,24 +87,24 @@ call plug#end()
 "----------------------------------------------------------------
 " 2. Plugins settings
 "----------------------------------------------------------------
-" ultiSnips
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"" ultiSnips
+"" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+""let g:UltiSnipsJumpForwardTrigger="<c-b>"
+""let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" NERDTree
-let g:NERDTreeWinSize=20
-" autostart NERDTree
-"autocmd vimenter * NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"ignore files in NERDTree
-let NERDTreeIgnore=['.out', '.o', '\.pyc$', '\~$'] 
+"" NERDTree
+"let g:NERDTreeWinSize=20
+"" autostart NERDTree
+""autocmd vimenter * NERDTree
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+""ignore files in NERDTree
+"let NERDTreeIgnore=['.out', '.o', '\.pyc$', '\~$'] 
 
-" vim-nerdtree-syntax-highlight (Devicons + NerdTree)
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
+"" vim-nerdtree-syntax-highlight (Devicons + NerdTree)
+"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+"let g:DevIconsEnableFoldersOpenClose = 1
 
 " Tagbar
 let g:tagbar_width = 30
@@ -135,22 +138,25 @@ let g:airline_section_x = ''
 " skip displaying it, if the output matches a configured string. To do so,
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 
-" syntastic
-" rethink these settings after reading the manual
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline^=%{coc#status}
-
-" By default syntastic doesn't fill the |location-list| with the errors found by the checkers, in order to reduce clashes with other plugins. Enable this option to tell syntastic to always stick any detected errors into the |location-list|:
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-" If this variable is enabled, syntastic in active mode will run syntax checks when buffers are first loaded, as well as on saving:
-let g:syntastic_check_on_open = 1
-" In active mode syntax checks are normally run whenever buffers are written to disk, even when the writes happen just before quitting Vim. If you want to skip checks when you issue `:wq`, `:x`, and `:ZZ`, set this variable to 0:
-let g:syntastic_check_on_wq = 0
-" Window height
-:let g:syntastic_loc_list_height=3
+"" syntastic
+"" rethink these settings after reading the manual
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"" Use `:SyntasticCheck` to manually check right now. Use `:Errors` to open the
+"" |location-list| window, and `:lclose` to close it.
+"
+"" By default syntastic doesn't fill the |location-list| with the errors found by the checkers, in order to reduce clashes with other plugins. Enable this option to tell syntastic to always stick any detected errors into the |location-list|:
+"let g:syntastic_always_populate_loc_list = 1
+"" 0 - dont open the loation list window automatically. 1 - open automatically.
+"let g:syntastic_auto_loc_list = 0
+"" If this variable is enabled, syntastic in active mode will run syntax checks when buffers are first loaded, as well as on saving
+"let g:syntastic_check_on_open = 1
+"" In active mode syntax checks are normally run whenever buffers are written to disk, even when the writes happen just before quitting Vim. If you want to skip checks when you issue `:wq`, `:x`, and `:ZZ`, set this variable to 0:
+"let g:syntastic_check_on_wq = 0
+"" Window height
+":let g:syntastic_loc_list_height=3
 
 " Theme
 let g:airline_theme='jellybeans'
@@ -294,6 +300,9 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Add coc to status line
+set statusline^=%{coc#status}
 "----------------------------------------------------------------
 " 3. Vim internal settings
 "----------------------------------------------------------------
@@ -311,6 +320,13 @@ set autowrite
 " will change the 'completeopt' option so that Vim's popup menu doesn't select the first completion item, but rather just inserts the longest common text of all matches; and the menu will come up even if there's only one match.
 set completeopt=longest,menuone
 set omnifunc=syntaxcomplete#Complete " omnicompletion - vim standard module
+
+" Active dictionary/thesaurus competion 
+" https://vim.fandom.com/wiki/Dictionary_completions
+" (usage insert mode: ctrl-x ctrl-k)
+set dictionary?
+set dictionary+=/usr/share/dict/words
+
 
 set cursorline " Show a visual line under the cursor's current line
 syntax enable  " Syntax highlighting
@@ -388,5 +404,6 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " Plugin Remaps
 " open toggle nerdtree
-nnoremap <Leader>g :NERDTreeToggle<Enter>
+"nnoremap <Leader>g :NERDTreeToggle<Enter>
+nnoremap <Leader>g :Vexplore<Enter>
 nnoremap <Leader>t :TagbarToggle<Enter>

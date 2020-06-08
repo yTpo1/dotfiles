@@ -1,7 +1,12 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export BROWSER=/usr/bin/firefox
-export VISUAL='nvim'
-export EDITOR='nvim'
+if [ command -v nvim &> /dev/null ]; then
+	export VISUAL='nvim'
+	export EDITOR='nvim'
+else
+	export VISUAL='vim'
+	export EDITOR='vim'
+fi
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 

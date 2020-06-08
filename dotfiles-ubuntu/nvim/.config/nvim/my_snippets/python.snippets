@@ -1,0 +1,13 @@
+snippet unittest "pyunit test" b
+import unittest
+
+
+class Test${1:Class}(${2:unittest.TestCase}):
+
+	def test_${3:name}(self):
+		${4:${VISUAL:pass}}
+
+
+if __name__ == '__main__':
+	unittest.main()
+endsnippet

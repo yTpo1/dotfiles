@@ -20,6 +20,10 @@ sudo apt-get install build-essential
 sudo apt install git
 sudo apt install vim
 sudo apt install zsh # To set as default shell: chsh -s /bin/zsh or chsh -s $(which zsh) and log off or restart pc
+if ! [ -x $(command -v antibody) ]; then
+	echo Antibody is not installed, installing.
+	curl -sfL git.io/antibody | sudo sh -s - -b /usr/local/bin # Antibody - plugin manager for zsh
+fi
 sudo apt install stow
 sudo apt install ctags
 sudo apt install tmux
@@ -36,6 +40,10 @@ sudo apt install screenkey
 sudo apt install curl 
 sudo apt install flameshot # screenshot tool
 sudo apt install transmission-cli transmission-common transmission-daemon
+
+# is broken on ubuntu
+#sudo apt install mpd
+#sudo apt install mpc
 
 # email
 sudo apt install mutt
@@ -94,6 +102,7 @@ sudo apt install clementine
 sudo apt install whois
 sudo apt install urlscan
 sudo apt install notmuch
-sudo apt install mpd
-sudo apt install mpc
 sudo apt install lynx
+sudo apt install mariadb-server
+sudo apt install apache2
+sudo apt install phpmyadmin
