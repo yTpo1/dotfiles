@@ -15,6 +15,7 @@ sudo apt-get install build-essential
 # ccls       - https://github.com/MaskRay/ccls
 # powerline-fonts
 # nerd-fonts -
+# docker
 
 # General development
 sudo apt install git
@@ -106,3 +107,6 @@ sudo apt install lynx
 sudo apt install mariadb-server
 sudo apt install apache2
 sudo apt install phpmyadmin
+sudo apt install libsdl1.2debian libsdl-image1.2 libsdl-ttf2.0-0 libsndfile1 libncursesw5
+sudo apt install mpg321 # audioplayer and mp3 to wav converter
+sudo apt install audacity
