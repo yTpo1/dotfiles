@@ -28,26 +28,55 @@ pa-playbackset() {
 }
 
 # -------------------------------------------------------------------
-# Torrents - Transmission
-tsm() { transmission-remote -n $TSM_USR_PASS --list ;}
-tsm-st() { transmission-remote -n $TSM_USR_PASS -st;}
-tsm-stf() { transmission-remote -n $TSM_USR_PASS -si;}
-tsm-dir() { cd /var/lib/transmission-daemon/downloads; ls --color=auto ;}
+# Youtube downloads
 
-tsmd-start() { sudo systemctl start transmission-daemon.service ;}
-tsmd-status() { sudo systemctl status transmission-daemon.service ;}
-tsmd-stop() { sudo systemctl stop transmission-daemon.service ;}
-tsmd-reload() { sudo systemctl reload transmission-daemon.service ;}
+ytdl-mp3() { youtube-dl --extract-audio --audio-format mp3 "$1" ;}
+#alias ytdla='youtube-dl -f bestaudio -o %(title)s.f%(format_id)s.%(ext)s'
+
+# -------------------------------------------------------------------
+# Torrents - Transmission
+
+# list all torrents
+tsm() { transmission-remote -n $TSM_USR_PASS --list ;}
+tsm-arev() { tsm | tac ;} # list reverse order
+# stopped torrents
+tsm-list-stoped() { tsm | grep "Stopped" ;}
+tsm-list-idle() { tsm | grep "Idle" ;}
+tsm-list-active() { tsm | grep "Downloading" ;}
+tsm-list-incomplete() { tsm | grep -v "100%" ;}
+tsm-list-find() { tsm | grep -i "$1" ;}
+
+tsm-stats() { transmission-remote -n $TSM_USR_PASS --session-stats ;} # List statistical information from the server 
+tsm-sessinfo() { transmission-remote -n $TSM_USR_PASS --session-info ;} # List session information from the server
+
+tsm-dir() { cd /var/lib/transmission-daemon/downloads; ls --color=auto ;}
 tsmd-config() { sudo nvim /var/lib/transmission-daemon/info/settings.json ;}
 tsm-blocklist() { $HOME/blocklist.sh ;}		# update blocklist
 
+# Torrent file manipulation
 # add magnet link
 tsm-add() { transmission-remote -n $TSM_USR_PASS --add "$1" ;} # <link>
 tsm-start() { transmission-remote -n $TSM_USR_PASS -t"$1" --start ;} # <id> or all
-tsm-pause() { transmission-remote -n $TSM_USR_PASS -t"$1" --stop ;} # <id> or all
+# stop/pause
+tsm-stop() { transmission-remote -n $TSM_USR_PASS -t"$1" --stop ;} # <id> or all
 tsm-purge() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove-and-delete ;} # delete data also
 tsm-remove() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove ;}		# leaves data alone
+
+# Get detailed information on the torrent whose ID is '1':
 tsm-info() { transmission-remote -n $TSM_USR_PASS -t"$1" --info ;}
+# Get a list of a torrent's files:
+tsm-files() { transmission-remote -n $TSM_USR_PASS -t"$1" --files ;}
+
+# Priorities (priority is for files, bandwidth is for the whole torrent)
+tsm-pr-norm() { transmission-remote -n $TSM_USR_PASS -t"$1" --bandwidth-normal ;}
+tsm-pr-high() { transmission-remote -n $TSM_USR_PASS -t"$1" --bandwidth-high ;}
+#tsm-pr-low() { transmission-remote -n $TSM_USR_PASS -t"$1" --priority-low ;}
+
+# tsm Daemon
+#tsmd-start() { sudo systemctl start transmission-daemon.service ;}
+#tsmd-status() { sudo systemctl status transmission-daemon.service ;}
+#tsmd-stop() { sudo systemctl stop transmission-daemon.service ;}
+#tsmd-reload() { sudo systemctl reload transmission-daemon.service ;}
 
 # -------------------------------------------------------------------
 # Git integration

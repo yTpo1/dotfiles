@@ -7,7 +7,7 @@
 
 # make ls output colorfull (example: folders and files different colors)
 alias ls='ls --color=auto' 
-alias ldir='ls -d */ --color=auto'
+alias lsdir='ls -d */ --color=auto'
 # -A, --almost-all | do not list implied . and ..
 alias ll='ls -lhA --color=auto'
 # Show hidden files
@@ -57,7 +57,7 @@ alias dut="du -ach | sort -h" #du with total, sorted
 # -x [fs], --exclude-type=[fs] : exclude
 # tmpfs is a temporary file storage paradigm. Similar to RAM disk.
 # devtmpfs - This is an improved devfs. The purpose of devtmpfs is to boost boot-time. devtmpfs is more like tmpfs than devfs.
-alias df="df -h --print-type -x squashfs -x tmpfs -x devtmpfs --total"
+#alias df="df -h --print-type -x squashfs -x tmpfs -x devtmpfs --total"
 
 alias free="free -mt"
 
@@ -68,8 +68,9 @@ alias pycr='python3 -m venv ./venv'
 alias ping='ping -c 5'
 
 
-# generate a random, 8-character password for a new online account
-alias getpass="openssl rand -base64 8"
-alias mpvm="mpv --shuffle --audio-display=no"
-alias ytdl='youtube-dl'
-alias ytdla='youtube-dl -f bestaudio -o %(title)s.f%(format_id)s.%(ext)s'
+# generate a random, 10-character password for a new online account
+alias getpass="openssl rand -base64 10"
+
+alias mpvsa="mpv --shuffle --audio-display=no"
+alias mpva="mpv --audio-display=no"
+

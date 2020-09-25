@@ -13,8 +13,8 @@ setopt prompt_subst
 # History in cache directory
 #HISTFILE=~/.cache/zsh/.zsh_history
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=15000
+SAVEHIST=15000
 setopt appendhistory
 
 # ----------------------------------
