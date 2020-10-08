@@ -207,6 +207,10 @@ endfunction
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
+" Snippets
+" Use <C-l> for trigger snippet expand.
+"imap <C-l> <Plug>(coc-snippets-expand)
+
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -385,12 +389,19 @@ nnoremap <Leader>u :vert sb
 " open a split to the right
 nnoremap <Leader>i :vert belowright sb 
 
+" :help filename-modifiers (for explanation about %:r %:t)
 			
+" C programming
 " Open the .h file of the same name on the left
 " https://stackoverflow.com/questions/17170902/in-vim-how-to-switch-quickly-between-h-and-cpp-files-with-the-same-name
 nnoremap <Leader>h :40vsplit %:r.h<CR>
 " Open the .c file of the same name on the right
 nnoremap <Leader>c :belowright vsplit %:r.c<CR>
+
+" Python programming
+" Open test of the same name in test/ directory
+nnoremap <Leader>0 :belowright vsplit test/test_%:t<CR>
+
 
 " For quicker movements in insertion mode, map the following keys:
 " https://vim.fandom.com/wiki/Quick_command_in_insert_mode
@@ -407,3 +418,24 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 "nnoremap <Leader>g :NERDTreeToggle<Enter>
 nnoremap <Leader>g :Vexplore<Enter>
 nnoremap <Leader>t :TagbarToggle<Enter>
+
+" Disable Remaps of annoying vim features
+" the ones left: R 
+" This cancels enter - inoremap <C-M> <Nop>
+" Cannot use tab anymore - inoremap <C-I> <Nop>
+inoremap <C-A> <Nop>
+inoremap <C-B> <Nop>
+inoremap <C-C> <Nop>
+inoremap <C-E> <Nop>
+inoremap <C-H> <Nop>
+inoremap <C-J> <Nop>
+inoremap <C-K> <Nop>
+inoremap <C-L> <Nop>
+inoremap <C-O> <Nop>
+inoremap <C-Q> <Nop>
+inoremap <C-S> <Nop>
+inoremap <C-T> <Nop>
+inoremap <C-U> <Nop>
+inoremap <C-V> <Nop>
+inoremap <C-Y> <Nop>
+inoremap <C-Z> <Nop>

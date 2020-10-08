@@ -1,4 +1,8 @@
 # -------------------------------------------------------------------
+# Python
+pyunit() { python3 -m unittest test/"$1" ;}
+
+# -------------------------------------------------------------------
 # Audio / Sound PulseAudio
 pa-list() { pacmd list-sinks | awk '/index/ || /name:/' ;}
 pa-set() { 
