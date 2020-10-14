@@ -421,21 +421,25 @@ nnoremap <Leader>t :TagbarToggle<Enter>
 
 " Disable Remaps of annoying vim features
 " the ones left: R 
-" This cancels enter - inoremap <C-M> <Nop>
-" Cannot use tab anymore - inoremap <C-I> <Nop>
 inoremap <C-A> <Nop>
 inoremap <C-B> <Nop>
 inoremap <C-C> <Nop>
+"inoremap <C-D> <Nop> " Remove one indent from start of line
 inoremap <C-E> <Nop>
+"inoremap <C-F> <Nop> " reindent current line
 inoremap <C-H> <Nop>
+"inoremap <C-I> <Nop> " Tab stops working(Ascii code for tab)
 inoremap <C-J> <Nop>
 inoremap <C-K> <Nop>
 inoremap <C-L> <Nop>
+"inoremap <C-M> <Nop> " This canvels enter
 inoremap <C-O> <Nop>
 inoremap <C-Q> <Nop>
+"inoremap <C-R> <Nop> " Paste/insert content of a register
 inoremap <C-S> <Nop>
-inoremap <C-T> <Nop>
+"inoremap <C-T> <Nop> " tab at the start of line
 inoremap <C-U> <Nop>
 inoremap <C-V> <Nop>
+"inoremap <C-W> <Nop> " Remove word before cursor
 inoremap <C-Y> <Nop>
 inoremap <C-Z> <Nop>

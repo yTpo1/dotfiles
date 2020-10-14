@@ -66,9 +66,9 @@ if [ $OSTYPE != "linux-android" ]; then
 	# Autosuggestion - use ctrl+space to accect autosuggestion
 	bindkey '^ ' autosuggest-accept
 	## start tmux session
-	#if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-	#    tmux attach -t default || tmux new -s default
-	#fi
+	if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+	    tmux attach -t default || tmux new -s default
+	fi
 	
 	# default is screen, so colors will be shit
 	#if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
