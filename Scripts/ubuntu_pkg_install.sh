@@ -110,3 +110,6 @@ sudo apt install phpmyadmin
 sudo apt install libsdl1.2debian libsdl-image1.2 libsdl-ttf2.0-0 libsndfile1 libncursesw5
 sudo apt install mpg321 # audioplayer and mp3 to wav converter
 sudo apt install audacity
+sudo apt install easytag
+sudo apt install openbox
+sudo apt install obconf
