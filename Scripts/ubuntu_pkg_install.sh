@@ -13,6 +13,10 @@ sudo apt-get install build-essential
 # fzf        - https://github.com/junegunn/fzf 
 # neovim     - https://github.com/neovim/neovim
 # ccls       - https://github.com/MaskRay/ccls
+# polybar    - https://github.com/polybar/polybar , install guide: https://gist.github.com/kuznero/f4e983c708cd2bdcadc97be695baacf8
+# siji font (required for polybar) - https://github.com/stark/siji
+# in case siji doesnt work - moving siji.bdf file to my $HOME/.fonts and fc-cache -f -v
+# and maybe deleting or commenting out the file: # rm /etc/fonts/conf.d/70-no-bitmaps.conf
 # powerline-fonts
 # nerd-fonts -
 # docker
@@ -113,3 +117,6 @@ sudo apt install audacity
 sudo apt install easytag
 sudo apt install openbox
 sudo apt install obconf
+sudo apt install mpd
+sudo apt install cantata
+sudo apt install mpc

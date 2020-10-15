@@ -1,0 +1,8 @@
+xset +fp /home/ghost/.local/share/fonts
+xset fp rehash
+
+## Launch Polybar
+sh ~/.config/polybar/launch.sh
+
+## Start Music Player Daemon
+#exec mpd &
