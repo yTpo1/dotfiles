@@ -177,3 +177,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 #bindsym XF86AudioPause exec playerctl pause
 #bindsym XF86AudioNext exec playerctl next
 #bindsym XF86AudioPrev exec playerctl previous
+
+# Monitor toggle: https://bbs.archlinux.org/viewtopic.php?id=251552
+# we can disable one monitor. E.g. laptop monitor (eDP-1)
+bindsym $mod+p exec xrandr --output eDP-1 --off
+# enable laptop monitor back
+bindsym $mod+Shift+p exec xrandr --auto
