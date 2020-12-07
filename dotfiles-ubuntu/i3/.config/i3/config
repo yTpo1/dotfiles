@@ -163,6 +163,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # #exec --no-startup-id "setxbkmap -layout us,ru -option 'grp:win_space_toggle,grp_led:scroll'"
 exec "setxkbmap -option grp:win_space_toggle us,ru"
 
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -182,4 +183,14 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 # we can disable one monitor. E.g. laptop monitor (eDP-1)
 bindsym $mod+p exec xrandr --output eDP-1 --off
 # enable laptop monitor back
-bindsym $mod+Shift+p exec xrandr --auto
+bindsym $mod+Shift+p exec "xrandr --auto && setxkbmap -option grp:win_space_toggle us,ru"
+
+
+# switch off screen
+#bindsym $mod+o exec xset dpms force off
+bindsym $mod+o exec i3lock & sleep 1 && xset dpms force off
+#bindsym Control+$mod+l exec xset s activate
+bindsym Control+$mod+l exec i3lock & sleep 1 && xset s activate
+
+# Start MPD
+exec "mpd"

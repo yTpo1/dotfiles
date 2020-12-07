@@ -120,3 +120,11 @@ sudo apt install obconf
 sudo apt install mpd
 sudo apt install cantata
 sudo apt install mpc
+
+sudo apt install pwgen # password generation
+
+# Music creation
+sudo apt install lv2-dev
+sudo apt install lilv-utils # usefull command lv2ls - for listing installed lv2 plugins
+sudo apt install calf-ladspa # this needs to be installed before calf-plugins
+sudo apt install calf-plugins # based on LV2

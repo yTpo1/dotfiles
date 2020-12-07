@@ -3,6 +3,33 @@
 pyunit() { python3 -m unittest test/"$1" ;}
 
 # -------------------------------------------------------------------
+# Extracting, Archiving, Compressing [tar, tar.gz, zip]
+
+# extracts tar.gz
+extr-tar() { tar -C $2 -xvf $1 ;}
+
+# For zip files use "unzip [filename]"
+
+# -------------------------------------------------------------------
+# Password generation
+# generate password and copy to clipboard
+# $1 is the length of password
+pass-gen() {
+	local PASS_LEN=$1 ;
+	#local PASS_GEN=$(openssl rand -base64 $PASS_LEN) ;
+	local PASS_GEN=$(pwgen -y -1 $PASS_LEN) ;
+	echo $PASS_GEN ;
+	echo Copied to clipboard ;
+	printf $PASS_GEN | xclip -selection c
+	}
+
+# -------------------------------------------------------------------
+# Convering files
+
+# $2 is new_file_name.wav
+wav-to-mp3() { ffmpeg -i $1 ${1%wav}mp3 ;}
+
+# -------------------------------------------------------------------
 # Audio / Sound PulseAudio
 pa-list() { pacmd list-sinks | awk '/index/ || /name:/' ;}
 pa-set() { 
@@ -35,6 +62,7 @@ pa-playbackset() {
 # Youtube downloads
 
 ytdl-mp3() { youtube-dl --extract-audio --audio-format mp3 "$1" ;}
+ytdl-wav() { youtube-dl --extract-audio --audio-format wav "$1" ;}
 #alias ytdla='youtube-dl -f bestaudio -o %(title)s.f%(format_id)s.%(ext)s'
 
 # -------------------------------------------------------------------

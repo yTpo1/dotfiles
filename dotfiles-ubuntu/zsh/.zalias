@@ -79,3 +79,4 @@ alias getpass="openssl rand -base64 10"
 alias mpvsa="mpv --shuffle --audio-display=no"
 alias mpva="mpv --audio-display=no"
 
+alias langkey="setxkbmap -option grp:win_space_toggle us,ru"

@@ -401,6 +401,14 @@ nnoremap <Leader>c :belowright vsplit %:r.c<CR>
 " Python programming
 " Open test of the same name in test/ directory
 nnoremap <Leader>0 :belowright vsplit test/test_%:t<CR>
+" Set breakpoint
+nnoremap <Leader>1 oimport pdb; pdb.set_trace()<Esc>
+"try:
+"    while l < len(s) and r > 0 and s[l] == s[r]:
+"        l -= 1
+"except Exception:
+"    import pdb; pdb.set_trace()
+
 
 
 " For quicker movements in insertion mode, map the following keys:
