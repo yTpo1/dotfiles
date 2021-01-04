@@ -20,6 +20,9 @@ sudo apt-get install build-essential
 # powerline-fonts
 # nerd-fonts -
 # docker
+# dragon - https://github.com/mwh/dragon # opens file so you can drag and drop
+# dropbox - from official site
+# KXstudio (music plugins for arour) - https://kx.studio/Repositories
 
 # General development
 sudo apt install git
@@ -128,3 +131,7 @@ sudo apt install lv2-dev
 sudo apt install lilv-utils # usefull command lv2ls - for listing installed lv2 plugins
 sudo apt install calf-ladspa # this needs to be installed before calf-plugins
 sudo apt install calf-plugins # based on LV2
+
+sudo apt install nomacs
+sudo apt install libreoffice-calc
+sudo apt install bpm-tools

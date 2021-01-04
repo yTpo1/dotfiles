@@ -1,3 +1,38 @@
+# Ubuntu maintanence
+# -------------------------------------------------------------------
+# https://askubuntu.com/questions/34888/is-there-any-way-to-roll-back-the-most-recent-upgrade
+# packages installed in the last 3x24h
+ub-get-latest-update() { find /var/lib/dpkg/info/ -name \*.list -mtime -3 | sed 's#.list$##;s#.*/##' ;}
+# With apt-cache policy, you see available versions of a program:
+ub-pkg-other-versions() { sudo apt-cache policy $1 ;}
+
+# installing a program with a specific version
+# > sudo apt-get install PROGRAM=3.6.3
+# Create a new file in /etc/apt/preferences.d/ (if >= 10.4) named after your program,
+# ```
+# Package: program
+# Pin: version 3.6.3*
+# Pin-Priority: 1000
+# ```
+
+# -------------------------------------------------------------------
+# clipboard
+to-clipboard() { xclip -selection c ;}
+
+to-grafical() { dragon $1 ;}
+
+# -------------------------------------------------------------------
+# Open files according to file type: i.e if image with image viewer, music with music player etc
+#xf() {
+#	set -o extendedglob
+#	if [[ -n *.(abc|bak|tmp)(#qN) ]]; then
+#		echo nomacs $1
+#	else
+#		echo dont know how to open it
+#	fi
+#
+#}
+
 # -------------------------------------------------------------------
 # Python
 pyunit() { python3 -m unittest test/"$1" ;}
@@ -28,11 +63,27 @@ pass-gen() {
 
 # $2 is new_file_name.wav
 wav-to-mp3() { ffmpeg -i $1 ${1%wav}mp3 ;}
+mp3-to-wav() { ffmpeg -i $1 ${1%mp3}wav ;}
+
+# -------------------------------------------------------------------
+# Filesystem - folders, directories, files
+findf() { find . -type f -iname $1 ;}
+findf2() { find . -maxdepth 2 -type f -iname $1 ;}
+size-of-dir() {du -h $1 ;}
+size-of-dir-contents() {du -ach $1 | sort -h ;} 
+
+# System resources
+disk-space-available() { df -h /dev/sda2 ;}
+ram-status() { 
+	#echo Memory in megabytes
+	#free -t --mega
+	free --human --total
+;}
 
 # -------------------------------------------------------------------
 # Important locations
-install-glob() {cd /usr/local/src/ ;} # install/compile software globaly
-install-loc() {cd ~/.local ;} # install/compile software localy
+dir-install-glob() {cd /usr/local/src/ ;} # install/compile software globaly
+dir-install-loc() {cd ~/.local ;} # install/compile software localy
 
 # -------------------------------------------------------------------
 # Audio / Sound PulseAudio

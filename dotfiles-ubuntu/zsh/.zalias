@@ -47,7 +47,7 @@ alias cpv='rsync -ah --info=progress2'
 # prompt user when deleting a file
 alias rm='rm -i'
 
-alias fhere="find . -name "
+#alias fhere="find . -name "
 
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,venv} --exclude=\*.{o,png,jpg,jpeg,gif,webp,mp3,flac,pdf,xcf} -I' # -I ignore binary files
 alias diff='diff --color=auto'
@@ -55,7 +55,6 @@ alias diff='diff --color=auto'
 # list our disk usage in human-readable units including filesystem type, and print a total at the bottom:
 alias df="df -Tha --total"
 #alias du="du -ach | sort -h"
-alias dut="du -ach | sort -h" #du with total, sorted
 
 # -T, --print-type : print file system type
 # -h : in human readble form
@@ -64,7 +63,7 @@ alias dut="du -ach | sort -h" #du with total, sorted
 # devtmpfs - This is an improved devfs. The purpose of devtmpfs is to boost boot-time. devtmpfs is more like tmpfs than devfs.
 #alias df="df -h --print-type -x squashfs -x tmpfs -x devtmpfs --total"
 
-alias free="free -mt"
+#alias free="free -mt"
 
 alias py='python3'
 alias pyact='source venv/bin/activate'
