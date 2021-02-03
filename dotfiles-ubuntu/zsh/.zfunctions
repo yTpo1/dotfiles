@@ -42,6 +42,7 @@ pyunit() { python3 -m unittest test/"$1" ;}
 
 # extracts tar.gz
 extr-tar() { tar -C $2 -xvf $1 ;}
+alias untar="extr-tar"
 
 # For zip files use "unzip [filename]"
 
@@ -68,6 +69,7 @@ mp3-to-wav() { ffmpeg -i $1 ${1%mp3}wav ;}
 # -------------------------------------------------------------------
 # Filesystem - folders, directories, files
 findf() { find . -type f -iname $1 ;}
+# Can be used to find music
 findf2() { find . -maxdepth 2 -type f -iname $1 ;}
 size-of-dir() {du -h $1 ;}
 size-of-dir-contents() {du -ach $1 | sort -h ;} 
@@ -144,6 +146,7 @@ tsm-stats() { transmission-remote -n $TSM_USR_PASS --session-stats ;} # List sta
 tsm-sessinfo() { transmission-remote -n $TSM_USR_PASS --session-info ;} # List session information from the server
 
 tsm-dir() { cd /var/lib/transmission-daemon/downloads; ls --color=auto ;}
+tsm-dir-gui() { cd /var/lib/transmission-daemon/downloads; nautilus . & ;}
 tsmd-config() { sudo nvim /var/lib/transmission-daemon/info/settings.json ;}
 tsm-blocklist() { $HOME/blocklist.sh ;}		# update blocklist
 
