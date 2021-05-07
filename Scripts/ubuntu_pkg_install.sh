@@ -135,3 +135,5 @@ sudo apt install calf-plugins # based on LV2
 sudo apt install nomacs
 sudo apt install libreoffice-calc
 sudo apt install bpm-tools
+sudo apt install openshot
+sudo apt install flowblade

@@ -67,6 +67,43 @@ wav-to-mp3() { ffmpeg -i $1 ${1%wav}mp3 ;}
 mp3-to-wav() { ffmpeg -i $1 ${1%mp3}wav ;}
 
 # -------------------------------------------------------------------
+# Creating videos
+
+# -acodec copy to preserve the audio quality. You need -shortest or it loops forever.
+# You need -shortest or it loops forever.
+# -vf scale=1280:720 (Also I set the resolution to 720p here, which means you should get HD audio on YouTube :-) )
+# -c:v libx264 (Lossless H.264 Video Encoding)
+# -c:a aac (Advanced Audio Coding (AAC) is the successor format to MP3, and is defined in MPEG-4 part 3 (ISO/IEC 14496-3). It is often used within an MP4 container format)
+
+# The order of your options is very important for speed, as filters (and such) are processed in the order you specify. If you change the order of these parameters, the results are dramatically different.
+
+# parameter1 - image (png, jpg)
+# parameter2 - audio (wav)
+# parameter3 - new_file_name (mp4, flv, avi, mkv)
+video_from_image_audio() {
+	FILENAME="out.mp4"
+	# if (( ${+3} )); then
+	if [[ -v $3 ]]; then
+		FILENAME=$3
+	fi
+	ffmpeg -loop 1 -i $1 -i $2 -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest $3
+	#ffmpeg -loop 1 -framerate 2 -i $1 -i $2 -c:v libx264 -preset medium -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p $3
+	#ffmpeg -r 1 -loop 1 -i $1 -i $2 -acodec copy -r 1 -shortest -vf scale=1280:720 $3
+}
+
+# parameter1 - file with list of videos to concatenate (.txt)
+# parameter2 - output file (.mp4)
+# example of file: 
+#```
+# # this is a comment
+#file 'file1.mp4'
+#file 'file2.mp4'
+#```
+video_concatenate() {
+	ffmpeg -f concat -safe 0 -i $1 -c copy $2
+}
+
+# -------------------------------------------------------------------
 # Filesystem - folders, directories, files
 findf() { find . -type f -iname $1 ;}
 # Can be used to find music
