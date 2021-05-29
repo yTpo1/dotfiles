@@ -137,3 +137,5 @@ sudo apt install libreoffice-calc
 sudo apt install bpm-tools
 sudo apt install openshot
 sudo apt install flowblade
+sudo apt-get install libheif-examples # convert iphone HEIC files to jpg
+# for file in *.heic; do heif-convert $file ${file/%.heic/.jpg}; done
