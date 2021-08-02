@@ -66,6 +66,15 @@ pass-gen() {
 wav-to-mp3() { ffmpeg -i $1 ${1%wav}mp3 ;}
 mp3-to-wav() { ffmpeg -i $1 ${1%mp3}wav ;}
 
+# $1 - origin directory
+# $2 - destination directory
+heic-to-jpg() { 
+	for file in $1/*.HEIC; do
+		heif-convert $file ${file/%.HEIC/.jpg}; 
+		mv $file $2
+	done
+}
+
 # -------------------------------------------------------------------
 # Creating videos
 
@@ -211,6 +220,10 @@ tsm-pr-high() { transmission-remote -n $TSM_USR_PASS -t"$1" --bandwidth-high ;}
 #tsmd-status() { sudo systemctl status transmission-daemon.service ;}
 #tsmd-stop() { sudo systemctl stop transmission-daemon.service ;}
 #tsmd-reload() { sudo systemctl reload transmission-daemon.service ;}
+
+# example $1 = 1, $2 = 68, will remove everything from torrents and files withing that range
+tsm-purge-range() { for i in {$1..$2}; do tsm-purge $i; done; }
+
 
 # -------------------------------------------------------------------
 # Git integration

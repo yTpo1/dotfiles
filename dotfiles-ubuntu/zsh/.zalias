@@ -53,7 +53,7 @@ alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,venv} --excl
 alias diff='diff --color=auto'
 
 # list our disk usage in human-readable units including filesystem type, and print a total at the bottom:
-alias df="df -Tha --total"
+alias df="df -Tha --total | grep '\(sda\|sdb\)' "
 #alias du="du -ach | sort -h"
 
 # -T, --print-type : print file system type
