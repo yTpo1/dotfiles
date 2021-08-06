@@ -1,5 +1,5 @@
 [user]
-	email = me@someemail.com
+    email = me@someemail.com
     name = me
 [core]
     editor = vim

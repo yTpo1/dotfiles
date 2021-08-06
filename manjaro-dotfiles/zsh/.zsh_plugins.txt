@@ -1,0 +1,9 @@
+# comments are supported like this
+
+# will print out alias if full command used
+djui/alias-tips
+
+zsh-users/zsh-completions
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-autosuggestions

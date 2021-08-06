@@ -1,0 +1,81 @@
+# -F, --classify append indicator (one of */=>@|) to entries
+# / is a directory
+# @ is a symlink
+# | is a named pipe (fifo)
+# = is a socket.
+# * for executable files
+
+# make ls output colorfull (example: folders and files different colors)
+alias ls='ls --color=auto' 
+alias lsdir='ls -d */ --color=auto'
+# -A, --almost-all | do not list implied . and ..
+alias ll='ls -lhA --color=auto'
+# Show hidden files
+alias la='ls -a --color=auto'
+# -s, --size print the allocated size of each file, in blocks
+# -1 list one file per line.
+# -S sort by file size, largest first.
+# -F, --classify append indicator (one of */=>@|) to entries
+alias lt='ls --human-readable --size -1 -S --classify'
+
+# count files in directory
+alias countf='find . -type f | wc -l'
+
+if [ $OSTYPE != "linux-android" ]; then
+	alias v='nvim'
+else
+	alias v='vim';
+fi
+
+alias vfzf='v $(fzf)'
+alias cquery='~/Downloads/cquery/build/cquery'
+
+alias t='touch'
+alias c='clear'
+alias g='git'
+alias mutt='cd ~/Downloads && neomutt' # By default Mutt will save attachments to the folder it was started from.
+
+alias stow-setup='stow * -t ~/'
+alias stow-remove='stow -D * -t ~/'
+
+alias neofetch='neofetch --source ~/.config/neofetch/ascii-art-horse-rider.txt'
+
+# prompt user if overwriting during copy
+alias cp='cp -i'
+# copy progress bar
+alias cpv='rsync -ah --info=progress2'
+# prompt user when deleting a file
+alias rm='rm -i'
+
+#alias fhere="find . -name "
+
+alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,venv} --exclude=\*.{o,png,jpg,jpeg,gif,webp,mp3,flac,pdf,xcf} -I' # -I ignore binary files
+alias diff='diff --color=auto'
+
+# list our disk usage in human-readable units including filesystem type, and print a total at the bottom:
+alias df="df -Tha --total | grep '\(sda\|sdb\)' "
+#alias du="du -ach | sort -h"
+
+# -T, --print-type : print file system type
+# -h : in human readble form
+# -x [fs], --exclude-type=[fs] : exclude
+# tmpfs is a temporary file storage paradigm. Similar to RAM disk.
+# devtmpfs - This is an improved devfs. The purpose of devtmpfs is to boost boot-time. devtmpfs is more like tmpfs than devfs.
+#alias df="df -h --print-type -x squashfs -x tmpfs -x devtmpfs --total"
+
+#alias free="free -mt"
+
+alias py='python3'
+alias pyact='source venv/bin/activate'
+alias pycr='python3 -m venv ./venv'
+
+alias ping='ping -c 5'
+
+
+# generate a random, 10-character password for a new online account
+alias getpass="openssl rand -base64 10"
+
+alias mpvsa="mpv --shuffle --audio-display=no"
+alias mpva="mpv --audio-display=no"
+
+alias langkey="setxkbmap -option grp:win_space_toggle us,ru"

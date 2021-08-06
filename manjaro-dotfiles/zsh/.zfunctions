@@ -1,0 +1,295 @@
+# Ubuntu maintanence
+# -------------------------------------------------------------------
+# https://askubuntu.com/questions/34888/is-there-any-way-to-roll-back-the-most-recent-upgrade
+# packages installed in the last 3x24h
+ub-get-latest-update() { find /var/lib/dpkg/info/ -name \*.list -mtime -3 | sed 's#.list$##;s#.*/##' ;}
+# With apt-cache policy, you see available versions of a program:
+ub-pkg-other-versions() { sudo apt-cache policy $1 ;}
+
+# installing a program with a specific version
+# > sudo apt-get install PROGRAM=3.6.3
+# Create a new file in /etc/apt/preferences.d/ (if >= 10.4) named after your program,
+# ```
+# Package: program
+# Pin: version 3.6.3*
+# Pin-Priority: 1000
+# ```
+
+# -------------------------------------------------------------------
+# clipboard
+to-clipboard() { xclip -selection c ;}
+
+to-grafical() { dragon $1 ;}
+
+# -------------------------------------------------------------------
+# Open files according to file type: i.e if image with image viewer, music with music player etc
+#xf() {
+#	set -o extendedglob
+#	if [[ -n *.(abc|bak|tmp)(#qN) ]]; then
+#		echo nomacs $1
+#	else
+#		echo dont know how to open it
+#	fi
+#
+#}
+
+# -------------------------------------------------------------------
+# Python
+pyunit() { python3 -m unittest test/"$1" ;}
+
+# -------------------------------------------------------------------
+# Extracting, Archiving, Compressing [tar, tar.gz, zip]
+
+# extracts tar.gz
+extr-tar() { tar -C $2 -xvf $1 ;}
+alias untar="extr-tar"
+
+# For zip files use "unzip [filename]"
+
+# -------------------------------------------------------------------
+# Password generation
+# generate password and copy to clipboard
+# $1 is the length of password
+pass-gen() {
+	local PASS_LEN=$1 ;
+	#local PASS_GEN=$(openssl rand -base64 $PASS_LEN) ;
+	local PASS_GEN=$(pwgen -y -1 $PASS_LEN) ;
+	echo $PASS_GEN ;
+	echo Copied to clipboard ;
+	printf $PASS_GEN | xclip -selection c
+	}
+
+# -------------------------------------------------------------------
+# Convering files
+
+# $2 is new_file_name.wav
+wav-to-mp3() { ffmpeg -i $1 ${1%wav}mp3 ;}
+mp3-to-wav() { ffmpeg -i $1 ${1%mp3}wav ;}
+
+# $1 - origin directory
+# $2 - destination directory
+heic-to-jpg() { 
+	for file in $1/*.HEIC; do
+		heif-convert $file ${file/%.HEIC/.jpg}; 
+		mv $file $2
+	done
+}
+
+# -------------------------------------------------------------------
+# Creating videos
+
+# -acodec copy to preserve the audio quality. You need -shortest or it loops forever.
+# You need -shortest or it loops forever.
+# -vf scale=1280:720 (Also I set the resolution to 720p here, which means you should get HD audio on YouTube :-) )
+# -c:v libx264 (Lossless H.264 Video Encoding)
+# -c:a aac (Advanced Audio Coding (AAC) is the successor format to MP3, and is defined in MPEG-4 part 3 (ISO/IEC 14496-3). It is often used within an MP4 container format)
+
+# The order of your options is very important for speed, as filters (and such) are processed in the order you specify. If you change the order of these parameters, the results are dramatically different.
+
+# parameter1 - image (png, jpg)
+# parameter2 - audio (wav)
+# parameter3 - new_file_name (mp4, flv, avi, mkv)
+video_from_image_audio() {
+	FILENAME="out.mp4"
+	# if (( ${+3} )); then
+	if [[ -v $3 ]]; then
+		FILENAME=$3
+	fi
+	ffmpeg -loop 1 -i $1 -i $2 -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest $3
+	#ffmpeg -loop 1 -framerate 2 -i $1 -i $2 -c:v libx264 -preset medium -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p $3
+	#ffmpeg -r 1 -loop 1 -i $1 -i $2 -acodec copy -r 1 -shortest -vf scale=1280:720 $3
+}
+
+# parameter1 - file with list of videos to concatenate (.txt)
+# parameter2 - output file (.mp4)
+# example of file: 
+#```
+# # this is a comment
+#file 'file1.mp4'
+#file 'file2.mp4'
+#```
+video_concatenate() {
+	ffmpeg -f concat -safe 0 -i $1 -c copy $2
+}
+
+# -------------------------------------------------------------------
+# Filesystem - folders, directories, files
+findf() { find . -type f -iname $1 ;}
+# Can be used to find music
+findf2() { find . -maxdepth 2 -type f -iname $1 ;}
+size-of-dir() {du -h $1 ;}
+size-of-dir-contents() {du -ach $1 | sort -h ;} 
+
+# System resources
+disk-space-available() { df -h /dev/sda2 ;}
+ram-status() { 
+	#echo Memory in megabytes
+	#free -t --mega
+	free --human --total
+;}
+
+# -------------------------------------------------------------------
+# Important locations
+dir-install-glob() {cd /usr/local/src/ ;} # install/compile software globaly
+dir-install-loc() {cd ~/.local ;} # install/compile software localy
+
+# -------------------------------------------------------------------
+# Audio / Sound PulseAudio
+pa-list() { pacmd list-sinks | awk '/index/ || /name:/' ;}
+pa-set() { 
+	# list all apps in playback tab (ex: cmus, mplayer, vlc)
+	inputs=($(pacmd list-sink-inputs | awk '/index/ {print $2}')) 
+	# set the default output device
+	pacmd set-default-sink $1 &> /dev/null
+	# apply the changes to all running apps to use the new output device
+	for i in ${inputs[*]}; do pacmd move-sink-input $i $1 &> /dev/null; done
+}
+pa-playbacklist() { 
+	# list individual apps
+	echo "==============="
+	echo "Running Apps"
+	pacmd list-sink-inputs | awk '/index/ || /application.name /'
+
+	# list all sound device
+	echo "==============="
+	echo "Sound Devices"
+	pacmd list-sinks | awk '/index/ || /name:/'
+}
+pa-playbackset() { 
+	# set the default output device
+	pacmd set-default-sink "$2" &> /dev/null
+	# apply changes to one running app to use the new output device
+	pacmd move-sink-input "$1" "$2" &> /dev/null
+}
+
+# -------------------------------------------------------------------
+# Monitors
+monitor-list() { xrandr --listmonitors ;}
+#monitor-disable() { xrandr --output eDP-1 --off ;}
+monitor-reset() { xrandr --auto ;} # reset to default
+
+# -------------------------------------------------------------------
+# Youtube downloads
+
+ytdl-mp3() { youtube-dl --extract-audio --audio-format mp3 "$1" ;}
+ytdl-wav() { youtube-dl --extract-audio --audio-format wav "$1" ;}
+#alias ytdla='youtube-dl -f bestaudio -o %(title)s.f%(format_id)s.%(ext)s'
+
+# -------------------------------------------------------------------
+# Torrents - Transmission
+
+# list all torrents
+tsm() { transmission-remote -n $TSM_USR_PASS --list ;}
+tsm-arev() { tsm | tac ;} # list reverse order
+# stopped torrents
+tsm-list-stoped() { tsm | grep "Stopped" ;}
+tsm-list-idle() { tsm | grep "Idle" ;}
+tsm-list-active() { tsm | grep "Downloading" ;}
+tsm-list-incomplete() { tsm | grep -v "100%" ;}
+tsm-list-find() { tsm | grep -i "$1" ;}
+
+tsm-stats() { transmission-remote -n $TSM_USR_PASS --session-stats ;} # List statistical information from the server 
+tsm-sessinfo() { transmission-remote -n $TSM_USR_PASS --session-info ;} # List session information from the server
+
+tsm-dir() { cd /var/lib/transmission-daemon/downloads; ls --color=auto ;}
+tsm-dir-gui() { cd /var/lib/transmission-daemon/downloads; nautilus . & ;}
+tsmd-config() { sudo nvim /var/lib/transmission-daemon/info/settings.json ;}
+tsm-blocklist() { $HOME/blocklist.sh ;}		# update blocklist
+
+# Torrent file manipulation
+# add magnet link
+tsm-add() { transmission-remote -n $TSM_USR_PASS --add "$1" ;} # <link>
+tsm-start() { transmission-remote -n $TSM_USR_PASS -t"$1" --start ;} # <id> or all
+# stop/pause
+tsm-stop() { transmission-remote -n $TSM_USR_PASS -t"$1" --stop ;} # <id> or all
+tsm-purge() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove-and-delete ;} # delete data also
+tsm-remove() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove ;}		# leaves data alone
+
+# Get detailed information on the torrent whose ID is '1':
+tsm-info() { transmission-remote -n $TSM_USR_PASS -t"$1" --info ;}
+# Get a list of a torrent's files:
+tsm-files() { transmission-remote -n $TSM_USR_PASS -t"$1" --files ;}
+
+# Priorities (priority is for files, bandwidth is for the whole torrent)
+tsm-pr-norm() { transmission-remote -n $TSM_USR_PASS -t"$1" --bandwidth-normal ;}
+tsm-pr-high() { transmission-remote -n $TSM_USR_PASS -t"$1" --bandwidth-high ;}
+#tsm-pr-low() { transmission-remote -n $TSM_USR_PASS -t"$1" --priority-low ;}
+
+# tsm Daemon
+#tsmd-start() { sudo systemctl start transmission-daemon.service ;}
+#tsmd-status() { sudo systemctl status transmission-daemon.service ;}
+#tsmd-stop() { sudo systemctl stop transmission-daemon.service ;}
+#tsmd-reload() { sudo systemctl reload transmission-daemon.service ;}
+
+# example $1 = 1, $2 = 68, will remove everything from torrents and files withing that range
+tsm-purge-range() { for i in {$1..$2}; do tsm-purge $i; done; }
+
+
+# -------------------------------------------------------------------
+# Git integration
+# https://arjanvandergaag.nl/blog/customize-zsh-prompt-with-vcs-info.html
+
+autoload -Uz vcs_info
+#zstyle ':vcs_info:*' enable git # mininal and default
+#zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git*' formats " %b"
+precmd() {
+	vcs_info
+	DEFAULT_PROMPT='%F{cyan}%~'
+	PYVENV='(venv) '
+	if [[ -n ${vcs_info_msg_0_} ]]; then
+		STATUS=$(command git status --porcelain 2> /dev/null | tail -n1)
+		if [[ -n $STATUS ]]; then
+			PROMPT='%F{cyan}%~%F{red}${vcs_info_msg_0_}%f '
+		else
+			PROMPT='%F{cyan}%~%F{blue}${vcs_info_msg_0_}%f '
+		fi
+	else
+		#PROMPT='%F{cyan}%~%F{green}%f '
+		PROMPT=$DEFAULT_PROMPT'%f '
+	fi
+	if [[ -n $VIRTUAL_ENV ]]; then
+		PROMPT=$PYVENV$PROMPT
+	fi
+	if [[ -n $SSH_CLIENT ]]; then
+		PROMPT=SSH\ $PROMPT
+	fi
+
+}
+
+# not using
+function git_branch() {
+    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+    if [[ $branch == "" ]]; then
+        :
+    else
+        echo ' ('$branch') '
+    fi
+}
+
+# -------------------------------------------------------------------
+# Zsh vim cursor type
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+
+zle -N zle-keymap-select
+
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.

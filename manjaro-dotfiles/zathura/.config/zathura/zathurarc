@@ -1,0 +1,5 @@
+set selection-clipboard clipboard
+# dont display full path, just file name
+set statusbar-basename true
+set font "terminal 18"
+
