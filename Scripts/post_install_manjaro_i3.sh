@@ -5,11 +5,12 @@
 
 #sudo pacman -S firefox
 
-# setup dotfiles
+echo "dotfiles setup"
 sudo pacman -S stow
 cd ~/Documents/dotfiles/manjaro-dotfiles/
+pwd
 
-if [ -e ~/.zshrc]; then
+if [ -e ~/.zshrc ]; then
     echo "Deleting zshrc"
     rm ~/.zshrc
 fi
@@ -21,12 +22,13 @@ sudo pacman -S zsh
 chsh -s $(which zsh)
 
 # Installing zsh plugin manager - Antibody
-curl -sfL git.io/antibody | sh -s - -b /usr/local/bin
+curl -sfL git.io/antibody | sudo sh -s - -b /usr/local/bin
 # Installing zsh plugins
 antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 
 # Disable bios *beep* sounds on backspace
-sudo echo blacklist pcspkr > /etc/modprobe.d/nobeep.conf
+sudo sh -c "echo 'blacklist pcspkr' > /etc/modprobe.d/nobeep.conf"
+#sudo echo blacklist pcspkr > /etc/modprobe.d/nobeep.conf
 
 #sudo pacman -S tmux
 #sudo pacman -S nvim
