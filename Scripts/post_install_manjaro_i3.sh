@@ -71,7 +71,7 @@ fi
 
 
 #sudo pacman -S discord
-#sudo pacman -S telegram
+#sudo pacman -S telegram-desktop
 #sudo pacman -S dropbox
 #sudo pacman -S 
 
