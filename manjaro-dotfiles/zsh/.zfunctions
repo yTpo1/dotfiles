@@ -116,7 +116,7 @@ video_concatenate() {
 # Filesystem - folders, directories, files
 findf() { find . -type f -iname $1 ;}
 # Can be used to find music
-findf2() { find . -maxdepth 2 -type f -iname $1 ;}
+find-music() { find . -maxdepth 2 -type f -iname "$1*" ;}
 size-of-dir() {du -h $1 ;}
 size-of-dir-contents() {du -ach $1 | sort -h ;} 
 
