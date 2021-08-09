@@ -1,3 +1,4 @@
+# .zshenv is souced automatically
 # .zprofile is being sourced automatically
 source ~/.zalias
 source ~/.zfunctions
@@ -76,3 +77,5 @@ if [ $OSTYPE != "linux-android" ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source /usr/share/fzf/key-bindings.zsh

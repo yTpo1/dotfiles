@@ -8,11 +8,11 @@ set nocompatible " use vim defaults
 " 1. Plugins
 "----------------------------------------------------------------
 " Vim-plug automated installation
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+"if empty(glob('~/.vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
 " To install plugins ":so %" Then ":PlugInstall" To delete ":PlugClean"
 call plug#begin('~/.vim/plugged')
 " Colorscheme

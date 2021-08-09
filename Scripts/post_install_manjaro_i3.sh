@@ -1,78 +1,147 @@
 #!/usr/bin/sh
 
+# ----- Essential -----
 printf "\nUpdate system\n\n"
 sudo pacman -Syu
 
-if ! [ -x $(command -v firefox) ]; then
-    sudo pacman -S firefox
+if ! type firefox &> /dev/null; then
+	echo "Installing Firefox"
+	sudo pacman -S firefox
 fi
 
-printf "dotfiles setup\n\n"
-if ! [ -x $(command -v stow) ]; then
+#printf "Dotfiles Setup\n\n"
+# ----- Dotfiles Setup -----
+if ! type stow &> /dev/null; then
     sudo pacman -S stow
 fi
-
-cd ~/Documents/dotfiles/manjaro-dotfiles/
-pwd
-if [ -e ~/.zshrc ]; then
-    echo "Deleting zshrc"
-    rm ~/.zshrc
+if [ ! -L ~/.zshrc ]; then # -L returns true if the "file" exists and is a symbolic link
+	cd ~/Documents/dotfiles/manjaro-dotfiles/
+	pwd
+	if [ -e ~/.zshrc ]; then # -e (returns true if file exists regardless of type
+	    echo "Deleting .zshrc"
+	    rm ~/.zshrc
+	fi
+	echo "Stow creating symlinks"
+	stow * -t ~/
 fi
-stow * -t ~/
 
-printf "Chanage shell to zsh\n\n"
-if ! [ -x $(command -v zsh) ]; then
-    sudo pacman -S zsh
+if ! type zsh &> /dev/null; then
+	echo "Installing Zsh"
+	sudo pacman -S zsh
 fi
-if [ $SHELL != "/bin/zsh" ]; then
+if [ $SHELL != "/usr/bin/zsh" ]; then
     echo Current shell not zsh, changing:; 
     chsh -s $(which zsh)
 fi
-
-printf "Installing zsh plugin manager - Antibody\n\n"
-echo "Checking if antibody is installed"
-if ! [ -x $(command -v antibody) ]; then
-    echo Antibody is not installed, installing.
+if ! type antibody &> /dev/null; then
+    printf "Installing zsh plugin manager - Antibody\n\n"
     curl -sfL git.io/antibody | sudo sh -s - -b /usr/local/bin 
     printf "Installing zsh plugins\n\n"
     antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 fi
+if ! type fzf &> /dev/null; then
+	# usefull for searching history with <CTRL+R>
+	echo "Installing FZF"
+	sudo pacman -S fzf
+fi
+if ! type tmux &> /dev/null; then
+	echo "Installing tmux"
+	sudo pacman -S tmux
+fi
 
+if ! type nvim &> /dev/null; then
+	echo "Installing neovim"
+	sudo pacman -S neovim
+fi
+if [ ! -e "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim ]; then
+	echo "Installing Plug - plugin manager for neovim"
+	sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+fi
+if ! type ctags &> /dev/null; then
+	echo "Installing ctags"
+	sudo pacman -S ctags
+fi
+if ! type python &> /dev/null; then
+	echo "Installing python"
+	sudo pacman -S nodejs
+fi
+if ! type node &> /dev/null; then
+	echo "Installing nodejs"
+	sudo pacman -S nodejs
+fi
+
+if ! type pulseaudio &> /dev/null; then
+	echo "Installing pulseaudio"
+	sudo pacman -S pulseaudio
+fi
+if ! type pavucontrol &> /dev/null; then
+	echo "Installing pavucontrol"
+	sudo pacman -S pavucontrol
+fi
+if ! type pass &> /dev/null; then
+	echo "Installing pass"
+	sudo pacman -S pass
+fi
+if ! type rofi &> /dev/null; then
+	echo "Installing rofi"
+	sudo pacman -S rofi
+fi
+if ! type flameshot &> /dev/null; then
+	echo "Installing Flameshot"
+	sudo pacman -S flameshot
+fi
+if ! type easytag &> /dev/null; then
+	echo "Installing easytag "
+	sudo pacman -S easytag 
+fi
+if ! type transmission-remote &> /dev/null; then
+	echo "Installing Transmission Daemon and Cli"
+	sudo pacman -S transmission-cli 
+fi
+if ! type youtube-dl &> /dev/null; then
+	echo "Installing YouTube-DL"
+	sudo pacman -S youtube-dl
+fi
+if ! type discord &> /dev/null; then
+	echo "Installing Discord"
+	sudo pacman -S discord
+fi
+if ! type discord &> /dev/null; then
+	echo "Installing Telegram"
+	sudo pacman -S telegram-desktop
+fi
+if ! type gimp &> /dev/null; then
+	echo "Installing gimp"
+	sudo pacman -S gimp
+fi
+if ! type ardour6 &> /dev/null; then
+	echo "Installing Ardour"
+	sudo pacman -S ardour
+fi
+
+# ----- AUR -----
+if ! type dropbox &> /dev/null; then
+	echo "Installing Dropbox from AUR"
+	git clone https://aur.archlinux.org/dropbox.git ~/Downloads/Dropbox-aur
+	cd ~/Downloads/Dropbox-aur
+	makepkg -si
+fi
+if ! type polybar &> /dev/null; then
+	echo "Installing polybar from AUR"
+	git clone https://aur.archlinux.org/polybar.git ~/Downloads/Polybar-aur
+	cd ~/Downloads/Polybar-aur
+	makepkg -si
+fi
+##sudo pacman -S dropbox
+##sudo pacman -S 
+#
+##printf "\n \n\n"
+
+# ----- Manjaro specific -----
 if [ ! -e /etc/modprobe.d/nobeep.conf ]; then
-    printf "Disable bios *beep* sounds on backspace\n\n"
-    echo nobeep.conf does not exist, creating
-    sudo sh -c "echo 'blacklist pcspkr' > /etc/modprobe.d/nobeep.conf"
+	printf "Disable bios *beep* sounds on backspace\n\n"
+	echo nobeep.conf does not exist, creating
+	sudo sh -c "echo 'blacklist pcspkr' > /etc/modprobe.d/nobeep.conf"
 fi
 
-if ! [ -x $(command -v tmux) ]; then
-    sudo pacman -S tmux
-fi
-if ! [ -x $(command -v nvim) ]; then
-    sudo pacman -S nvim
-fi
-if ! [ -x $(command -v pulseaudio) ]; then
-    sudo pacman -S pulseaudio
-fi
-if ! [ -x $(command -v pavucontrol) ]; then
-    sudo pacman -S pavucontrol
-fi
-if ! [ -x $(command -v pass) ]; then
-    sudo pacman -S pass
-fi
-if ! [ -x $(command -v rofi) ]; then
-    sudo pacman -S rofi
-fi
-if ! [ -x $(command -v flameshot) ]; then
-    sudo pacman -S flameshot
-fi
-#if ! [ -x $(command -v ) ]; then
-    #sudo pacman -S 
-#fi
-
-
-#sudo pacman -S discord
-#sudo pacman -S telegram-desktop
-#sudo pacman -S dropbox
-#sudo pacman -S 
-
-#printf "\n \n\n"
