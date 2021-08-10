@@ -138,6 +138,30 @@ fi
 #
 ##printf "\n \n\n"
 
+# ----- Installing from source -----
+if ! type st &> /dev/null; then
+	#cd /usr/local/src/
+	sudo mkdir /usr/local/src/st
+	sudo git clone https://git.suckless.org/st /usr/local/src/st
+	#cd st
+	cd /usr/local/src/st
+	sudo git checkout 0.8.2 # 0.8.4 is out but patch is for 0.8.2
+
+	# my font patch
+	wget -L
+
+	# Gruvbox patch
+	sudo wget https://st.suckless.org/patches/gruvbox/st-gruvbox-dark-0.8.2.diff
+	sudo patch -ruN -d . < st-gruvbox-dark-0.8.2.diff
+	#echo Please increase the font to 24px, Y when ready
+	#read
+	#sudo vim /usr/local/src/st/config.def.h 
+
+	echo Installing ST
+	sudo make clean install
+fi
+
+
 # ----- Manjaro specific -----
 if [ ! -e /etc/modprobe.d/nobeep.conf ]; then
 	printf "Disable bios *beep* sounds on backspace\n\n"
