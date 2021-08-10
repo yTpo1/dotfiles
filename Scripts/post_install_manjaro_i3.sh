@@ -98,6 +98,9 @@ fi
 if ! type transmission-remote &> /dev/null; then
 	echo "Installing Transmission Daemon and Cli"
 	sudo pacman -S transmission-cli 
+
+	echo "Adding my user to the transmission group so that I can access "
+	sudo usermod -a -G transmission $USER
 fi
 if ! type youtube-dl &> /dev/null; then
 	echo "Installing YouTube-DL"
