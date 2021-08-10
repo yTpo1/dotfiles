@@ -147,7 +147,7 @@ if ! type st &> /dev/null; then
 
 	# my font patch
 	sudo wget -L https://raw.githubusercontent.com/yTpo1/dotfiles/master/Scripts/st_font_increase-0.8.2.diff
-	sudo patch -u config.def.h < st_font_increase-0.8.2.diff
+	sudo patch config.def.h < st_font_increase-0.8.2.diff
 
 	# Gruvbox patch
 	sudo wget https://st.suckless.org/patches/gruvbox/st-gruvbox-dark-0.8.2.diff
