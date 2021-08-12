@@ -64,11 +64,15 @@ if ! type ctags &> /dev/null; then
 fi
 if ! type python &> /dev/null; then
 	echo "Installing python"
-	sudo pacman -S nodejs
+	sudo pacman -S python
 fi
 if ! type node &> /dev/null; then
-	echo "Installing nodejs"
+	echo "Installing NodeJS"
 	sudo pacman -S nodejs
+fi
+if ! type npm &> /dev/null; then
+	echo "Installing NPM for NodeJS"
+	sudo pacman -S npm
 fi
 
 if ! type pulseaudio &> /dev/null; then
