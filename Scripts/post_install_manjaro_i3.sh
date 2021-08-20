@@ -74,6 +74,10 @@ if ! type npm &> /dev/null; then
 	echo "Installing NPM for NodeJS"
 	sudo pacman -S npm
 fi
+if ! type yarn &> /dev/null; then
+	echo "Installing yarn for NodeJS"
+	sudo pacman -S yarn
+fi
 
 if ! type pulseaudio &> /dev/null; then
 	echo "Installing pulseaudio"
@@ -86,6 +90,10 @@ fi
 if ! type pass &> /dev/null; then
 	echo "Installing pass"
 	sudo pacman -S pass
+fi
+if ! type unzip &> /dev/null; then
+	echo "Installing unzip"
+	sudo pacman -S unzip
 fi
 if ! type rofi &> /dev/null; then
 	echo "Installing rofi"
@@ -110,6 +118,10 @@ if ! type youtube-dl &> /dev/null; then
 	echo "Installing YouTube-DL"
 	sudo pacman -S youtube-dl
 fi
+#if ! type adb &> /dev/null; then
+#	echo "Installing adb"
+#	sudo pacman -S adb
+#fi
 if ! type discord &> /dev/null; then
 	echo "Installing Discord"
 	sudo pacman -S discord

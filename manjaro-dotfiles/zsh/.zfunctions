@@ -135,6 +135,7 @@ dir-install-loc() {cd ~/.local ;} # install/compile software localy
 
 # -------------------------------------------------------------------
 # Audio / Sound PulseAudio
+# Source: https://github.com/gotbletu/shownotes/blob/master/pulseaudio_change_playback_output.md
 pa-list() { pacmd list-sinks | awk '/index/ || /name:/' ;}
 pa-set() { 
 	# list all apps in playback tab (ex: cmus, mplayer, vlc)

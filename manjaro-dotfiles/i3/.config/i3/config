@@ -119,7 +119,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle #using for language switch
 
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
@@ -322,15 +322,17 @@ set_from_resource $term_color15    color15
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
 	i3bar_command i3bar
-	status_command i3status
+	#status_command i3status
+	status_command i3blocks
+	#status_command i3status | i3-keyboard-layout i3status
 	position top #position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
 #	tray_output eDP1
 
-	bindsym button4 nop
-	bindsym button5 nop
+	bindsym button4 nop # Scroll wheel up. 
+	bindsym button5 nop # Scroll wheel down. 
 #   font xft:URWGothic-Book 11
 	strip_workspace_numbers yes
 
@@ -420,4 +422,5 @@ mode "$mode_gaps_outer" {
 
 # switch between (en, ru) keybord layouts using (alt+space)
 # #exec --no-startup-id "setxbkmap -layout us,ru -option 'grp:win_space_toggle,grp_led:scroll'"
-exec "setxkbmap -option grp:win_space_toggle us,ru"
+exec "setxkbmap -option grp:win_space_toggle us,ru" 
+#exec "setxkbmap -option grp:ctrl_space_toggle us,ru" # can't as I use it in zsh to accept the last command

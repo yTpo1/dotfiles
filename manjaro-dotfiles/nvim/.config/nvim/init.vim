@@ -33,8 +33,9 @@ Plug 'airblade/vim-gitgutter'
 " Markdown editor live viewer browser
 " Install the mini-server by running:
 " > [sudo] npm -g install instant-markdown-d
-Plug 'suan/vim-instant-markdown', {'for':'markdown'}
+"Plug 'suan/vim-instant-markdown', {'for':'markdown'}
 "Plug 'vimwiki/vimwiki'
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
 
 " File browser
 " built-in tree view
