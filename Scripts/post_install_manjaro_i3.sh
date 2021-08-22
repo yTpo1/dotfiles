@@ -62,6 +62,7 @@ if ! type ctags &> /dev/null; then
 	echo "Installing ctags"
 	sudo pacman -S ctags
 fi
+# -------- Programming Languages and Environments ------
 if ! type python &> /dev/null; then
 	echo "Installing python"
 	sudo pacman -S python
@@ -78,6 +79,13 @@ if ! type yarn &> /dev/null; then
 	echo "Installing yarn for NodeJS"
 	sudo pacman -S yarn
 fi
+if ! pacman -Q jre8-openjdk &> /dev/null; then
+	echo "Installing jre8-openjdk (Java)"
+	# need this for Grammar checking tool -  libreoffice-extension-languagetool
+	sudo pacman -S jre8-openjdk
+fi
+
+
 
 if ! type pulseaudio &> /dev/null; then
 	echo "Installing pulseaudio"
@@ -122,6 +130,40 @@ fi
 #	echo "Installing adb"
 #	sudo pacman -S adb
 #fi
+
+# Office suite
+if ! type libreoffice &> /dev/null; then
+	echo "Installing LibreOffice"
+	sudo pacman -S libreoffice-still
+fi
+if ! type hunspell &> /dev/null; then
+	echo "Installing hunspell"
+	# Spell checker and morphological analyzer library and program
+	sudo pacman -S hunspell
+fi
+if ! pacman -Q hunspell-en_gb &> /dev/null; then
+	echo "Installing hunspell-en_gb"
+	sudo pacman -S hunspell-en_gb 
+fi
+if ! pacman -Q hyphen &> /dev/null; then
+	echo "Installing hyphen"
+	# library for high quality hyphenation and justification
+	sudo pacman -S hyphen
+fi
+if ! pacman -Q hyphen-en &> /dev/null; then
+	echo "Installing hyphen-en"
+	sudo pacman -S hyphen-en
+fi
+if ! pacman -Q libmythes &> /dev/null; then
+	echo "Installing libmythes"
+	# a simple thesaurus
+	sudo pacman -S libmythes
+fi
+if ! pacman -Q mythes-en &> /dev/null; then
+	echo "Installing mythes-en"
+	sudo pacman -S mythes-en
+fi
+
 if ! type discord &> /dev/null; then
 	echo "Installing Discord"
 	sudo pacman -S discord
@@ -146,16 +188,26 @@ if ! type dropbox &> /dev/null; then
 	cd ~/Downloads/Dropbox-aur
 	makepkg -si
 fi
+if ! pacman -Q thunar-dropbox &> /dev/null; then
+	echo "Installing Dropbox extension for Thunar from AUR"
+	git clone https://aur.archlinux.org/thunar-dropbox.git ~/Downloads/Thunar-Dropbox-aur
+	cd ~/Downloads/Thunar-Dropbox-aur
+	makepkg -si
+fi
 if ! type polybar &> /dev/null; then
 	echo "Installing polybar from AUR"
 	git clone https://aur.archlinux.org/polybar.git ~/Downloads/Polybar-aur
 	cd ~/Downloads/Polybar-aur
 	makepkg -si
 fi
-##sudo pacman -S dropbox
-##sudo pacman -S 
-#
-##printf "\n \n\n"
+# Grammar checking for LibreOffice
+if ! pacman -Q libreoffice-extension-languagetool &> /dev/null; then
+	echo "Installing LibreOffice grammar checking from AUR"
+	git clone https://aur.archlinux.org/libreoffice-extension-languagetool.git ~/Downloads/Loelt
+	cd ~/Downloads/Loelt
+	makepkg -si
+fi
+
 
 # ----- Installing from source -----
 if ! type st &> /dev/null; then
