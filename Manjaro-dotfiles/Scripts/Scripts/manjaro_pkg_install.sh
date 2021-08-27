@@ -1,7 +1,6 @@
 #!/usr/bin/sh
 
-# ----- Essential -----
-printf "\nUpdate system\n\n"
+printf "\nUpdating the system\n\n"
 sudo pacman -Syu
 
 if ! type firefox &> /dev/null; then
@@ -9,7 +8,20 @@ if ! type firefox &> /dev/null; then
 	sudo pacman -S firefox
 fi
 
-#printf "Dotfiles Setup\n\n"
+#if ! type nautilus &> /dev/null; then
+#	printf "\nInstalling nautilus\n\n"
+#	sudo pacman -S nautilus
+#fi
+
+if ! type thunar &> /dev/null; then
+	printf "\nInstalling thunar\n\n"
+	sudo pacman -S thunar
+fi
+if ! type catfish &> /dev/null; then
+	printf "\nInstalling catfish - search tool for thunar\n\n"
+	sudo pacman -S catfish
+fi
+
 # ----- Dotfiles Setup -----
 if ! type stow &> /dev/null; then
     sudo pacman -S stow
@@ -83,6 +95,10 @@ if ! pacman -Q jre8-openjdk &> /dev/null; then
 	echo "Installing jre8-openjdk (Java)"
 	# need this for Grammar checking tool -  libreoffice-extension-languagetool
 	sudo pacman -S jre8-openjdk
+fi
+if ! type docker &> /dev/null; then
+	printf "\n-----Installing Docker-----\n\n"
+	sudo pacman -S docker
 fi
 
 

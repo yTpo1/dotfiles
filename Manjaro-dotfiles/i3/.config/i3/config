@@ -119,7 +119,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-#bindsym $mod+space focus mode_toggle #using for language switch
+bindsym $mod+space focus mode_toggle 
 
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
@@ -420,7 +420,17 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# update i3blocks to notify that CapsLock is on
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
+#bindsym Shift+Mod1 exec pkill -SIGRTMIN+10 i3blocks
+
 # switch between (en, ru) keybord layouts using (alt+space)
+#exec "setxkbmap -option grp:ctrl_alt_toggle us,ru"
+#
 # #exec --no-startup-id "setxbkmap -layout us,ru -option 'grp:win_space_toggle,grp_led:scroll'"
-exec "setxkbmap -option grp:win_space_toggle us,ru" 
+#exec "setxkbmap -option grp:win_space_toggle us,ru"
+#
+#bindsym $mod + space exec pkill -SIGRTMIN+10 i3blocks
+#
+#
 #exec "setxkbmap -option grp:ctrl_space_toggle us,ru" # can't as I use it in zsh to accept the last command
