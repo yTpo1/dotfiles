@@ -17,6 +17,9 @@ if [ -f $sysresources ]; then
     xrdb -merge $sysresources
 fi
 
+## switch between (en, ru) keybord layouts
+#setxkbmap -option grp:ctrl_alt_toggle us,ru
+
 if [ -f $sysmodmap ]; then
     xmodmap $sysmodmap
 fi
@@ -38,8 +41,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     unset f
 fi
 
-# switch between (en, ru) keybord layouts using (alt+space)
-setxkbmap -option grp:ctrl_alt_toggle us,ru
+## start dropbox
+#/usr/bin/dropbox &
 
 get_session(){
 	local dbus_args=(--sh-syntax --exit-with-session)
@@ -68,5 +71,4 @@ get_session(){
 
 exec $(get_session "$1")
 
-# start dropbox
-/usr/bin/dropbox &
+# WARNING! Lines following a command using exec would be ignored

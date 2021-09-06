@@ -1,43 +1,84 @@
-# Ubuntu maintanence
-# -------------------------------------------------------------------
-# https://askubuntu.com/questions/34888/is-there-any-way-to-roll-back-the-most-recent-upgrade
-# packages installed in the last 3x24h
-ub-get-latest-update() { find /var/lib/dpkg/info/ -name \*.list -mtime -3 | sed 's#.list$##;s#.*/##' ;}
-# With apt-cache policy, you see available versions of a program:
-ub-pkg-other-versions() { sudo apt-cache policy $1 ;}
+# -------------------------------------------------------
+# Zsh special functions and Promt Escapes
+# -------------------------------------------------------
+#
+# Git integration
+# https://arjanvandergaag.nl/blog/customize-zsh-prompt-with-vcs-info.html
 
-# installing a program with a specific version
-# > sudo apt-get install PROGRAM=3.6.3
-# Create a new file in /etc/apt/preferences.d/ (if >= 10.4) named after your program,
-# ```
-# Package: program
-# Pin: version 3.6.3*
-# Pin-Priority: 1000
-# ```
+autoload -Uz vcs_info
+#zstyle ':vcs_info:*' enable git # mininal and default
+#zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:git*' formats " %b"
+# precmd - Executed before each prompt. Note that precommand functions are not re-executed simply because the command line is redrawn, as happens, for example, when a notification about an exiting job is displayed.
+precmd() {
+	vcs_info
+	DEFAULT_PROMPT='%F{cyan}%~'
+	PYVENV='(venv) '
+	if [[ -n ${vcs_info_msg_0_} ]]; then
+		STATUS=$(command git status --porcelain 2> /dev/null | tail -n1)
+		if [[ -n $STATUS ]]; then
+			PROMPT='%F{cyan}%~%F{red}${vcs_info_msg_0_}%f '
+		else
+			PROMPT='%F{cyan}%~%F{blue}${vcs_info_msg_0_}%f '
+		fi
+	else
+		#PROMPT='%F{cyan}%~%F{green}%f '
+		PROMPT=$DEFAULT_PROMPT'%f '
+	fi
+	if [[ -n $VIRTUAL_ENV ]]; then
+		PROMPT=$PYVENV$PROMPT
+	fi
+	if [[ -n $SSH_CLIENT ]]; then
+		PROMPT=SSH\ $PROMPT
+	fi
 
-# -------------------------------------------------------------------
-# clipboard
+}
+
+# -------------------------------------------------------
+# Zsh vim cursor type
+# Change cursor shape for different vi modes.
+#
+# zle-keymap-select - Executed every time the keymap changes, i.e. the special parameter KEYMAP is set to a different value, while the line editor is active. Initialising the keymap when the line editor starts does not cause the widget to be called.
+# The value $KEYMAP within the function reflects the new keymap. The old keymap is passed as the sole argument.
+# This can be used for detecting switches between the vi command (vicmd) and insert (usually main) keymaps.
+
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+
+zle -N zle-keymap-select
+
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# -------------------------------------------------------
+# My functions
+# -------------------------------------------------------
+#
+# Clipboard
 to-clipboard() { xclip -selection c ;}
 
 to-grafical() { dragon $1 ;}
 
-# -------------------------------------------------------------------
-# Open files according to file type: i.e if image with image viewer, music with music player etc
-#xf() {
-#	set -o extendedglob
-#	if [[ -n *.(abc|bak|tmp)(#qN) ]]; then
-#		echo nomacs $1
-#	else
-#		echo dont know how to open it
-#	fi
-#
-#}
-
-# -------------------------------------------------------------------
+# -------------------------------------------------------
 # Python
 pyunit() { python3 -m unittest test/"$1" ;}
-
-# -------------------------------------------------------------------
+# -------------------------------------------------------
 # Extracting, Archiving, Compressing [tar, tar.gz, zip]
 
 # extracts tar.gz
@@ -46,7 +87,53 @@ alias untar="extr-tar"
 
 # For zip files use "unzip [filename]"
 
-# -------------------------------------------------------------------
+# -------------------------------------------------------
+# CUE Splitting (Music Flac)
+#
+# ToDo: sometimes creates an empty track00, which messes up tagging and remaning
+mus-split-flac() {
+	shnsplit -f $1 -o flac $2
+	cuetag.sh $1 split-track*.flac
+	mkdir Split_tracks
+	mv split-track* Split_tracks
+}
+#
+# $1=file.cue $2=file.flac
+mus-split-rename-flac() {
+	#cuebreakpoints sample.cue | shnsplit -o flac sample.flac
+
+	shnsplit -f $1 -o flac $2
+	cuetag.sh $1 split-track*.flac
+	mkdir Split_tracks
+	mv split-track* Split_tracks
+	cd Split_tracks
+	rename-split-files split-track*.flac
+
+	#mkdir Split_tracks
+	#mv split-track* Split_tracks
+	#cp $1 Split_tracks
+	#cd Split_tracks
+	#cuetag.sh $1 *.flac
+}
+# copied this bash script and converted it to zsh
+# https://gist.github.com/dlp/5fdee0541ad0c2382840990c8c74e739
+rename-split-files() {
+	for f in "$@"
+	do
+		mv "$f" "$(get_new_name "$f")"
+	done
+}
+get_new_name() {
+	num=$(gettag "$1" TRACKNUMBER)
+	title=$(gettag "$1" TITLE)
+	printf "%s %s.flac" "${num}" "${title}"
+}
+gettag() {
+	# <--show-tag=NAME> Show all tags where the the field name matches NAME. 
+	metaflac --show-tag="$2" "$1" | sed -e "s/.*=//"
+}
+
+# -------------------------------------------------------
 # Password generation
 # generate password and copy to clipboard
 # $1 is the length of password
@@ -59,7 +146,7 @@ pass-gen() {
 	printf $PASS_GEN | xclip -selection c
 	}
 
-# -------------------------------------------------------------------
+# -------------------------------------------------------
 # Convering files
 
 # $2 is new_file_name.wav
@@ -75,7 +162,7 @@ heic-to-jpg() {
 	done
 }
 
-# -------------------------------------------------------------------
+# -------------------------------------------------------
 # Creating videos
 
 # -acodec copy to preserve the audio quality. You need -shortest or it loops forever.
@@ -112,7 +199,7 @@ video_concatenate() {
 	ffmpeg -f concat -safe 0 -i $1 -c copy $2
 }
 
-# -------------------------------------------------------------------
+# -------------------------------------------------------
 # Filesystem - folders, directories, files
 findf() { find . -type f -iname $1 ;}
 # Can be used to find music
@@ -128,12 +215,12 @@ ram-status() {
 	free --human --total
 ;}
 
-# -------------------------------------------------------------------
+# -------------------------------------------------------
 # Important locations
 dir-install-glob() {cd /usr/local/src/ ;} # install/compile software globaly
 dir-install-loc() {cd ~/.local ;} # install/compile software localy
 
-# -------------------------------------------------------------------
+# -------------------------------------------------------
 # Audio / Sound PulseAudio
 # Source: https://github.com/gotbletu/shownotes/blob/master/pulseaudio_change_playback_output.md
 pa-list() { pacmd list-sinks | awk '/index/ || /name:/' ;}
@@ -163,7 +250,7 @@ pa-playbackset() {
 	pacmd move-sink-input "$1" "$2" &> /dev/null
 }
 
-# -------------------------------------------------------------------
+# -------------------------------------------------------
 # Monitors
 monitor-list() { xrandr --listmonitors ;}
 #monitor-disable() { xrandr --output eDP-1 --off ;}
@@ -176,7 +263,7 @@ ytdl-mp3() { youtube-dl --extract-audio --audio-format mp3 "$1" ;}
 ytdl-wav() { youtube-dl --extract-audio --audio-format wav "$1" ;}
 #alias ytdla='youtube-dl -f bestaudio -o %(title)s.f%(format_id)s.%(ext)s'
 
-# -------------------------------------------------------------------
+# -------------------------------------------------------
 # Torrents - Transmission
 
 # list all torrents
@@ -226,71 +313,34 @@ tsm-pr-high() { transmission-remote -n $TSM_USR_PASS -t"$1" --bandwidth-high ;}
 tsm-purge-range() { for i in {$1..$2}; do tsm-purge $i; done; }
 
 
-# -------------------------------------------------------------------
-# Git integration
-# https://arjanvandergaag.nl/blog/customize-zsh-prompt-with-vcs-info.html
 
-autoload -Uz vcs_info
-#zstyle ':vcs_info:*' enable git # mininal and default
-#zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*' formats " %b"
-precmd() {
-	vcs_info
-	DEFAULT_PROMPT='%F{cyan}%~'
-	PYVENV='(venv) '
-	if [[ -n ${vcs_info_msg_0_} ]]; then
-		STATUS=$(command git status --porcelain 2> /dev/null | tail -n1)
-		if [[ -n $STATUS ]]; then
-			PROMPT='%F{cyan}%~%F{red}${vcs_info_msg_0_}%f '
-		else
-			PROMPT='%F{cyan}%~%F{blue}${vcs_info_msg_0_}%f '
-		fi
-	else
-		#PROMPT='%F{cyan}%~%F{green}%f '
-		PROMPT=$DEFAULT_PROMPT'%f '
-	fi
-	if [[ -n $VIRTUAL_ENV ]]; then
-		PROMPT=$PYVENV$PROMPT
-	fi
-	if [[ -n $SSH_CLIENT ]]; then
-		PROMPT=SSH\ $PROMPT
-	fi
+# -------------------------------------------------------
+# Open files according to file type: i.e if image with image viewer, music with music player etc
+#xf() {
+#	set -o extendedglob
+#	if [[ -n *.(abc|bak|tmp)(#qN) ]]; then
+#		echo nomacs $1
+#	else
+#		echo dont know how to open it
+#	fi
+#
+#}
 
-}
 
-# not using
-function git_branch() {
-    branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-    if [[ $branch == "" ]]; then
-        :
-    else
-        echo ' ('$branch') '
-    fi
-}
+# -------------------------------------------------------
+# Ubuntu maintanence
+# -------------------------------------------------------
+# https://askubuntu.com/questions/34888/is-there-any-way-to-roll-back-the-most-recent-upgrade
+# packages installed in the last 3x24h
+ub-get-latest-update() { find /var/lib/dpkg/info/ -name \*.list -mtime -3 | sed 's#.list$##;s#.*/##' ;}
+# With apt-cache policy, you see available versions of a program:
+ub-pkg-other-versions() { sudo apt-cache policy $1 ;}
 
-# -------------------------------------------------------------------
-# Zsh vim cursor type
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-
-zle -N zle-keymap-select
-
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+# installing a program with a specific version
+# > sudo apt-get install PROGRAM=3.6.3
+# Create a new file in /etc/apt/preferences.d/ (if >= 10.4) named after your program,
+# ```
+# Package: program
+# Pin: version 3.6.3*
+# Pin-Priority: 1000
+# ```

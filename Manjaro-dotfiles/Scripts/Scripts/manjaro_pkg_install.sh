@@ -8,10 +8,10 @@ if ! type firefox &> /dev/null; then
 	sudo pacman -S firefox
 fi
 
-#if ! type nautilus &> /dev/null; then
-#	printf "\nInstalling nautilus\n\n"
-#	sudo pacman -S nautilus
-#fi
+if ! type nautilus &> /dev/null; then
+	printf "\nInstalling nautilus\n\n"
+	sudo pacman -S nautilus
+fi
 
 if ! type thunar &> /dev/null; then
 	printf "\nInstalling thunar\n\n"
@@ -20,6 +20,10 @@ fi
 if ! type catfish &> /dev/null; then
 	printf "\nInstalling catfish - search tool for thunar\n\n"
 	sudo pacman -S catfish
+fi
+if ! type tumbler &> /dev/null; then
+	printf "\nInstalling tumbler - Image thumbnail previewer\n\n"
+	sudo pacman -S tumbler
 fi
 
 # ----- Dotfiles Setup -----
@@ -127,10 +131,6 @@ if ! type flameshot &> /dev/null; then
 	echo "Installing Flameshot"
 	sudo pacman -S flameshot
 fi
-if ! type easytag &> /dev/null; then
-	echo "Installing easytag "
-	sudo pacman -S easytag 
-fi
 if ! type transmission-remote &> /dev/null; then
 	echo "Installing Transmission Daemon and Cli"
 	sudo pacman -S transmission-cli 
@@ -142,6 +142,24 @@ if ! type youtube-dl &> /dev/null; then
 	echo "Installing YouTube-DL"
 	sudo pacman -S youtube-dl
 fi
+# ----- Music -----
+if ! type flac &> /dev/null; then
+	echo "Installing flac"
+	sudo pacman -S flac 
+fi
+if ! type easytag &> /dev/null; then
+	echo "Installing easytag "
+	sudo pacman -S easytag 
+fi
+if ! type shntool &> /dev/null; then
+	echo "Installing shntool "
+	sudo pacman -S shntool
+fi
+if ! pacman -Q cuetools &> /dev/null; then
+	echo "Installing cuetools "
+	sudo pacman -S cuetools
+fi
+
 #if ! type adb &> /dev/null; then
 #	echo "Installing adb"
 #	sudo pacman -S adb
@@ -156,6 +174,10 @@ if ! type hunspell &> /dev/null; then
 	echo "Installing hunspell"
 	# Spell checker and morphological analyzer library and program
 	sudo pacman -S hunspell
+fi
+if ! pacman -Q hunspell-en_us &> /dev/null; then
+	echo "Installing hunspell-en_us"
+	sudo pacman -S hunspell-en_us 
 fi
 if ! pacman -Q hunspell-en_gb &> /dev/null; then
 	echo "Installing hunspell-en_gb"
