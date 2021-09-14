@@ -19,4 +19,18 @@
 	<startup-notify/>
 	<directories/>
 </action>
+<action>
+	<icon></icon>
+	<name>Create Tmp File</name>
+	<unique-id>1630751206433976-1</unique-id>
+	<command>touch tmp.txt</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
 </actions>
