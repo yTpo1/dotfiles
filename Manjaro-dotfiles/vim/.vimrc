@@ -21,7 +21,8 @@ set cursorline " Show a visual line under the cursor's current line
 syntax enable  " Syntax highlighting
 set showcmd    " Display entered commands at the bottom
 
-set number relativenumber " show line numbers
+set number " show line numbers
+set relativenumber " show relative line numbers to current line
 set ruler      " show the current row and column
 set autoindent "(set ai) indent when moving to the next line while writing code
 

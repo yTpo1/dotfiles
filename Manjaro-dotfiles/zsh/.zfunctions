@@ -138,6 +138,12 @@ gettag() {
 # generate password and copy to clipboard
 # $1 is the length of password
 pass-gen() {
+	if [ $# -eq 0 ]
+	  then
+	    echo "No arguments supplied, usage pass-gen <LEN>"
+	    return 1
+	fi
+
 	local PASS_LEN=$1 ;
 	#local PASS_GEN=$(openssl rand -base64 $PASS_LEN) ;
 	local PASS_GEN=$(pwgen -y -1 $PASS_LEN) ;
@@ -151,6 +157,7 @@ pass-gen() {
 
 # $2 is new_file_name.wav
 wav-to-mp3() { ffmpeg -i $1 ${1%wav}mp3 ;}
+flac-to-mp3() { ffmpeg -i $1 ${1%flac}mp3 ;}
 mp3-to-wav() { ffmpeg -i $1 ${1%mp3}wav ;}
 
 # $1 - origin directory
@@ -255,6 +262,10 @@ pa-playbackset() {
 monitor-list() { xrandr --listmonitors ;}
 #monitor-disable() { xrandr --output eDP-1 --off ;}
 monitor-reset() { xrandr --auto ;} # reset to default
+monitor-switch-hdmi() {
+	xrandr --output HDMI-1 --auto
+	xrandr --output eDP-1 --off
+}
 
 # -------------------------------------------------------------------
 # Youtube downloads
@@ -313,6 +324,27 @@ tsm-pr-high() { transmission-remote -n $TSM_USR_PASS -t"$1" --bandwidth-high ;}
 tsm-purge-range() { for i in {$1..$2}; do tsm-purge $i; done; }
 
 
+# -------------------------------------------------------
+# Dotnet Development
+
+dnr() {
+	dotnet run;
+}
+
+# $1 - directory name
+dn-create-consoleapp() {
+	dotnet new console -o $1
+}
+
+# $1 - directory name
+dn-create-webapp() {
+	dotnet new webapp -f net5.0 -o $1
+}
+
+# Args: $1 = name; $2 = namespace
+dn-newpage() {
+	dotnet new page --name $1 --namespace $2 --output Pages
+}
 
 # -------------------------------------------------------
 # Open files according to file type: i.e if image with image viewer, music with music player etc

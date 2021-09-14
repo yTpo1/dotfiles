@@ -21,7 +21,7 @@ if ! type catfish &> /dev/null; then
 	printf "\nInstalling catfish - search tool for thunar\n\n"
 	sudo pacman -S catfish
 fi
-if ! type tumbler &> /dev/null; then
+if ! pacman -Q tumbler &> /dev/null; then
 	printf "\nInstalling tumbler - Image thumbnail previewer\n\n"
 	sudo pacman -S tumbler
 fi
@@ -78,6 +78,7 @@ if ! type ctags &> /dev/null; then
 	echo "Installing ctags"
 	sudo pacman -S ctags
 fi
+# ======================================================
 # -------- Programming Languages and Environments ------
 if ! type python &> /dev/null; then
 	echo "Installing python"
@@ -100,12 +101,26 @@ if ! pacman -Q jre8-openjdk &> /dev/null; then
 	# need this for Grammar checking tool -  libreoffice-extension-languagetool
 	sudo pacman -S jre8-openjdk
 fi
+if ! type dotnet &> /dev/null; then
+	echo "Installing .NET runtime"
+	sudo pacman -S dotnet-runtime
+	echo "Installing ASP.NET Core SDK"
+	sudo pacman -S dotnet-sdk
+	echo "Installing ASP.NET Core runtime"
+	sudo pacman -S aspnet-runtime
+fi
 if ! type docker &> /dev/null; then
-	printf "\n-----Installing Docker-----\n\n"
+	printf "Installing Docker"
 	sudo pacman -S docker
 fi
+#if ! type code &> /dev/null; then
+#	printf "Installing VSCode"
+#	sudo pacman -S code
+#fi
 
 
+# ======================================================
+# --------------
 
 if ! type pulseaudio &> /dev/null; then
 	echo "Installing pulseaudio"
@@ -245,7 +260,13 @@ if ! pacman -Q libreoffice-extension-languagetool &> /dev/null; then
 	cd ~/Downloads/Loelt
 	makepkg -si
 fi
-
+# Microsoft-branded VSCode release (need it to debug C#)
+if ! type code &> /dev/null; then
+	echo "Installing VSCode from AUR"
+	git clone https://aur.archlinux.org/visual-studio-code-bin.git ~/Downloads/VSCodeMS
+	cd ~/Downloads/VSCodeMS
+	makepkg -si
+fi
 
 # ----- Installing from source -----
 if ! type st &> /dev/null; then
