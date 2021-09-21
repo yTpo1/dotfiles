@@ -17,9 +17,6 @@ if [ -f $sysresources ]; then
     xrdb -merge $sysresources
 fi
 
-## switch between (en, ru) keybord layouts
-#setxkbmap -option grp:ctrl_alt_toggle us,ru
-
 if [ -f $sysmodmap ]; then
     xmodmap $sysmodmap
 fi
@@ -40,9 +37,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     done
     unset f
 fi
-
-## start dropbox
-#/usr/bin/dropbox &
 
 get_session(){
 	local dbus_args=(--sh-syntax --exit-with-session)

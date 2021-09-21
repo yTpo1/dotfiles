@@ -423,14 +423,7 @@ mode "$mode_gaps_outer" {
 # update i3blocks to notify that CapsLock is on
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
 #bindsym Shift+Mod1 exec pkill -SIGRTMIN+10 i3blocks
-
-# switch between (en, ru) keybord layouts using (alt+space)
-#exec "setxkbmap -option grp:ctrl_alt_toggle us,ru"
-#
-# #exec --no-startup-id "setxbkmap -layout us,ru -option 'grp:win_space_toggle,grp_led:scroll'"
-#exec "setxkbmap -option grp:win_space_toggle us,ru"
-#
 #bindsym $mod + space exec pkill -SIGRTMIN+10 i3blocks
-#
-#
-#exec "setxkbmap -option grp:ctrl_space_toggle us,ru" # can't as I use it in zsh to accept the last command
+
+exec --no-startup-id /usr/bin/setxkbmap -option grp:ctrl_alt_toggle us,ru
+exec --no-startup-id dropbox start

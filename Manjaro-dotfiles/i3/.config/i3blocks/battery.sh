@@ -7,7 +7,7 @@ BAT_NUMBER=1
 BAT_STATUS=$(acpi -b)
 # if battery 1 exists
 if grep -q "Battery 1" <<< $BAT_STATUS ; then
-	BAT=$($BAT_STATUS | awk '/Battery 1/{print substr($0, length($0) - 3, length($0))}')
+	BAT=$(echo $BAT_STATUS | awk '/Battery 1/{print substr($0, length($0) - 3, length($0))}')
 else
 	#BAT=$(echo $BAT_STATUS | awk '{print substr($15,24) }')
 	BAT=$(echo $BAT_STATUS | awk '{print substr($0,24) }')

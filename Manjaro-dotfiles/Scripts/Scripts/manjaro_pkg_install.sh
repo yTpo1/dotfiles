@@ -3,6 +3,13 @@
 printf "\nUpdating the system\n\n"
 sudo pacman -Syu
 
+if ! type lightdm &> /dev/null; then
+	echo "Installing lightdm - Login Manager/Display Manager"
+	sudo pacman -S lightdm
+	echo "Installing lightdm Greeter - GUI that prompts the user for credentials"
+	sudo pacman -S lightdm-slick-greeter
+	sudo systemctl enable lightdm
+fi
 if ! type firefox &> /dev/null; then
 	echo "Installing Firefox"
 	sudo pacman -S firefox
@@ -83,6 +90,9 @@ fi
 if ! type python &> /dev/null; then
 	echo "Installing python"
 	sudo pacman -S python
+
+	echo "Additional install for coc-nvim python ultisnips"
+	python3 -m pip install --user --upgrade pynvim
 fi
 if ! type node &> /dev/null; then
 	echo "Installing NodeJS"

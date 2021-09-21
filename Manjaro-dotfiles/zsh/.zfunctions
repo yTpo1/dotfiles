@@ -69,6 +69,20 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # -------------------------------------------------------
 # My functions
 # -------------------------------------------------------
+
+# ls modifications
+lsdate() {
+	ls -alt | awk '{print $7,$6,$8, "\033[1;34m" $9 "\033[0m" }';
+##alias lsdate="ls --color=auto -alt | awk '{print $6,$7,$8,$9 }'"
+}
+lsdate-newest() {
+	ls -altr | awk '{print $7,$6,$8, "\033[1;34m" $9 "\033[0m" }';
+}
+lsdir() {
+	ls -d $1/*/
+}
+
+
 #
 # Clipboard
 to-clipboard() { xclip -selection c ;}
@@ -208,7 +222,8 @@ video_concatenate() {
 
 # -------------------------------------------------------
 # Filesystem - folders, directories, files
-findf() { find . -type f -iname $1 ;}
+findf() { find . -type f -iname "$1" ;}
+ff() { find . -type f -iname "$1" ;}
 # Can be used to find music
 find-music() { find . -maxdepth 2 -type f -iname "$1*" ;}
 size-of-dir() {du -h $1 ;}
@@ -290,8 +305,8 @@ tsm-list-find() { tsm | grep -i "$1" ;}
 tsm-stats() { transmission-remote -n $TSM_USR_PASS --session-stats ;} # List statistical information from the server 
 tsm-sessinfo() { transmission-remote -n $TSM_USR_PASS --session-info ;} # List session information from the server
 
-tsm-dir() { cd /var/lib/transmission-daemon/downloads; ls --color=auto ;}
-tsm-dir-gui() { cd /var/lib/transmission-daemon/downloads; nautilus . & ;}
+tsm-dir() { cd /var/lib/transmission/ ls --color=auto ;}
+tsm-dir-gui() { tsm-dir; nautilus . & ;}
 tsmd-config() { sudo nvim /var/lib/transmission-daemon/info/settings.json ;}
 tsm-blocklist() { $HOME/blocklist.sh ;}		# update blocklist
 
@@ -327,23 +342,47 @@ tsm-purge-range() { for i in {$1..$2}; do tsm-purge $i; done; }
 # -------------------------------------------------------
 # Dotnet Development
 
-dnr() {
-	dotnet run;
-}
+dnr() { dotnet run; }
+dnt() { dotnet test; }
+
+dn-install-packages() { dotnet restore; }
+
+# example: $1 = Microsoft.EntityFrameworkCore.Sqlite
+dn-add-pkg() { dotnet add package $1; }
 
 # $1 - directory name
-dn-create-consoleapp() {
-	dotnet new console -o $1
-}
-
+dn-create-consoleapp() { dotnet new console -o $1; cd $1 ;}
+dn-create-solution() { dotnet new sln -o $1; cd $1; }
+dn-create-classlib() { dotnet new classlib -o $1 ;}
 # $1 - directory name
-dn-create-webapp() {
-	dotnet new webapp -f net5.0 -o $1
-}
+dn-create-webapp() { dotnet new webapp -f net5.0 -o $1 ;}
+
+# example: dotnet sln add ./PrimeService/PrimeService.csproj
+dn-add-projsolution() { dotnet sln add $1; }
+dn-add-dependency() {dotnet add $1 reference $2 ;}
 
 # Args: $1 = name; $2 = namespace
 dn-newpage() {
 	dotnet new page --name $1 --namespace $2 --output Pages
+}
+
+dn-ef-initmigrations() { dotnet ef migrations add $1; }
+dn-ef-makemigrations() { dotnet ef database update; }
+
+dn-create-fullproj() {
+	dotnet new sln -o $1_solution
+	cd $1_solution
+
+	dotnet new classlib -o $1
+	#ren .\PrimeService\Class1.cs PrimeService.cs
+	mv ./$1/Class1.cs ./$1/$1.cs
+	dotnet sln add ./$1/$1.csproj
+
+	dotnet new xunit -o $1.Tests
+	dotnet add ./$1.Tests/$1.Tests.csproj reference ./$1/$1.csproj
+	dotnet sln add ./$1.Tests/$1.Tests.csproj
+
+	# run `dotnet test` to launch the project
 }
 
 # -------------------------------------------------------

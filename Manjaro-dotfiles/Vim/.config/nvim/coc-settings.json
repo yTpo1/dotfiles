@@ -1,5 +1,5 @@
 {
-  "python.pythonPath": "python3",
+  "python.pythonPath": "python",
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/my_snippets/",
