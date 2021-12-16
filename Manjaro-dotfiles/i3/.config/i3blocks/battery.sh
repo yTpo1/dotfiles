@@ -6,8 +6,13 @@ BAT_NUMBER=1
 #BAT=$(acpi -b | awk '/Battery 1/{print substr($0, length($0) - 3, length($0))}')
 BAT_STATUS=$(acpi -b)
 # if battery 1 exists
-if grep -q "Battery 1" <<< $BAT_STATUS ; then
+if grep -q "Battery 1: Charging"; then
+	BAT="TODO"
+	# acpi -b | awk '{print substr($0,10,40) }'
+elif grep -q "Battery 1" <<< $BAT_STATUS ; then
 	BAT=$(echo $BAT_STATUS | awk '/Battery 1/{print substr($0, length($0) - 3, length($0))}')
+elif grep -q "Battery 0: Charging" <<< $BAT_STATUS ; then
+	BAT=$(echo $BAT_STATUS | awk '{print substr($0,21) }')
 else
 	#BAT=$(echo $BAT_STATUS | awk '{print substr($15,24) }')
 	BAT=$(echo $BAT_STATUS | awk '{print substr($0,24) }')

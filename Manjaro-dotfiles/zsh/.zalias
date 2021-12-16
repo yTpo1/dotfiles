@@ -92,7 +92,7 @@ alias mpva="mpv --audio-display=no"
 alias langkey="setxkbmap -option grp:win_space_toggle us,ru"
 
 # Systemd Systemctl
-alias sc-start="sudo systemctl start"
-alias sc-stop="sudo systemctl stop"
-alias sc-status="sudo systemctl status"
+alias sys-start="sudo systemctl start"
+alias sys-stop="sudo systemctl stop"
+alias sys-status="sudo systemctl status"
 #systemctl --user status

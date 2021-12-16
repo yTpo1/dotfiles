@@ -1,7 +1,15 @@
 #!/usr/bin/sh
 
-printf "\nUpdating the system\n\n"
+# ToDo: create function for printing, with input parameter - name of software 
+
+printf "\n-------------------------"
+printf "\nUpdating the system"
+printf "\n-------------------------\n"
 sudo pacman -Syu
+
+printf "\n-------------------------"
+printf "\nInstalling new software packages"
+printf "\n-------------------------\n"
 
 if ! type lightdm &> /dev/null; then
 	echo "Installing lightdm - Login Manager/Display Manager"
@@ -31,6 +39,15 @@ fi
 if ! pacman -Q tumbler &> /dev/null; then
 	printf "\nInstalling tumbler - Image thumbnail previewer\n\n"
 	sudo pacman -S tumbler
+fi
+
+if ! type vlc &> /dev/null; then
+	printf "\nInstalling vlc\n\n"
+	sudo pacman -S vlc
+fi
+if ! type mpv &> /dev/null; then
+	printf "\nInstalling mpv\n\n"
+	sudo pacman -S mpv
 fi
 
 # ----- Dotfiles Setup -----
@@ -118,6 +135,9 @@ if ! type dotnet &> /dev/null; then
 	sudo pacman -S dotnet-sdk
 	echo "Installing ASP.NET Core runtime"
 	sudo pacman -S aspnet-runtime
+
+	echo "dotnet development packages"
+	dotnet tool install -g dotnet-aspnet-codegenerator
 fi
 if ! type docker &> /dev/null; then
 	printf "Installing Docker"
@@ -162,6 +182,10 @@ if ! type transmission-remote &> /dev/null; then
 
 	echo "Adding my user to the transmission group so that I can access "
 	sudo usermod -a -G transmission $USER
+fi
+if ! type dos2unix &> /dev/null; then
+	echo "Installin dos2unix (Tool convert files)"
+	sudo pacman -S dos2unix
 fi
 if ! type youtube-dl &> /dev/null; then
 	echo "Installing YouTube-DL"
@@ -239,17 +263,88 @@ if ! type gimp &> /dev/null; then
 	echo "Installing gimp"
 	sudo pacman -S gimp
 fi
+
+# Printing support
+if ! pacman -Q cups &> /dev/null; then
+	echo "Installing cups - for printer and printing support"
+	sudo pacman -S cups
+fi
+if ! pacman -Q cups-pdf &> /dev/null; then
+	echo "Installing cups-pdf"
+	sudo pacman -S cups-pdf
+fi
+if ! type system-config-printer &> /dev/null; then
+	echo "Installing GTK printer configuration tool and status applet"
+	sudo pacman -S system-config-printer
+fi
+
+# Music making
 if ! type ardour6 &> /dev/null; then
 	echo "Installing Ardour"
 	sudo pacman -S ardour
 fi
+if ! type calfjackhost &> /dev/null; then
+	printf "\nInstalling calf - music pluggins"
+	printf "\n-------------------------"
+	sudo pacman -S calf
+fi
+if ! type carla &> /dev/null; then
+	printf "\nInstalling carla - music pluggins"
+	printf "\n-------------------------"
+	sudo pacman -S carla
+fi
+if ! type zynaddsubfx &> /dev/null; then
+	printf "\nInstalling zynaddsubfx - music pluggins"
+	printf "\n-------------------------"
+	sudo pacman -S zynaddsubfx
+fi
+
+if ! type xbacklight &> /dev/null; then
+	echo "Installing tool to control screen brightness"
+	sudo pacman -S xorg-xbacklight
+fi
+
+if ! type pwgen &> /dev/null; then
+	echo "Installing pwgen - Password Generator"
+	sudo pacman -S pwgen
+fi
+
+if ! type mcomix &> /dev/null; then
+	echo "Installing mcomix - Manga/Comix reader"
+	sudo pacman -S mcomix
+fi
+
+
 
 # ----- AUR -----
+if ! type  pcloud &> /dev/null; then
+	echo "Installing  pcloud-drive from AUR"
+	git clone https://aur.archlinux.org/pcloud-drive.git ~/Downloads/PCloud_AUR
+	cd ~/Downloads/PCloud_AUR
+	makepkg -si
+fi
+
 if ! type dropbox &> /dev/null; then
 	echo "Installing Dropbox from AUR"
 	git clone https://aur.archlinux.org/dropbox.git ~/Downloads/Dropbox-aur
 	cd ~/Downloads/Dropbox-aur
 	makepkg -si
+fi
+if ! type  nordvpn &> /dev/null; then
+	echo "Installing  NordVPN from AUR"
+	git clone https://aur.archlinux.org/nordvpn-bin.git ~/Downloads/NordVPN
+	cd ~/Downloads/NordVPN
+	makepkg -si
+
+	printf "Set up group rights\n"
+	sudo groupadd -r nordvpn
+	MYUSERNAME=$(whoami)
+	printf "I am - %s \n" $MYUSERNAME 
+	sudo gpasswd -a $MYUSERNAME nordvpn
+
+	printf "enabling and starting nordvpn service\n"
+	sudo systemctl enable nordvpnd.service
+	sudo systemctl start nordvpnd.service
 fi
 if ! pacman -Q thunar-dropbox &> /dev/null; then
 	echo "Installing Dropbox extension for Thunar from AUR"
@@ -275,6 +370,23 @@ if ! type code &> /dev/null; then
 	echo "Installing VSCode from AUR"
 	git clone https://aur.archlinux.org/visual-studio-code-bin.git ~/Downloads/VSCodeMS
 	cd ~/Downloads/VSCodeMS
+	makepkg -si
+fi
+# Microsoft-teams
+if ! type teams &> /dev/null; then
+	echo "Installing Teams from AUR"
+	git clone https://aur.archlinux.org/teams.git ~/Downloads/MSTeams
+	cd ~/Downloads/MSTeams
+	makepkg -si
+fi
+
+# Music making
+#if ! type avldrums &> /dev/null; then
+if ! pacman -Q avldrums-lv2-git &> /dev/null; then
+	printf "\nInstalling AVL Drumkits LV2 for Ardour and music making"
+	printf "\n-------------------------\n"
+	git clone https://aur.archlinux.org/avldrums-lv2-git.git  ~/Downloads/Avldrumkitslv2
+	cd ~/Downloads/Avldrumkitslv2
 	makepkg -si
 fi
 

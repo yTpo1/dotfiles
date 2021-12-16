@@ -69,18 +69,22 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # -------------------------------------------------------
 # My functions
 # -------------------------------------------------------
+ls-date() {
+	#find -maxdepth 1 -type d -printf "%TY-%Tm-%Td %TH:%TM %p\n" | sort -n
+	find -maxdepth 1 -type d -printf "%TY-%Tm-%Td %TH:%TM \033[1;34m %p \033[0 \033[0mm\n" | sort -n
+}
 
-# ls modifications
-lsdate() {
-	ls -alt | awk '{print $7,$6,$8, "\033[1;34m" $9 "\033[0m" }';
-##alias lsdate="ls --color=auto -alt | awk '{print $6,$7,$8,$9 }'"
-}
-lsdate-newest() {
-	ls -altr | awk '{print $7,$6,$8, "\033[1;34m" $9 "\033[0m" }';
-}
-lsdir() {
-	ls -d $1/*/
-}
+## ls modifications
+#lsdate() {
+#	ls -alt | awk '{print $7,$6,$8, "\033[1;34m" $9 "\033[0m" }';
+###alias lsdate="ls --color=auto -alt | awk '{print $6,$7,$8,$9 }'"
+#}
+#lsdate-newest() {
+#	ls -altr | awk '{print $7,$6,$8, "\033[1;34m" $9 "\033[0m" }';
+#}
+#lsdir() {
+#	ls -d $1/*/
+#}
 
 
 #
@@ -103,49 +107,159 @@ alias untar="extr-tar"
 
 # -------------------------------------------------------
 # CUE Splitting (Music Flac)
+# https://honghaco.github.io/howto/2016/08/19/split-lossless-audio-files.html
 #
 # ToDo: sometimes creates an empty track00, which messes up tagging and remaning
+# $1 - .cue
+# $2 - .flac
 mus-split-flac() {
-	shnsplit -f $1 -o flac $2
-	cuetag.sh $1 split-track*.flac
+	#shnsplit -f $1 -o flac $2
+	shnsplit -f $1 -t %n-%t -o flac $2
+	#shnsplit -d Split -f *.cue -o "flac flac -V --best -o %f -" *.flac -t "%n %p - %t"
+
+	if [ -f Split/00-pregap.flac ]; then
+		rm -f Split/00*pregap*
+	fi
+
+	#cuetag.sh $1 split-track*.flac
+	cuetag.sh $1 [0-9]*.flac
+	#cuetag *.cue Split/*.flac
+
 	mkdir Split_tracks
-	mv split-track* Split_tracks
+	##mv split-track* Split_tracks
+	mv [0-9]*.flac Split_tracks
 }
+
+mus-split-cue() {
+	# Souce:
+	# https://bbs.archlinux.org/viewtopic.php?id=75774
+	
+	SDIR=`pwd`
+
+	if [ "$1" = "" ]
+	  then
+	    DIR=$SDIR
+	else
+	    case $1 in
+		-h | --help )
+		    echo "Usage: cuesplit [Path]"
+		    echo "       The default path is the current directory."
+		    exit
+		    ;;
+		* )
+		DIR=$1
+	    esac
+	fi
+
+	echo -e "\
+
+	Directory: $DIR
+	________________________________________
+	"
+	cd "$DIR"
+	TYPE=`ls -t1`
+
+	case $TYPE in
+	    *.ape*)
+		mkdir split
+		shnsplit -d split -f *.cue -o "flac flac -V --best -o %f -" *.ape -t "%n %p - %t"
+		rm -f split/00*pregap*
+		cuetag.sh *.cue split/*.flac
+		exit
+		;;
+
+	    *.flac*)
+		mkdir split
+		shnsplit -d split -f *.cue -o "flac flac -V --best -o %f -" *.flac -t "%n %p - %t"
+		rm -f split/00*pregap*
+		cuetag.sh *.cue split/*.flac
+		#exit
+		;;
+
+	    *.mp3*)
+		mp3splt -no "@n @p - @t (split)" -c *.cue *.mp3
+		cuetag.sh *.cue *split\).mp3
+		exit
+		;;
+
+	    *.ogg*)
+		mp3splt -no "@n @p - @t (split)" -c *.cue *.ogg
+		cuetag.sh *.cue *split\).ogg
+		exit
+		;;
+
+	    *.tta*)
+		mkdir split
+		shnsplit -d split -f *.cue -o "flac flac -V --best -o %f -" *.tta -t "%n %p - %t"
+		rm -f split/00*pregap*
+		cuetag.sh *.cue split/*.flac
+		exit
+		;;
+
+	    *.wv*)
+		mkdir split
+		shnsplit -d split -f *.cue -o "flac flac -V --best -o %f -" *.wv -t "%n %p - %t"
+		rm -f split/00*pregap*
+		cuetag.sh *.cue split/*.flac
+		exit
+		;;
+
+	    *.wav*)
+		mkdir split
+		shnsplit -d split -f *.cue -o "flac flac -V --best -o %f -" *.wav -t "%n %p - %t"
+		rm -f split/00*pregap*
+		cuetag.sh *.cue split/*.flac
+		exit
+		;;
+
+	    * )
+	    echo "Error: Found no files to split!"
+	    echo "       --> APE, FLAC, MP3, OGG, TTA, WV, WAV"
+	esac
+	#exit
+}
+
 #
-# $1=file.cue $2=file.flac
-mus-split-rename-flac() {
-	#cuebreakpoints sample.cue | shnsplit -o flac sample.flac
+# Obsolete
+## $1=file.cue $2=file.flac
+#mus-split-rename-flac() {
+#	#cuebreakpoints sample.cue | shnsplit -o flac sample.flac
+#
+#	shnsplit -f $1 -o flac $2
+#	cuetag.sh $1 split-track*.flac
+#	mkdir Split_tracks
+#	mv split-track* Split_tracks
+#	cd Split_tracks
+#	rename-split-files split-track*.flac
+#
+#	#mkdir Split_tracks
+#	#mv split-track* Split_tracks
+#	#cp $1 Split_tracks
+#	#cd Split_tracks
+#	#cuetag.sh $1 *.flac
+#}
+## copied this bash script and converted it to zsh
+## https://gist.github.com/dlp/5fdee0541ad0c2382840990c8c74e739
+#rename-split-files() {
+#	for f in "$@"
+#	do
+#		mv "$f" "$(get_new_name "$f")"
+#	done
+#}
+#get_new_name() {
+#	num=$(gettag "$1" TRACKNUMBER)
+#	title=$(gettag "$1" TITLE)
+#	printf "%s %s.flac" "${num}" "${title}"
+#}
+#gettag() {
+#	# <--show-tag=NAME> Show all tags where the the field name matches NAME. 
+#	metaflac --show-tag="$2" "$1" | sed -e "s/.*=//"
+#}
 
-	shnsplit -f $1 -o flac $2
-	cuetag.sh $1 split-track*.flac
-	mkdir Split_tracks
-	mv split-track* Split_tracks
-	cd Split_tracks
-	rename-split-files split-track*.flac
 
-	#mkdir Split_tracks
-	#mv split-track* Split_tracks
-	#cp $1 Split_tracks
-	#cd Split_tracks
-	#cuetag.sh $1 *.flac
-}
-# copied this bash script and converted it to zsh
-# https://gist.github.com/dlp/5fdee0541ad0c2382840990c8c74e739
-rename-split-files() {
-	for f in "$@"
-	do
-		mv "$f" "$(get_new_name "$f")"
-	done
-}
-get_new_name() {
-	num=$(gettag "$1" TRACKNUMBER)
-	title=$(gettag "$1" TITLE)
-	printf "%s %s.flac" "${num}" "${title}"
-}
-gettag() {
-	# <--show-tag=NAME> Show all tags where the the field name matches NAME. 
-	metaflac --show-tag="$2" "$1" | sed -e "s/.*=//"
-}
+# -------------------------------------------------------
+#
+langru() { setxkbmap -option grp:ctrl_alt_toggle us,ru; }
 
 # -------------------------------------------------------
 # Password generation
@@ -154,7 +268,7 @@ gettag() {
 pass-gen() {
 	if [ $# -eq 0 ]
 	  then
-	    echo "No arguments supplied, usage pass-gen <LEN>"
+	    echo "No arguments supplied, usage: pass-gen <LEN>"
 	    return 1
 	fi
 
@@ -162,8 +276,8 @@ pass-gen() {
 	#local PASS_GEN=$(openssl rand -base64 $PASS_LEN) ;
 	local PASS_GEN=$(pwgen -y -1 $PASS_LEN) ;
 	echo $PASS_GEN ;
-	echo Copied to clipboard ;
 	printf $PASS_GEN | xclip -selection c
+	echo Copied to clipboard ;
 	}
 
 # -------------------------------------------------------
@@ -172,6 +286,7 @@ pass-gen() {
 # $2 is new_file_name.wav
 wav-to-mp3() { ffmpeg -i $1 ${1%wav}mp3 ;}
 flac-to-mp3() { ffmpeg -i $1 ${1%flac}mp3 ;}
+flac-to-wav() { ffmpeg -i $1 ${1%flac}wav ;}
 mp3-to-wav() { ffmpeg -i $1 ${1%mp3}wav ;}
 
 # $1 - origin directory
@@ -273,12 +388,16 @@ pa-playbackset() {
 }
 
 # -------------------------------------------------------
-# Monitors
+# Monitors (screen)
 monitor-list() { xrandr --listmonitors ;}
 #monitor-disable() { xrandr --output eDP-1 --off ;}
 monitor-reset() { xrandr --auto ;} # reset to default
 monitor-switch-hdmi() {
-	xrandr --output HDMI-1 --auto
+	# Switch to HDMI output
+	#xrandr --output HDMI-1 --auto
+	xrandr --output HDMI-1 --mode 1920x1080
+
+	# Turn off the laptop display
 	xrandr --output eDP-1 --off
 }
 
@@ -305,7 +424,7 @@ tsm-list-find() { tsm | grep -i "$1" ;}
 tsm-stats() { transmission-remote -n $TSM_USR_PASS --session-stats ;} # List statistical information from the server 
 tsm-sessinfo() { transmission-remote -n $TSM_USR_PASS --session-info ;} # List session information from the server
 
-tsm-dir() { cd /var/lib/transmission/ ls --color=auto ;}
+tsm-dir() { cd /var/lib/transmission/Downloads/ }
 tsm-dir-gui() { tsm-dir; nautilus . & ;}
 tsmd-config() { sudo nvim /var/lib/transmission-daemon/info/settings.json ;}
 tsm-blocklist() { $HOME/blocklist.sh ;}		# update blocklist
@@ -355,27 +474,52 @@ dn-create-consoleapp() { dotnet new console -o $1; cd $1 ;}
 dn-create-solution() { dotnet new sln -o $1; cd $1; }
 dn-create-classlib() { dotnet new classlib -o $1 ;}
 # $1 - directory name
-dn-create-webapp() { dotnet new webapp -f net5.0 -o $1 ;}
+dn-create-webapp() { dotnet new webapp -o $1 ;}
+dn-create-api() { dotnet new webapi -o $1; cd $1; }
+
 
 # example: dotnet sln add ./PrimeService/PrimeService.csproj
-dn-add-projsolution() { dotnet sln add $1; }
-dn-add-dependency() {dotnet add $1 reference $2 ;}
+dn-add-proj_to_solution() { dotnet sln add $1; }
+dn-add-reference() {dotnet add $1 reference $2 ;}
 
 # Args: $1 = name; $2 = namespace
 dn-newpage() {
 	dotnet new page --name $1 --namespace $2 --output Pages
 }
 
+# $2 - Controler name
+dn-new-controller() { 
+	if [ $1 = "help" ]; then
+		echo "arg1 = Controler name; arg2 = Contex name"
+		return 0;
+	fi
+	dotnet aspnet-codegenerator controller -name $1Controller -async -api -m $1 -dc $2Context -outDir Controllers 
+}
+
 dn-ef-initmigrations() { dotnet ef migrations add $1; }
 dn-ef-makemigrations() { dotnet ef database update; }
 
-dn-create-fullproj() {
+dn-create-unittests() {
+	dotnet new xunit -o $1.Tests
+	if [ -f ./$1/$1.csproj ]; then
+		dotnet add ./$1.Tests/$1.Tests.csproj reference ./$1/$1.csproj
+	elif [ -f ./$1.csproj ]; then
+		dotnet add ./$1.Tests/$1.Tests.csproj reference ./$1.csproj
+	fi
+
+	dotnet sln add ./$1.Tests/$1.Tests.csproj
+}
+
+# $1: ProjectName
+dn-create-proj_w_tests() {
 	dotnet new sln -o $1_solution
 	cd $1_solution
 
-	dotnet new classlib -o $1
-	#ren .\PrimeService\Class1.cs PrimeService.cs
-	mv ./$1/Class1.cs ./$1/$1.cs
+	#dotnet new classlib -o $1
+	##ren .\PrimeService\Class1.cs PrimeService.cs
+	#mv ./$1/Class1.cs ./$1/$1.cs
+	#dotnet sln add ./$1/$1.csproj
+	dotnet new console -o $1
 	dotnet sln add ./$1/$1.csproj
 
 	dotnet new xunit -o $1.Tests
@@ -384,6 +528,16 @@ dn-create-fullproj() {
 
 	# run `dotnet test` to launch the project
 }
+
+# -------------------------------------------------------
+# Curl
+#
+curl-post-json() {
+	#curl -k -H "Content-Type: application/json" -d '{"name": "walk dog", "isComplete": true}' -X POST  https://localhost:5001/api/todoitems
+	curl -k -H "Content-Type: application/json" -d $1 -X POST $2
+}
+
+curl-delete() { curl -k -X "DELETE" $1 }
 
 # -------------------------------------------------------
 # Open files according to file type: i.e if image with image viewer, music with music player etc
