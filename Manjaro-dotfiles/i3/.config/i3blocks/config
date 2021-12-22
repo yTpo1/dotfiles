@@ -10,6 +10,7 @@
 separator=true
 separator_block_width=15
 
+
 [cpu]
 command=~/.config/i3blocks/cpu.sh
 interval=10
@@ -26,6 +27,14 @@ interval=60
 command=date '+%d-%m %H:%M'
 interval=1
 #command=date '+%Y-%m-%d %H:%M:%S'
+
+[soundcontrol]
+command=~/.config/i3blocks/sound_control.sh
+interval=1
+
+[changelanguage]
+commnad=~/.config/i3blocks/change_language.sh
+interval=1
 
 [keyboardlayout]
 command=~/.config/i3blocks/keyboard_layout.sh
