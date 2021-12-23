@@ -28,7 +28,7 @@ case $BLOCK_BUTTON in
 	#4) notify-send "$VOLUME_LEVEL" && pactl set-sink-volume $current_sink_num $VOLUMEUP ;; # scroll up
 	#1) notify-send "left $((current_sink_num+1))" && pa-set $((current_sink_num+1)) ;; # left click
 	1) pa-set $((current_sink_num+1)) ;; # left click
-	3) notify-send "right $((current_sink_num-1))" && pa-set $((current_sink_num-1)) ;; # right click
+	3) pa-set $((current_sink_num-1)) ;; # right click
 	4) pactl set-sink-volume $current_sink_num $VOLUMEUP ;; # scroll up
 	#5) notify-send "$VOLUME_LEVEL" && pactl set-sink-volume $current_sink_num $VOLUMEDOWN ;; # scroll down
 	5) pactl set-sink-volume $current_sink_num $VOLUMEDOWN ;; # scroll down
