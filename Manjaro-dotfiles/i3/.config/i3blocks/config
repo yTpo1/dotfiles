@@ -28,13 +28,9 @@ command=date '+%d-%m %H:%M'
 interval=1
 #command=date '+%Y-%m-%d %H:%M:%S'
 
-[soundcontrol]
-command=~/.config/i3blocks/sound_control.sh
-interval=1
-
-[changelanguage]
-commnad=~/.config/i3blocks/change_language.sh
-interval=1
+[volume_control]
+command=~/.config/i3blocks/volume_control.sh
+interval=5
 
 [keyboardlayout]
 command=~/.config/i3blocks/keyboard_layout.sh
