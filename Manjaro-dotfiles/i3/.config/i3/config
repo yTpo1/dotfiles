@@ -43,8 +43,8 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#exec --no-startup-id volumeicon
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
@@ -420,6 +420,11 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# Autostart workspaces
+exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
+exec --no-startup-id i3-msg 'workspace 2; exec /usr/local/bin/st'
+exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/thunar'
+
 # update i3blocks to notify that CapsLock is on
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
 #bindsym Shift+Mod1 exec pkill -SIGRTMIN+10 i3blocks
@@ -427,3 +432,4 @@ bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
 
 exec --no-startup-id /usr/bin/setxkbmap -option grp:ctrl_alt_toggle us,ru
 exec --no-startup-id dropbox start
+exec --no-startup-id flameshot # screenshot utility

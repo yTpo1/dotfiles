@@ -5,7 +5,7 @@ SINKNUM=$current_sink_num+1
 VOLUMEUP='+5%'
 VOLUMEDOWN='-5%'
 #VOLUME_LEVEL=$(pacmd list-sinks | awk -v sinkvar="$SINKNUM' '$0 ~ "^"svolume:/{i++} i=='sinkvar'{print $5; exit}')
-VOLUME_LEVEL=$(pactl get-sink-volume 1 | awk '{ print $5; exit }')
+VOLUME_LEVEL=$(pactl get-sink-volume $current_sink_num | awk '{ print $5; exit }')
 #echo $VOLUME_LEVEL
 
 pa-set() { 
@@ -28,6 +28,7 @@ case $BLOCK_BUTTON in
 	#4) notify-send "$VOLUME_LEVEL" && pactl set-sink-volume $current_sink_num $VOLUMEUP ;; # scroll up
 	#1) notify-send "left $((current_sink_num+1))" && pa-set $((current_sink_num+1)) ;; # left click
 	1) pa-set $((current_sink_num+1)) ;; # left click
+	2) pavucontrol ;; # middle click
 	3) pa-set $((current_sink_num-1)) ;; # right click
 	4) pactl set-sink-volume $current_sink_num $VOLUMEUP ;; # scroll up
 	#5) notify-send "$VOLUME_LEVEL" && pactl set-sink-volume $current_sink_num $VOLUMEDOWN ;; # scroll down

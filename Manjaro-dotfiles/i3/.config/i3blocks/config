@@ -10,6 +10,17 @@
 separator=true
 separator_block_width=15
 
+[rofi_dmenu]
+command=~/.config/i3blocks/rofi_dmenu_launcher.sh
+interval=once
+
+[torrents]
+command=~/.config/i3blocks/torrents.sh
+interval=30
+
+[vpn]
+command=~/.config/i3blocks/vpn.sh
+interval=30
 
 [cpu]
 command=~/.config/i3blocks/cpu.sh
@@ -30,7 +41,7 @@ interval=1
 
 [volume_control]
 command=~/.config/i3blocks/volume_control.sh
-interval=5
+interval=20
 
 [keyboardlayout]
 command=~/.config/i3blocks/keyboard_layout.sh

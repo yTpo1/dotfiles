@@ -286,6 +286,15 @@ pass-gen() {
 # $2 is new_file_name.wav
 wav-to-mp3() { ffmpeg -i $1 ${1%wav}mp3 ;}
 flac-to-mp3() { ffmpeg -i $1 ${1%flac}mp3 ;}
+flac-to-mp3-dir() { 
+	#for file in ./*(.);
+	for file in ./*(.); do
+		#do echo $file;
+		if [ "$file" == "*.txt" ]; then
+			ffmpeg -i $file ${file%flac}mp3 ;
+		fi
+	done
+}
 flac-to-wav() { ffmpeg -i $1 ${1%flac}wav ;}
 mp3-to-wav() { ffmpeg -i $1 ${1%mp3}wav ;}
 
@@ -411,6 +420,7 @@ ytdl-wav() { youtube-dl --extract-audio --audio-format wav "$1" ;}
 # -------------------------------------------------------
 # Torrents - Transmission
 
+alias tsmc="transmission-remote -n $TSM_USR_PASS"
 # list all torrents
 tsm() { transmission-remote -n $TSM_USR_PASS --list ;}
 tsm-arev() { tsm | tac ;} # list reverse order
@@ -420,6 +430,7 @@ tsm-list-idle() { tsm | grep "Idle" ;}
 tsm-list-active() { tsm | grep "Downloading" ;}
 tsm-list-incomplete() { tsm | grep -v "100%" ;}
 tsm-list-find() { tsm | grep -i "$1" ;}
+
 
 tsm-stats() { transmission-remote -n $TSM_USR_PASS --session-stats ;} # List statistical information from the server 
 tsm-sessinfo() { transmission-remote -n $TSM_USR_PASS --session-info ;} # List session information from the server
@@ -435,6 +446,8 @@ tsm-add() { transmission-remote -n $TSM_USR_PASS --add "$1" ;} # <link>
 tsm-start() { transmission-remote -n $TSM_USR_PASS -t"$1" --start ;} # <id> or all
 # stop/pause
 tsm-stop() { transmission-remote -n $TSM_USR_PASS -t"$1" --stop ;} # <id> or all
+tsm-start-all() { tsmc --torrent=all --start ;}
+tsm-stop-all() { tsmc --torrent=all --stop ;}
 tsm-purge() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove-and-delete ;} # delete data also
 tsm-remove() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove ;}		# leaves data alone
 

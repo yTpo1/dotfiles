@@ -1,13 +1,14 @@
 #!/bin/bash
 
 #BAT=$(acpi -b | grep -E -o '[0-9][0-9]?%')
+BAT=""
 BAT_NUMBER=1
 #BAT=$(acpi -b | grep "Battery $BAT_NUMBER")
 #BAT=$(acpi -b | awk '/Battery 1/{print substr($0, length($0) - 3, length($0))}')
 BAT_STATUS=$(acpi -b)
 # if battery 1 exists
-if grep -q "Battery 1: Charging"; then
-	BAT="TODO"
+if grep -q "Battery 1: Charging" <<< $BAT_STATUS; then
+	BAT="Charging"
 	# acpi -b | awk '{print substr($0,10,40) }'
 elif grep -q "Battery 1" <<< $BAT_STATUS ; then
 	BAT=$(echo $BAT_STATUS | awk '/Battery 1/{print substr($0, length($0) - 3, length($0))}')
@@ -15,7 +16,8 @@ elif grep -q "Battery 0: Charging" <<< $BAT_STATUS ; then
 	BAT=$(echo $BAT_STATUS | awk '{print substr($0,21) }')
 else
 	#BAT=$(echo $BAT_STATUS | awk '{print substr($15,24) }')
-	BAT=$(echo $BAT_STATUS | awk '{print substr($0,24) }')
+	#BAT=$(echo $BAT_STATUS | awk '{print substr($0,24) }')
+	BAT=$(echo $BAT_STATUS | awk '{ print $4 ;}')
 fi
 
 # Full and short texts
@@ -30,4 +32,4 @@ echo $BAT ⚡
 #[ ${BAT%?} -le 5 ] && exit 33
 #[ ${BAT%?} -le 20 ] && echo "#FF8000"
 
-exit 0
+#exit 0

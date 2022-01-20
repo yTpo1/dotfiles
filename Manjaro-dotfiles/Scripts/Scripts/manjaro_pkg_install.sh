@@ -182,6 +182,10 @@ if ! type transmission-remote &> /dev/null; then
 
 	echo "Adding my user to the transmission group so that I can access "
 	sudo usermod -a -G transmission $USER
+
+	printf "enabling and starting transmission service\n"
+	sudo systemctl enable transmission.service
+	sudo systemctl start transmission.service
 fi
 if ! type dos2unix &> /dev/null; then
 	echo "Installin dos2unix (Tool convert files)"
@@ -293,11 +297,11 @@ if ! type carla &> /dev/null; then
 	printf "\n-------------------------"
 	sudo pacman -S carla
 fi
-if ! type zynaddsubfx &> /dev/null; then
-	printf "\nInstalling zynaddsubfx - music pluggins"
-	printf "\n-------------------------"
-	sudo pacman -S zynaddsubfx
-fi
+#if ! type zynaddsubfx &> /dev/null; then
+#	printf "\nInstalling zynaddsubfx - music pluggins"
+#	printf "\n-------------------------"
+#	sudo pacman -S zynaddsubfx
+#fi
 
 if ! type xbacklight &> /dev/null; then
 	echo "Installing tool to control screen brightness"
@@ -317,6 +321,12 @@ fi
 
 
 # ----- AUR -----
+if ! type  zyn-fusion &> /dev/null; then
+	echo "Installing  zyn-fusion from AUR"
+	git clone https://aur.archlinux.org/zyn-fusion.git ~/Downloads/Zynfusion_AUR
+	cd ~/Downloads/Zynfusion_AUR
+	makepkg -si
+fi
 if ! type  pcloud &> /dev/null; then
 	echo "Installing  pcloud-drive from AUR"
 	git clone https://aur.archlinux.org/pcloud-drive.git ~/Downloads/PCloud_AUR
