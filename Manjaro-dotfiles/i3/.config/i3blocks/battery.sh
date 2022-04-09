@@ -20,6 +20,11 @@ else
 	BAT=$(echo $BAT_STATUS | awk '{ print $4 ;}')
 fi
 
+case $BLOCK_BUTTON in
+	1) notify-send $(acpi -b | awk '/Battery 1/') ;; # left click
+esac
+
+
 # Full and short texts
 #echo "Battery: $BAT"
 #echo "BAT: $BAT"

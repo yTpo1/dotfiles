@@ -147,6 +147,18 @@ fi
 #	printf "Installing VSCode"
 #	sudo pacman -S code
 #fi
+if ! type java-runtime-common &> /dev/null; then
+	printf "Installing java-runtime-common (containing common files for Java Runtime Environments)"
+	sudo pacman -S java-runtime-common
+fi
+if ! type java-environment-common &> /dev/null; then
+	printf "Installing java-environment-common (containing common files for Java Development Kits)"
+	sudo pacman -S java-environment-common
+fi
+if ! type intellij-idea-community-edition &> /dev/null; then
+	printf "Installing Intellij"
+	sudo pacman -S intellij-idea-community-edition
+fi
 
 
 # ======================================================
@@ -288,15 +300,27 @@ if ! type ardour6 &> /dev/null; then
 	sudo pacman -S ardour
 fi
 if ! type calfjackhost &> /dev/null; then
-	printf "\nInstalling calf - music pluggins"
+	printf "\nInstalling calf. Category: music pluggins"
 	printf "\n-------------------------"
 	sudo pacman -S calf
 fi
 if ! type carla &> /dev/null; then
-	printf "\nInstalling carla - music pluggins"
+	printf "\nInstalling carla. Category: music pluggins"
 	printf "\n-------------------------"
 	sudo pacman -S carla
 fi
+if ! type hydrogen &> /dev/null; then
+	printf "\nInstalling hydrogen. Category: music pluggins"
+	printf "\n-------------------------"
+	sudo pacman -S hydrogen
+fi
+if ! type musescore &> /dev/null; then
+	printf "\nInstalling musescore. Category: music pluggins"
+	printf "\n-------------------------"
+	sudo pacman -S musescore
+fi
+
+# ugly interface, one from aur is better
 #if ! type zynaddsubfx &> /dev/null; then
 #	printf "\nInstalling zynaddsubfx - music pluggins"
 #	printf "\n-------------------------"
@@ -399,6 +423,22 @@ if ! pacman -Q avldrums-lv2-git &> /dev/null; then
 	cd ~/Downloads/Avldrumkitslv2
 	makepkg -si
 fi
+if ! pacman -Q lingot &> /dev/null; then
+	printf "\nInstalling lingot"
+	printf "\n-------------------------\n"
+	git clone https://aur.archlinux.org/lingot.git  ~/Downloads/Lingot
+	cd ~/Downloads/Lingot
+	makepkg -si
+fi
+#if ! pacman -Q foo-yc20 &> /dev/null; then
+#	printf "\nInstalling foo-yc20"
+#	printf "\n-------------------------\n"
+#	git clone https://aur.archlinux.org/foo-yc20-git.git  ~/Downloads/foo-yc20
+#	cd ~/Downloads/foo-yc20
+#	makepkg -si
+#fi
+
+
 
 # ----- Installing from source -----
 if ! type st &> /dev/null; then
@@ -418,6 +458,9 @@ if ! type st &> /dev/null; then
 	echo Installing ST
 	sudo make clean install
 fi
+
+# ----- Just download, no install -------
+# https://www.auburnsounds.com/products/Graillon.html
 
 
 # ----- Manjaro specific -----

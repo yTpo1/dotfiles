@@ -94,9 +94,6 @@ to-clipboard() { xclip -selection c ;}
 to-grafical() { dragon $1 ;}
 
 # -------------------------------------------------------
-# Python
-pyunit() { python3 -m unittest test/"$1" ;}
-# -------------------------------------------------------
 # Extracting, Archiving, Compressing [tar, tar.gz, zip]
 
 # extracts tar.gz
@@ -448,8 +445,11 @@ tsm-start() { transmission-remote -n $TSM_USR_PASS -t"$1" --start ;} # <id> or a
 tsm-stop() { transmission-remote -n $TSM_USR_PASS -t"$1" --stop ;} # <id> or all
 tsm-start-all() { tsmc --torrent=all --start ;}
 tsm-stop-all() { tsmc --torrent=all --stop ;}
+
 tsm-purge() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove-and-delete ;} # delete data also
 tsm-remove() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove ;}		# leaves data alone
+# example $1 = 1, $2 = 68, will remove everything from torrents and files withing that range
+tsm-purge-range() { for i in {$1..$2}; do tsm-purge $i; done; }
 
 # Get detailed information on the torrent whose ID is '1':
 tsm-info() { transmission-remote -n $TSM_USR_PASS -t"$1" --info ;}
@@ -467,10 +467,30 @@ tsm-pr-high() { transmission-remote -n $TSM_USR_PASS -t"$1" --bandwidth-high ;}
 #tsmd-stop() { sudo systemctl stop transmission-daemon.service ;}
 #tsmd-reload() { sudo systemctl reload transmission-daemon.service ;}
 
-# example $1 = 1, $2 = 68, will remove everything from torrents and files withing that range
-tsm-purge-range() { for i in {$1..$2}; do tsm-purge $i; done; }
 
+# -------------------------------------------------------
+# Development
+#
+# -------------------------------------------------------
+# Python
+pyunit() { python3 -m unittest test/"$1" ;}
 
+# -------------------------------------------------------
+# Docker
+dkr() { docker ps ;}
+dkr-build() {
+	# $1 - Image name
+	docker build -t $1 .
+}
+dkr-run() {
+	# $1 - Container name
+	# $2 - Image name
+	
+	# -it - Allocate a pseudo-TTY and keep it open even if not attached.
+	# --rm - Automatically remove the container when it exits.
+	# Map port 5000 on the local machine to port 80 in the container.
+	docker run -it --rm -p 5000:80 --name $1 $2
+}
 # -------------------------------------------------------
 # Dotnet Development
 
@@ -525,6 +545,16 @@ dn-create-unittests() {
 
 # $1: ProjectName
 dn-create-proj_w_tests() {
+	if [ $1 = "console" ]
+	  then
+	    TYPE="console"
+	elif [ $1 = "web" ]
+	  then
+	    TYPE="webapp"
+	else
+	    return 1
+	fi
+
 	dotnet new sln -o $1_solution
 	cd $1_solution
 
