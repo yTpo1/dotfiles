@@ -497,22 +497,23 @@ dkr-run() {
 dnr() { dotnet run; }
 dnt() { dotnet test; }
 
+dn-cr-solution() { dotnet new sln -o $1; cd $1; }
+
+# Projects to create
+dn-cr-consoleapp() { dotnet new console -o $1; cd $1 ;}
+dn-cr-classlib() { dotnet new classlib -o $1 ;}
+dn-cr-webapp() { dotnet new webapp -o $1 ;}
+dn-cr-api() { dotnet new webapi -o $1; cd $1; }
+dn-cr-mvc() { dotnet new mvc -o $1; cd $1; }
+
+dn-add-pkg() { 
+	# example: $1 = Microsoft.EntityFrameworkCore.Sqlite
+	dotnet add package $1;
+}
 dn-install-packages() { dotnet restore; }
 
-# example: $1 = Microsoft.EntityFrameworkCore.Sqlite
-dn-add-pkg() { dotnet add package $1; }
-
-# $1 - directory name
-dn-create-consoleapp() { dotnet new console -o $1; cd $1 ;}
-dn-create-solution() { dotnet new sln -o $1; cd $1; }
-dn-create-classlib() { dotnet new classlib -o $1 ;}
-# $1 - directory name
-dn-create-webapp() { dotnet new webapp -o $1 ;}
-dn-create-api() { dotnet new webapi -o $1; cd $1; }
-
-
 # example: dotnet sln add ./PrimeService/PrimeService.csproj
-dn-add-proj_to_solution() { dotnet sln add $1; }
+dn-add-to-solution() { dotnet sln add $1; }
 dn-add-reference() {dotnet add $1 reference $2 ;}
 
 # Args: $1 = name; $2 = namespace

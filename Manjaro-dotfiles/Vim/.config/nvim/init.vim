@@ -311,6 +311,9 @@ set statusline^=%{coc#status}
 "----------------------------------------------------------------
 " 3. Vim internal settings
 "----------------------------------------------------------------
+set tabstop=4
+set shiftwidth=4
+
 colorscheme gruvbox "desert ron nord OceanicNext iceberg
 
 " allow plugins by file type (required for plugins!)
