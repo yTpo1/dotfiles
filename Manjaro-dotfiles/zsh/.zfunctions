@@ -253,6 +253,14 @@ mus-split-cue() {
 #	metaflac --show-tag="$2" "$1" | sed -e "s/.*=//"
 #}
 
+# -------------------------------------------------------
+# Music - create .m3u playlist from files in current dir
+
+# $1 filename
+create_playlist() {
+	t $1;
+}
+
 
 # -------------------------------------------------------
 #
@@ -406,10 +414,17 @@ monitor-switch-hdmi() {
 	# Turn off the laptop display
 	xrandr --output eDP-1 --off
 }
+monitor-hdmi-reset() {
+	xrandr --output HDMI-1 --mode 1920x1080
+	xrandr --output eDP-1 --off
+	xrandr --auto
+}
 
 # -------------------------------------------------------------------
 # Youtube downloads
 
+# When multiple formats of a video are available, youtube-dl will download the best ones by default. 
+ytdl-vid() { youtube-dl "$1" ;}
 ytdl-mp3() { youtube-dl --extract-audio --audio-format mp3 "$1" ;}
 ytdl-wav() { youtube-dl --extract-audio --audio-format wav "$1" ;}
 #alias ytdla='youtube-dl -f bestaudio -o %(title)s.f%(format_id)s.%(ext)s'
@@ -613,3 +628,25 @@ ub-pkg-other-versions() { sudo apt-cache policy $1 ;}
 # Pin: version 3.6.3*
 # Pin-Priority: 1000
 # ```
+
+#function extract()
+#{
+#    if [ -f $1 ] ; then
+#        case $1 in
+#            *.tar.bz2)   tar xvjf $1     ;;
+#            *.tar.gz)    tar xvzf $1     ;;
+#            *.bz2)       bunzip2 $1      ;;
+#            *.rar)       unrar x $1      ;;
+#            *.gz)        gunzip $1       ;;
+#            *.tar)       tar xvf $1      ;;
+#            *.tbz2)      tar xvjf $1     ;;
+#            *.tgz)       tar xvzf $1     ;;
+#            *.zip)       unzip $1        ;;
+#            *.Z)         uncompress $1   ;;
+#            *.7z)        7z x $1         ;;
+#            *)           echo "'$1' cannot be extracted via #>extract<" ;;
+#        esac
+#    else
+#        echo "'$1' is not a valid file!"
+#    fi
+#}

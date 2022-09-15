@@ -421,9 +421,9 @@ mode "$mode_gaps_outer" {
 }
 
 # Autostart workspaces
-exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
-exec --no-startup-id i3-msg 'workspace 2; exec /usr/local/bin/st'
-exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/thunar'
+#exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
+#exec --no-startup-id i3-msg 'workspace 2; exec /usr/local/bin/st'
+#exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/thunar'
 
 # update i3blocks to notify that CapsLock is on
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks

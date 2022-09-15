@@ -189,6 +189,7 @@ install musescore "Category: music pluggins"
 install xorg-xbacklight "tool to control screen brightness" xbacklight
 install pwgen "Password Generator"
 install mcomix "Manga/Comix reader"
+install newsboat "console RSS aggregator"
 
 
 # ----- AUR -----
