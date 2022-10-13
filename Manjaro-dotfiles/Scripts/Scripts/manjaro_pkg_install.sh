@@ -32,7 +32,7 @@ installPacman() {
 installAUR() {
     # $1 AUR git repo link
 	# $2 Description
-	# $3 App(alt) name after installation
+	# $3 App (alt)name after installation
 
 	if ! type $3 &> /dev/null; then
 		echo "Installing $3 from AUR. | $2"
@@ -107,6 +107,9 @@ if ! type transmission-remote &> /dev/null; then
 	sudo systemctl enable transmission.service
 	sudo systemctl start transmission.service
 fi
+
+# 1.5.4 Taskbars
+install i3blocks
 
 # 1.5.5 Instant messaging clients
 install discord
@@ -206,6 +209,9 @@ install thunar
 install catfish "Search tool for Thunar"
 installPacman tumbler "Image thumbnail previewer"
 
+# 3.2.3 File synchronization and backup
+install rsync
+
 # 3.2.4 Archiving and compression tools
 install unzip
 
@@ -237,11 +243,28 @@ fi
 installPacman java-runtime-common "(containing common files for Java Runtime Environments)"
 installPacman java-environment-common "(containing common files for Java Development Kits)" 
 
+# 3.3.2 Version control systems
+install git
+
 # 3.3.4 Integrated development environments
 # 3.3.4.1 Java IDEs
 install intellij-idea-community-edition "-" idea
 
 # 3.6 System
+# 3.6.1 Task managers
+install htop
+
+# 3.6.6  Font viewers + Font packages
+# Following fonts were preinstalled on manjaro
+installPacman ttf-bitstream-vera
+installPacman ttf-dejavu
+installPacman ttf-droid
+installPacman ttf-font-icons
+installPacman ttf-inconsolata
+installPacman ttf-indic-otf
+installPacman ttf-liberation
+installPacman ttf-opensans
+
 # 3.6.14 Printer management
 installPacman cups "Printer and printing support"
 installPacman cups-pdf "Printer and printing support"
@@ -274,6 +297,8 @@ install dos2unix
 installAUR "https://aur.archlinux.org/visual-studio-code-bin.git" "Microsoft-branded VSCode release (need it to debug C#)" code
 
 # 4.2 Office
+# libreoffice includes:
+# LibreOffice Draw — Vector graphics editor and diagramming tool included in the LibreOffice suite similar to Microsoft Visio.
 install libreoffice-still "Libre Office suite" libreoffice 
 install hunspell "Spell checker and morphological analyzer library and program"
 installPacman hunspell-en_us
@@ -283,6 +308,9 @@ installPacman hyphen-en
 installPacman libmythes "a simple thesaurus"
 installPacman mythes-en
 installAURPacman "https://aur.archlinux.org/libreoffice-extension-languagetool.git" "Grammar checking for LibreOffice" libreoffice-extension-languagetool
+
+# 4.2.5 Database tools
+install sqlite "-" sqlite3
 
 # 4.6.3 Comic book
 install mcomix "Manga/Comix reader"
@@ -294,6 +322,8 @@ install freeplane
 install pass
 install pwgen "Password Generator"
 
+# 7 Others
+
 # 7.4 Display managers / login manager
 if ! type lightdm &> /dev/null; then
 	echo "Installing lightdm - Login Manager/Display Manager"
@@ -302,6 +332,10 @@ if ! type lightdm &> /dev/null; then
 	sudo pacman -S lightdm-slick-greeter
 	sudo systemctl enable lightdm
 fi
+
+# 7.5 Desktop environments
+# 7.5.1 Window managers
+installPacman i3-gaps
 
 # 7.5.4 Taskbars
 installAUR "https://aur.archlinux.org/polybar.git" "-" polybar
