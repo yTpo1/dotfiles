@@ -295,13 +295,15 @@ flac-to-mp3-dir() {
 	#for file in ./*(.);
 	for file in ./*(.); do
 		#do echo $file;
-		if [ "$file" == "*.txt" ]; then
-			ffmpeg -i $file ${file%flac}mp3 ;
-		fi
+		#if [ "$file" == "*.txt" ]; then
+		ffmpeg -i $file ${file%flac}mp3 ;
+		#fi
 	done
 }
 flac-to-wav() { ffmpeg -i $1 ${1%flac}wav ;}
 mp3-to-wav() { ffmpeg -i $1 ${1%mp3}wav ;}
+
+mp3-to-wav-dir() { for file in *; do flac-to-mp3 $file; done; }
 
 # $1 - origin directory
 # $2 - destination directory

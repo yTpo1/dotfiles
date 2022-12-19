@@ -66,6 +66,7 @@ printf "\n-------------------------\n"
 
 
 # 1 Internet
+install whois
 # 1.2 VPN Clients
 if ! type  nordvpn &> /dev/null; then
 	echo "Installing  NordVPN from AUR"
@@ -140,8 +141,10 @@ install pavucontrol
 install easytag
 
 # 2.3.7 Audio converters
-install shntool "Music: WAVE data processing and reporting utility"
+install shntool "WAVE data processing and reporting utility. command tool is shnsplit"
 installPacman cuetools "cuetools is a set of utilities for working with Cue Sheet (cue) and Table of Contents (toc) files."
+install sox "Command line utility that can convert various formats of computer audio files into other formats."
+installAUR "https://aur.archlinux.org/flacon.git" "cue splitting GUI tool" flacon
 
 # 2.3.9 Digital audio workstations
 install ardour "Music production" ardour6
@@ -312,8 +315,18 @@ installAURPacman "https://aur.archlinux.org/libreoffice-extension-languagetool.g
 # 4.2.5 Database tools
 install sqlite "-" sqlite3
 
+# 4.3 Markup languages
+# 4.3.2 Markdown
+# 4.3.2.3 Markdown editors
+install ghostwriter
+install marker
+install zettlr
+
+# 4.4 Document Converter
+install pandoc
+
 # 4.6.3 Comic book
-install mcomix "Manga/Comix reader"
+# install mcomix "Manga/Comix reader" # dont care anymore
 
 # 4.10.4 Mind-mapping
 install freeplane 
