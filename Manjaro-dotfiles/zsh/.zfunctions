@@ -314,6 +314,14 @@ heic-to-jpg() {
 	done
 }
 
+# Documents
+md-to-pdf() { pandoc $1 -o "${1%.*}".pdf; echo "${1%.*}" ;} 
+md-to-pdf2() { pandoc --pdf-engine=xelatex $1 -o "${1%.*}".pdf; echo "Complete: ${1%.*}" ;} 
+md-to-pdf3() { pandoc -f markdown-raw_tex --pdf-engine=xelatex $1 -o "${1%.*}".pdf; echo "Complete: ${1%.*}" ;} 
+md-to-pdf4() { pandoc -f markdown-raw_tex --pdf-engine=xelatex -V mainfont="/usr/share/fonts/TTF/OpenSans-Regular.ttf" $1 -o "${1%.*}".pdf; echo "Complete: ${1%.*}" ;} 
+
+revoke_execute_files_in_dir() { find . -type f -exec chmod 600 {} \; ;}
+
 # -------------------------------------------------------
 # Creating videos
 
@@ -359,6 +367,16 @@ ff() { find . -type f -iname "$1" ;}
 find-music() { find . -maxdepth 2 -type f -iname "$1*" ;}
 size-of-dir() {du -h $1 ;}
 size-of-dir-contents() {du -ach $1 | sort -h ;} 
+
+lsdir-by-size() {
+	# Directories only
+	du -sh -- */ | sort -rh  
+}
+
+ls-by-size() {
+	# Files and directories, or
+	du -sh -- *  | sort -rh  
+}
 
 # System resources
 disk-space-available() { df -h /dev/sda2 ;}
@@ -426,24 +444,34 @@ monitor-hdmi-reset() {
 # Youtube downloads
 
 # When multiple formats of a video are available, youtube-dl will download the best ones by default. 
-ytdl-vid() { youtube-dl "$1" ;}
-ytdl-mp3() { youtube-dl --extract-audio --audio-format mp3 "$1" ;}
-ytdl-wav() { youtube-dl --extract-audio --audio-format wav "$1" ;}
+#ytdl-vid() { youtube-dl "$1" ;}
+ytdl-vid() { yt-dlp "$1" ;}
+#ytdl-mp3() { youtube-dl --extract-audio --audio-format mp3 "$1" ;}
+ytdl-mp3() { yt-dlp --extract-audio --audio-format mp3 "$1" ;}
+#ytdl-wav() { youtube-dl --extract-audio --audio-format wav "$1" ;}
+ytdl-wav() { yt-dlp --extract-audio --audio-format wav "$1" ;}
 #alias ytdla='youtube-dl -f bestaudio -o %(title)s.f%(format_id)s.%(ext)s'
+
 
 # -------------------------------------------------------
 # Torrents - Transmission
+# note: seems like I don't need user and passoword for most of these actions
+# https://man.archlinux.org/man/extra/transmission-cli/transmission-remote.1.en
 
-alias tsmc="transmission-remote -n $TSM_USR_PASS"
-# list all torrents
-tsm() { transmission-remote -n $TSM_USR_PASS --list ;}
-tsm-arev() { tsm | tac ;} # list reverse order
-# stopped torrents
-tsm-list-stoped() { tsm | grep "Stopped" ;}
-tsm-list-idle() { tsm | grep "Idle" ;}
-tsm-list-active() { tsm | grep "Downloading" ;}
-tsm-list-incomplete() { tsm | grep -v "100%" ;}
-tsm-list-find() { tsm | grep -i "$1" ;}
+# List: ls
+tsm-ls() { 
+	# list all torrents
+	transmission-remote -n $TSM_USR_PASS --list 
+;}
+tsm-ls-top() { tsm-ls | sort -n -r -k1 ;}
+tsm() { tsm-ls-top | tac ;} # bottom
+#tsm-list-reverse() { transmission-remote -n $TSM_USR_PASS --list | tac ;}
+tsm-ls-stoped() { transmission-remote -n $TSM_USR_PASS | grep "Stopped" ;}
+tsm-ls-idle() { transmission-remote -n $TSM_USR_PASS | grep "Idle" ;}
+tsm-ls-active() { transmission-remote -tactive -l ;}
+#tsm-list-active() { transmission-remote -n $TSM_USR_PASS | grep "Downloading" ;}
+tsm-ls-incomplete() { transmission-remote -n $TSM_USR_PASS | grep -v "100%" ;}
+tsm-ls-find() { transmission-remote -n $TSM_USR_PASS | grep -i "$1" ;}
 
 
 tsm-stats() { transmission-remote -n $TSM_USR_PASS --session-stats ;} # List statistical information from the server 
@@ -451,6 +479,23 @@ tsm-sessinfo() { transmission-remote -n $TSM_USR_PASS --session-info ;} # List s
 
 tsm-dir() { cd /var/lib/transmission/Downloads/ }
 tsm-dir-gui() { tsm-dir; nautilus . & ;}
+tsm-mv() { 
+	# Move downloaded file to a new location
+	# Params: 
+	# $1 <torrent-id or hash-code>
+	# $2 <destination path>
+	transmission-remote -n $TSM_USR_PASS -t"$1" --move "$2"
+;}
+tsm-mv-default() { transmission-remote -n $TSM_USR_PASS -t"$1" --move /var/lib/transmission/Downloads/0_moved }
+tsm-new-loc() {
+	# tell Transmission the change of location. Don't expect 100% success rate, Transmission may detect the error before you tell about the change. 
+	# Params:
+	# $1 - <torrent-id or hash-code>
+	# $2 - <location of files>
+	transmission-remote -n $TSM_USR_PASS -t "$1" --find $2
+;}
+
+
 tsmd-config() { sudo nvim /var/lib/transmission-daemon/info/settings.json ;}
 tsm-blocklist() { $HOME/blocklist.sh ;}		# update blocklist
 
@@ -460,8 +505,8 @@ tsm-add() { transmission-remote -n $TSM_USR_PASS --add "$1" ;} # <link>
 tsm-start() { transmission-remote -n $TSM_USR_PASS -t"$1" --start ;} # <id> or all
 # stop/pause
 tsm-stop() { transmission-remote -n $TSM_USR_PASS -t"$1" --stop ;} # <id> or all
-tsm-start-all() { tsmc --torrent=all --start ;}
-tsm-stop-all() { tsmc --torrent=all --stop ;}
+tsm-start-all() { transmission-remote -n $TSM_USR_PASS --torrent=all --start ;}
+tsm-stop-all() { transmission-remote -n $TSM_USR_PASS --torrent=all --stop ;}
 
 tsm-purge() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove-and-delete ;} # delete data also
 tsm-remove() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove ;}		# leaves data alone
@@ -500,13 +545,15 @@ dkr-build() {
 	docker build -t $1 .
 }
 dkr-run() {
-	# $1 - Container name
-	# $2 - Image name
+	# $1 - Container name (make it up)
+	# $2 - Image name (use the one suppied to docker build)
 	
 	# -it - Allocate a pseudo-TTY and keep it open even if not attached.
 	# --rm - Automatically remove the container when it exits.
 	# Map port 5000 on the local machine to port 80 in the container.
 	docker run -it --rm -p 5000:80 --name $1 $2
+
+	# Can be reached on "localhost:5000"
 }
 # -------------------------------------------------------
 # Dotnet Development

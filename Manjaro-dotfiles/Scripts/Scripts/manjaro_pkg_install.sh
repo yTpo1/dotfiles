@@ -48,7 +48,8 @@ installAURPacman() {
 	# $3 Package name
 
 	if ! pacman -Q $3 &> /dev/null; then
-		echo "Installing $3. | $2"
+		echo "Installing $3 from AUR. | $2"
+		echo "--------------------------"
 		git clone $1 ~/Downloads/AUR_$3
 		cd ~/Downloads/AUR_$3
 		makepkg -si
@@ -89,7 +90,10 @@ fi
 install firefox
 
 # 1.4 File Sharing
-install youtube-dl
+
+# install youtube-dl "ytdl" # old version
+install yt-dlp "ytdl"
+
 
 # 1.4.4 Cloud synchronization clients
 installAUR "https://aur.archlinux.org/dropbox.git" "-" dropbox
@@ -136,6 +140,10 @@ install flameshot
 install pulseaudio
 install pavucontrol
 
+# 2.3.2 Audio players
+# 2.3.2.3 
+install quodlibet
+install audacious
 
 # 2.3.5 Audio tag editors
 install easytag
@@ -147,17 +155,18 @@ install sox "Command line utility that can convert various formats of computer a
 installAUR "https://aur.archlinux.org/flacon.git" "cue splitting GUI tool" flacon
 
 # 2.3.9 Digital audio workstations
-install ardour "Music production" ardour6
+install ardour "Music production" ardour7
 install calf "Category: music pluggins" calfjackhost
 install carla "Category: music pluggins"
 install hydrogen "Category: music pluggins"
-install musescore "Category: music pluggins"
+install mscore "Category: music pluggins. Old name: musescore"
 # ugly interface, one from aur is better
 # #install zynaddsubfx "Category: music pluggins"
 installAURPacman https://aur.archlinux.org/avldrums-lv2-git.git "Extension for Ardour and music making" avldrums-lv2-git 
 installAUR "https://aur.archlinux.org/zyn-fusion.git" "Category: music" zyn-fusion
 installAURPacman https://aur.archlinux.org/lingot.git "A musical instrument tuner" lingot
-#
+installAURPacman "https://aur.archlinux.org/calf-ladspa.git" "Music" calf-ladspa
+
 # ----- Just download, no install -------
 # https://www.auburnsounds.com/products/Graillon.html
 
@@ -245,6 +254,7 @@ if ! type dotnet &> /dev/null; then
 fi
 installPacman java-runtime-common "(containing common files for Java Runtime Environments)"
 installPacman java-environment-common "(containing common files for Java Development Kits)" 
+installPacman r
 
 # 3.3.2 Version control systems
 install git
@@ -267,6 +277,8 @@ installPacman ttf-inconsolata
 installPacman ttf-indic-otf
 installPacman ttf-liberation
 installPacman ttf-opensans
+installPacman otf-latin-modern # Improved version used in LaTeX
+installPacman otf-latinmodern-math # Improved version used in LaTeX
 
 # 3.6.14 Printer management
 installPacman cups "Printer and printing support"
@@ -321,9 +333,11 @@ install sqlite "-" sqlite3
 install ghostwriter
 install marker
 install zettlr
+installAUR "https://aur.archlinux.org/rstudio-desktop-bin.git" "RStudio" rstudio-desktop-bin
 
 # 4.4 Document Converter
 install pandoc
+installPacman texlive-core "LaTeX. Will allow pdf conversion for pandoc"
 
 # 4.6.3 Comic book
 # install mcomix "Manga/Comix reader" # dont care anymore

@@ -61,7 +61,8 @@ setopt autocd
 
 if [ $OSTYPE != "linux-android" ]; then
 	# load antibody plugins
-	source ~/.zsh_plugins.sh
+	source ~/.zsh_plugins.sh # disabled it because kept getting egrep issue
+
 	#source ~/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-djui-SLASH-alias-tips/alias-tips.plugin.zsh 
 	#source ~/.cache/antibody/https-COLON--SLASH--SLASH-github.com-SLASH-zsh-users-SLASH-zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 	# Autosuggestion - use ctrl+space to accect autosuggestion
