@@ -16,7 +16,7 @@ alias ll='ls -lhA'
 #alias lsdate=ls --color=auto -alt | awk '{print $6,$7,$8, "\033[1;34m" $9 "\033[0m" }'
 #alias lsdate="ls --color=auto -alt | awk '{print $6,$7,$8,$9 }'"
 
-#alias lsdir='ls -d */ --color=auto'
+alias lsdir='ls -d */' #--color=auto'
 #alias lsdir='ls -d '
 # List directy and include hidden files
 alias la='ls -a --color=auto'

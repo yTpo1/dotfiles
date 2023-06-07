@@ -69,9 +69,14 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # -------------------------------------------------------
 # My functions
 # -------------------------------------------------------
-ls-date() {
+ls-dir-date() {
 	#find -maxdepth 1 -type d -printf "%TY-%Tm-%Td %TH:%TM %p\n" | sort -n
 	find -maxdepth 1 -type d -printf "%TY-%Tm-%Td %TH:%TM \033[1;34m %p \033[0 \033[0mm\n" | sort -n
+}
+ls-date() {
+	# -t     sort by time, newest first; see --time
+	# -r, --reverse    reverse order while sorting
+	ls -ltr | awk '{for (i=6; i<NF; i++) printf $i " "; print $NF}'
 }
 
 ## ls modifications
@@ -316,6 +321,10 @@ heic-to-jpg() {
 
 # Documents
 md-to-pdf() { pandoc $1 -o "${1%.*}".pdf; echo "${1%.*}" ;} 
+md-to-pdf-toc() { 
+	pandoc --toc --toc-depth 4 $1 -o "${1%.*}".pdf; echo "${1%.*}" 
+	# https://superuser.com/questions/1442597/custom-table-of-contents-in-pandoc-created-pdf
+;}
 md-to-pdf2() { pandoc --pdf-engine=xelatex $1 -o "${1%.*}".pdf; echo "Complete: ${1%.*}" ;} 
 md-to-pdf3() { pandoc -f markdown-raw_tex --pdf-engine=xelatex $1 -o "${1%.*}".pdf; echo "Complete: ${1%.*}" ;} 
 md-to-pdf4() { pandoc -f markdown-raw_tex --pdf-engine=xelatex -V mainfont="/usr/share/fonts/TTF/OpenSans-Regular.ttf" $1 -o "${1%.*}".pdf; echo "Complete: ${1%.*}" ;} 
@@ -465,13 +474,13 @@ tsm-ls() {
 ;}
 tsm-ls-top() { tsm-ls | sort -n -r -k1 ;}
 tsm() { tsm-ls-top | tac ;} # bottom
+tsm-ls-find() { tsm-ls | grep -i "$1" ;}
 #tsm-list-reverse() { transmission-remote -n $TSM_USR_PASS --list | tac ;}
 tsm-ls-stoped() { transmission-remote -n $TSM_USR_PASS | grep "Stopped" ;}
 tsm-ls-idle() { transmission-remote -n $TSM_USR_PASS | grep "Idle" ;}
 tsm-ls-active() { transmission-remote -tactive -l ;}
 #tsm-list-active() { transmission-remote -n $TSM_USR_PASS | grep "Downloading" ;}
 tsm-ls-incomplete() { transmission-remote -n $TSM_USR_PASS | grep -v "100%" ;}
-tsm-ls-find() { transmission-remote -n $TSM_USR_PASS | grep -i "$1" ;}
 
 
 tsm-stats() { transmission-remote -n $TSM_USR_PASS --session-stats ;} # List statistical information from the server 

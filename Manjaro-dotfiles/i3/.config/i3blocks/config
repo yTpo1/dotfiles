@@ -18,9 +18,9 @@ interval=once
 command=~/.config/i3blocks/torrents.sh
 interval=30
 
-[vpn]
-command=~/.config/i3blocks/vpn.sh
-interval=30
+#[vpn]
+#command=~/.config/i3blocks/vpn.sh
+#interval=30
 
 [cpu]
 command=~/.config/i3blocks/cpu.sh

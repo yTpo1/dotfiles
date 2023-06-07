@@ -1,7 +1,8 @@
 #!/bin/zsh
 
 # List statistical information from the server
-tsmstats() { transmission-remote -n $TSM_USR_PASS --session-stats ; } 
+#tsmstats() { transmission-remote -n $TSM_USR_PASS --session-stats ; } 
+tsmstats() { transmission-remote --session-stats ; } 
 
 # Result
 # Invalid option
@@ -17,6 +18,15 @@ tsmstats() { transmission-remote -n $TSM_USR_PASS --session-stats ; }
 #	STATUS=$($STATS | awk '/Ratio:/ { print $2 ; exit}')
 #fi
 
-STATUS=$(tsmstats | awk '/Ratio:/ { print $2 ; exit}')
+# Get CURREST SESSION ratio
+#STATUS=$(tsmstats | awk '/Ratio:/ { print $2 ; exit}')
+
+# Get TOTAL ratio
+# tsm-stats | awk 'FNR == 12 { print $2 }'
+
+# Get CURREST SESSION Upload
+STATUS=$(tsmstats | awk 'FNR == 3 { print $2 ; exit}')
+
+#echo $TSM_USR_PASS
 
 echo Torrent: $STATUS

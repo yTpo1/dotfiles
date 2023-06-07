@@ -241,6 +241,7 @@ install npm "For NodeJS"
 install yarn "For NodeJS"
 installPacman jre8-openjdk "Java"
 install docker "Virtualization, Sandboxing"
+install docker-compose "an alternate CLI frontend for the Docker Engine"
 if ! type dotnet &> /dev/null; then
 	echo "Installing .NET runtime"
 	sudo pacman -S dotnet-runtime
@@ -337,7 +338,15 @@ installAUR "https://aur.archlinux.org/rstudio-desktop-bin.git" "RStudio" rstudio
 
 # 4.4 Document Converter
 install pandoc
-installPacman texlive-core "LaTeX. Will allow pdf conversion for pandoc"
+# latex
+installPacman texlive-most "contains most TeX Live packages"
+#installPacman texlive-core "LaTeX. includes major TeX-related programs, macro packages, and fonts. Will allow pdf conversion for pandoc"
+#installPacman texlive-core ""
+#installPacman texlive-most "LaTex. Includes: texlive-core, texlive-bin, texlive-latexextra"
+installPacman texlive-lang "group contains packages providing character sets and features for languages with non-Latin characters. I've only installed cyrillic"
+
+# 4.6 Readers and viewers
+install evince "Document viewer for GNOME using GTK"
 
 # 4.6.3 Comic book
 # install mcomix "Manga/Comix reader" # dont care anymore
