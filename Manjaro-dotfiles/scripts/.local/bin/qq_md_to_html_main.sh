@@ -1,0 +1,242 @@
+#!/bin/bash
+
+source_directory=""
+html_output_directory=""
+destination_directory=/srv/http
+
+HTML_TEMPLATE=""
+
+source_directory_name=""
+FILES=""
+ALL=false
+
+COPY_TO_ADDITIONAL_DIR=false
+ADDITIONAL_DIR=""
+# destination_directory_github=~/Dropbox/ytpo1.github.io
+
+function directory_arg_provided() {
+	# Check if directory argument is provided
+	if [[ -z "$1" ]]; then
+		exit 1
+	fi
+
+	#if [[ "$#" -ne 2 ]]; then
+	#	echo "Usage: $0 <source_directory> <destination_directory>"
+	#	exit 1;
+	#fi
+
+	source_directory=$1
+	html_output_directory="$source_directory/html"
+}
+
+function parse_named_arguments() {
+	# echo "$@"
+	# while getopts ":d:t:c:" opt; do
+	# 	echo $opt
+	# 	# case $opt in
+	# 	# 	d) COPY_TO_ADDITIONAL_DIR=true && ADDITIONAL_DIR="$OPTARG"
+	# 	# 	;;
+	# 	# 	# "$html_output_directory"/0_template.html
+	# 	# 	t) echo Template && HTML_TEMPLATE_DIR="$OPTARG"
+	# 	# 	;;
+	# 	# 	c) CSS_DIR="$OPTARG"
+	# 	# 	;;
+	# 	# 	\?) echo "Invalid option -$OPTARG" >&2
+	# 	# 	;;
+	# 	# esac
+	# done
+
+	# Parse options
+	shift # Shift to process the rest of the arguments
+	while [[ "$#" -gt 0 ]]; do
+		case "$1" in
+			-t)
+				HTML_TEMPLATE="$2"
+				shift 2 # Shift twice to skip the value
+				;;
+			--all)
+				echo ALL
+				ALL=true
+				shift # Shift once to skip the flag
+				;;
+			-d)
+				COPY_TO_ADDITIONAL_DIR=true
+				ADDITIONAL_DIR="$2"
+				shift 2 # Shift twice to skip the value
+				;;
+			*)
+				echo "Unknown parameter: $1"
+				exit 1
+				;;
+		esac
+	done
+}
+
+# Check if --all argument is present
+function has_all_argument() {
+
+	for arg in "$@"; do
+		if [[ "$arg" == "--all" ]]; then
+			ALL=true
+		fi
+		# if [[ "$arg" == "--additional_dir" ]]; then
+		# 	COPY_TO_ADDITIONAL_DIR=true
+		# 	ADDITIONAL_DIR=$2
+		# fi
+	done
+
+	# Version that returns
+	# for arg in "$@"; do
+	# 	if [[ "$arg" == "--all" ]]; then
+	# 		return 0
+	# 	fi
+	# done
+	# return 1
+}
+
+function assign_full_path_of_dir() {
+	if [[ "$source_directory" == "." ]]; then
+		# Get the absolute path of the directory
+		source_directory=$(pwd)
+		source_directory_name=$(basename "$source_directory")
+	else
+		source_directory=$(realpath "$source_directory")
+		source_directory_name=$(basename "$source_directory")
+	fi
+
+	# Check if the provided argument is a valid directory
+	if [[ ! -d "$source_directory" ]]; then
+		echo "Error: $source_directory is not a valid directory."
+		exit 1
+	fi
+}
+
+function get_files_in_src_dir() {
+	if $ALL; then
+		FILES=$(find $source_directory -maxdepth 1 -type f -name "*.md")
+	else
+		get_modified_files
+	fi
+}
+
+# function get_modified_files() {
+# 	FILES=$(git -C $source_directory diff --name-only | grep -E '.md$' | while read -r file; do echo "$source_directory/$file"; done; git -C $source_directory ls-files --others --exclude-standard | grep -E '.md$' | while read -r file; do echo "$source_directory/$file"; done;)
+# }
+
+function get_modified_files() {
+    FILES=()
+    
+    # Process modified files
+    while IFS= read -r file; do
+        FILES+=("$source_directory/$file")
+    done < <(git -C "$source_directory" diff --name-only | grep -E '.md$')
+
+    # Process untracked files
+    while IFS= read -r file; do
+        FILES+=("$source_directory/$file")
+    done < <(git -C "$source_directory" ls-files --others --exclude-standard | grep -E '.md$')
+
+    # Optionally, print or return FILES
+    # printf '%s\n' "${FILES[@]}"
+}
+
+# function get_source_files() {
+# 	FILES=$(find Thoughts_meditatios_v3/Sources-text -type f -name "*.md")
+# }
+
+# function convert_sources_md_to_html() {
+# 	FILES=$(find Thoughts_meditatios_v3/Sources-text -type f -name "*.md")
+
+# 	for file in $FILES; do
+
+# 		DIR2=${file%/*}
+# 		# Create directory if it doesn't exist
+# 		mkdir -p $html_output_directory/DIR2
+
+# 		if [[ -f "$file" ]]; then
+
+
+
+# 			# Generate the html from the md files
+# 			#pandoc --standalone --template "$html_output_directory"/0_template.html $file -f gfm -o ${file%.*}.html
+
+# 			# Repalace all .md links with .html
+# 			#sed -i 's/\.md\(#*\)/\.html\1/g' ${file%.*}.html
+
+# 			# Update progress
+# 			printf "."
+# 		fi 
+# 	done
+# }
+
+function convert_md_to_html() {
+	printf "Update started. Progress: \n"
+	#for file in $FILES; do
+	for file in "${FILES[@]}"; do
+		#mkdir -p "$source_directory/html"
+		if [[ -f "$file" ]]; then
+			# Generate the html from the md files
+			pandoc --standalone --template $HTML_TEMPLATE $file -f gfm -o ${file%.*}.html
+			# pandoc --standalone --template "$html_output_directory"/0_template.html $file -f gfm -o ${file%.*}.html
+
+			# Repalace all .md links with .html
+			sed -i 's/\.md\(#*\)/\.html\1/g' ${file%.*}.html
+
+			# Update progress
+			printf "."
+		fi 
+	done
+}
+
+# Move all html files into a sepparate directory
+function move_to_html_dir() {
+	mv $source_directory/*.html $html_output_directory
+	cp "$source_directory/0_style.css" $html_output_directory
+}
+
+# # Copy to Github hosting
+# function copy_to_github_hosting() {
+# 	echo "Copying to Github repo: $html_output_directory to $destination_directory_github"
+# 	cp -rf "$html_output_directory/"* $destination_directory_github
+# }
+
+function copy_to_additional_dir() {
+	echo "Copying to additional directory: $html_output_directory to $ADDITIONAL_DIR"
+	cp -rf "$html_output_directory/"* $ADDITIONAL_DIR
+}
+
+# Publish Locally
+function publish_locally() {
+	echo "Copying $html_output_directory to $destination_directory"
+
+	#sudo rm -rf "$destination_directory/$source_directory_name"
+	sudo mkdir -p "$destination_directory/$source_directory_name"
+	sudo cp -r "$html_output_directory" "$destination_directory/$source_directory_name"
+}
+
+function main() {
+	directory_arg_provided "$@"
+	parse_named_arguments "$@"
+	has_all_argument "$@"
+
+	assign_full_path_of_dir
+
+	get_files_in_src_dir
+
+	convert_md_to_html
+
+	move_to_html_dir
+
+	
+	if $COPY_TO_ADDITIONAL_DIR; then
+		#copy_to_github_hosting
+		copy_to_additional_dir
+	fi
+
+	publish_locally
+
+	printf "\n Finished.\n"
+}
+
+main "$@"
+
