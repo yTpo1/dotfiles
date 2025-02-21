@@ -31,6 +31,9 @@ esac
 #echo $BAT
 #echo "⚡"$BAT
 echo $BAT ⚡
+#printf "$BAT \033[0;31m ⚡\n"
+#echo $BAT
+#printf "%s \033[0;31m ⚡\n" $BAT
 
 # doesn't work with battary 0
 # Set urgent flag below 5% or use orange below 20%

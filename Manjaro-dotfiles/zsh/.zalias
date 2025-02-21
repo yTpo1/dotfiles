@@ -1,3 +1,17 @@
+# Add color to command outputs
+alias ls='ls --color=auto' # folders and files will be of different colors
+
+alias t='touch'
+alias c='clear'
+alias g='git'
+
+if [ $OSTYPE != "linux-android" ]; then
+	alias v='nvim'
+else
+	alias v='vim';
+fi
+
+
 # -F, --classify append indicator (one of */=>@|) to entries
 # / is a directory
 # @ is a symlink
@@ -5,12 +19,12 @@
 # = is a socket.
 # * for executable files
 
-# make ls output colorfull (example: folders and files different colors)
-alias ls='ls --color=auto' 
 
-# list dir including: permissions, users, groups, size, date
-# -A, --almost-all | do not list implied . and ..
-#alias ll='ls --color=auto -lhA'
+
+# List dir including: permissions, users, groups, size, date
+#   `-A``, `--almost-all`: do not list implied . and ..
+#   `-l`: use a long listing format
+#   `-h`, `--human-readable`: with -l and -s, print sizes like 1K 234M 2G etc
 alias ll='ls -lhA'
 
 #alias lsdate=ls --color=auto -alt | awk '{print $6,$7,$8, "\033[1;34m" $9 "\033[0m" }'
@@ -19,39 +33,22 @@ alias ll='ls -lhA'
 alias lsdir='ls -d */' #--color=auto'
 #alias lsdir='ls -d '
 # List directy and include hidden files
-alias la='ls -a --color=auto'
+alias la='ls -a'
 
-# Show files and their sizes
-# -s, --size print the allocated size of each file, in blocks
-# -1 list one file per line.
-# -S sort by file size, largest first.
-# -F, --classify append indicator (one of */=>@|) to entries
-alias lt='ls --human-readable --size -1 -S --classify'
 
-# count files in directory
-alias countf='find . -type f | wc -l'
-
-if [ $OSTYPE != "linux-android" ]; then
-	alias v='nvim'
-else
-	alias v='vim';
-fi
 
 alias vfzf='v $(fzf)'
 alias cquery='~/Downloads/cquery/build/cquery'
 
-alias t='touch'
-alias c='clear'
-alias g='git'
+
 alias mutt='cd ~/Downloads && neomutt' # By default Mutt will save attachments to the folder it was started from.
 
 alias stow-setup='stow * -t ~/'
 alias stow-remove='stow -D * -t ~/'
 
-alias neofetch='neofetch --source ~/.config/neofetch/ascii-art-horse-rider.txt'
-
 # prompt user if overwriting during copy
-alias cp='cp -i'
+#alias cp='cp -i'
+
 # copy progress bar
 alias cpv='rsync -ah --info=progress2'
 # prompt user when deleting a file

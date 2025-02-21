@@ -457,6 +457,7 @@ monitor-hdmi-reset() {
 ytdl-vid() { yt-dlp "$1" ;}
 #ytdl-mp3() { youtube-dl --extract-audio --audio-format mp3 "$1" ;}
 ytdl-mp3() { yt-dlp --extract-audio --audio-format mp3 "$1" ;}
+ytdl-mp3-rename() { yt-dlp --extract-audio --audio-format mp3 "$1" -o "$2" ;}
 #ytdl-wav() { youtube-dl --extract-audio --audio-format wav "$1" ;}
 ytdl-wav() { yt-dlp --extract-audio --audio-format wav "$1" ;}
 #alias ytdla='youtube-dl -f bestaudio -o %(title)s.f%(format_id)s.%(ext)s'
@@ -708,3 +709,22 @@ ub-pkg-other-versions() { sudo apt-cache policy $1 ;}
 #        echo "'$1' is not a valid file!"
 #    fi
 #}
+
+function pers_git_delete_branches() {
+    # Fetch the latest branches from the remote source
+    git fetch --all
+
+    # List and then delete all branches except 'main' and 'X'
+	#   `grep -v \*`: excludes the current branch, as it start with a * character. git does not delete the current branch, but will throw an error
+
+	# Implementation using xargs 
+    git branch -D $(git branch | grep -v "main" | grep -v \* | grep -v "$1" | xargs)
+
+    # Implemented using a for loop
+    #for branch in $(git branch | grep -v "main" | grep -v \* | grep -v "$1"); do
+    #    git branch -D "$branch"
+    #done
+
+	echo Remaning branches:
+    git branch
+}

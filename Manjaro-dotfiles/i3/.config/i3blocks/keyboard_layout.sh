@@ -32,4 +32,4 @@ if [[ $(get_layouts) != "us,ru" ]]; then
 	notify-send "Switched to us,ru";
 fi
 
-echo $KBD
+echo Lang: $KBD

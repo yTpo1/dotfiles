@@ -1,52 +1,53 @@
 #!/usr/bin/bash
 
+# Variables
+LINE="\n--------------------------"
+AUR_DOWNLOAD_DIR="~/AUR_Package_downloads"
+
+# $1 package
+# $2 Description
+# $3 App(alt) name after installation
 install() {
-    # $1 package
-	# $2 Description
-	# $3 App(alt) name after installation
 	Appname=$1
 	if [ $# -eq 3 ]; then
 		Appname=$3
 	fi
 
     if ! type $Appname &> /dev/null; then
-		echo "Installing $1. | $2"
-		echo "--------------------------"
+		printf "Installing $1. | $2 $LINE"
 		sudo pacman -S $1
 	fi
 }
 
+# Difference between this function and install() is:
+# this is for programs that don't have a runnable app and can only be found through pacman
+# ToDo: merge with the function above and remove repetition
+# $1 package
+# $2 Description
 installPacman() {
-	# Difference between this function and install() is:
-	# this is for programs that don't have a runnable app and can only be found through pacman
-	# ToDo: merge with the function above and remove repetition
-    # $1 package
-	# $2 Description
 	if ! pacman -Q $1 &> /dev/null; then
-		echo "Installing $1.| $2"
-		echo "--------------------------"
+		printf "Installing $1.| $2 $LINE"
 		sudo pacman -S $1
 	fi
 }
 
+# $1 AUR git repo link
+# $2 Description
+# $3 App (alt)name after installation
 installAUR() {
-    # $1 AUR git repo link
-	# $2 Description
-	# $3 App (alt)name after installation
-
 	if ! type $3 &> /dev/null; then
 		echo "Installing $3 from AUR. | $2"
 		echo "--------------------------"
-		git clone $1 ~/Downloads/AUR_$3
-		cd ~/Downloads/AUR_$3
+		git clone $1 $AUR_DOWNLOAD_DIR/$3
+		cd $AUR_DOWNLOAD_DIR/$3
 		makepkg -si
 	fi
 }
-installAURPacman() {
-    # $1 AUR git repo link
-	# $2 Description
-	# $3 Package name
 
+# $1 AUR git repo link
+# $2 Description
+# $3 Package name
+installAURPacman() {
 	if ! pacman -Q $3 &> /dev/null; then
 		echo "Installing $3 from AUR. | $2"
 		echo "--------------------------"
@@ -56,14 +57,10 @@ installAURPacman() {
 	fi
 }
 
-printf "\n-------------------------"
-printf "\nUpdating the system"
-printf "\n-------------------------\n"
-sudo pacman -Syu
+printf "$LINE \nUpdating the system $LINE\n"
+#sudo pacman -Syu
 
-printf "\n-------------------------"
-printf "\nInstalling new software packages"
-printf "\n-------------------------\n"
+printf "$LINE \nInstalling new software packages $LINE\n"
 
 
 # 1 Internet
@@ -88,6 +85,11 @@ fi
 
 # 1.2 Web Browsers
 install firefox
+install chromium
+
+# 1.3 Web servers
+installPacman apache
+install nginx
 
 # 1.4 File Sharing
 
@@ -132,12 +134,16 @@ install flac
 # 2.2.4 Raster graphics editors
 install gimp
 
+# 2.2.7 Vector graphics editors
+install inkscape
+
 # 2.2.12 Screenshot
 install flameshot
 
 # 2.3 Audio
 # 2.3.1 Audio systems
 install pulseaudio
+install pulseaudio-equalizer # equalizer sink (qpaeq)
 install pavucontrol
 
 # 2.3.2 Audio players
@@ -153,13 +159,20 @@ install shntool "WAVE data processing and reporting utility. command tool is shn
 installPacman cuetools "cuetools is a set of utilities for working with Cue Sheet (cue) and Table of Contents (toc) files."
 install sox "Command line utility that can convert various formats of computer audio files into other formats."
 installAUR "https://aur.archlinux.org/flacon.git" "cue splitting GUI tool" flacon
+install gpac "multimedia framework for manipulating MPEG-4 media"
+install mp3splt-gtk "Split mp3 and ogg files without decoding"
+install mp3splt "Commandline tool for splitting mp3 and ogg files without decoding"
+installAURPacman "https://aur.archlinux.org/m4b-tool-bin.git" "A command line utility to merge, split and chapterize audiobook files such as mp3, ogg, flac, m4a or m4b" m4b-tool-bin
+
+# 2.3.8. Audio editors
+install audacity
 
 # 2.3.9 Digital audio workstations
-install ardour "Music production" ardour7
+installPacman ardour
 install calf "Category: music pluggins" calfjackhost
 install carla "Category: music pluggins"
 install hydrogen "Category: music pluggins"
-install mscore "Category: music pluggins. Old name: musescore"
+install mscore "Sheet music. Old name: musescore"
 # ugly interface, one from aur is better
 # #install zynaddsubfx "Category: music pluggins"
 installAURPacman https://aur.archlinux.org/avldrums-lv2-git.git "Extension for Ardour and music making" avldrums-lv2-git 
@@ -242,20 +255,31 @@ install yarn "For NodeJS"
 installPacman jre8-openjdk "Java"
 install docker "Virtualization, Sandboxing"
 install docker-compose "an alternate CLI frontend for the Docker Engine"
-if ! type dotnet &> /dev/null; then
-	echo "Installing .NET runtime"
-	sudo pacman -S dotnet-runtime
-	echo "Installing ASP.NET Core SDK"
-	sudo pacman -S dotnet-sdk
-	echo "Installing ASP.NET Core runtime"
-	sudo pacman -S aspnet-runtime
-
-	echo "dotnet development packages"
-	dotnet tool install -g dotnet-aspnet-codegenerator
-fi
 installPacman java-runtime-common "(containing common files for Java Runtime Environments)"
 installPacman java-environment-common "(containing common files for Java Development Kits)" 
 installPacman r
+install php
+installPacman php-apache
+
+# Dot Net
+installPacman dotnet-runtime-6.0
+installPacman dotnet-sdk-6.0
+installPacman aspnet-runtime-6.0
+
+# Entity framework - used to generate EF Core migrations
+# dotnet tool install -g dotnet-ef
+
+#if ! type dotnet &> /dev/null; then
+#	echo "Installing .NET runtime"
+#	sudo pacman -S dotnet-runtime
+#	echo "Installing ASP.NET Core SDK"
+#	sudo pacman -S dotnet-sdk
+#	echo "Installing ASP.NET Core runtime"
+#	sudo pacman -S aspnet-runtime
+#
+#	echo "dotnet development packages"
+#	dotnet tool install -g dotnet-aspnet-codegenerator
+#fi
 
 # 3.3.2 Version control systems
 install git
@@ -263,6 +287,9 @@ install git
 # 3.3.4 Integrated development environments
 # 3.3.4.1 Java IDEs
 install intellij-idea-community-edition "-" idea
+
+# 3.3.9 JSON tools
+install jq
 
 # 3.6 System
 # 3.6.1 Task managers
@@ -328,25 +355,35 @@ installAURPacman "https://aur.archlinux.org/libreoffice-extension-languagetool.g
 # 4.2.5 Database tools
 install sqlite "-" sqlite3
 
+install mariadb # mysql
+installPacman phpmyadmin
+
+installPacman postgresql
+
 # 4.3 Markup languages
 # 4.3.2 Markdown
 # 4.3.2.3 Markdown editors
 install ghostwriter
 install marker
 install zettlr
-installAUR "https://aur.archlinux.org/rstudio-desktop-bin.git" "RStudio" rstudio-desktop-bin
 
 # 4.4 Document Converter
 install pandoc
 # latex
-installPacman texlive-most "contains most TeX Live packages"
+#installPacman texlive-most "contains most TeX Live packages" # error: this package was not found..
+
 #installPacman texlive-core "LaTeX. includes major TeX-related programs, macro packages, and fonts. Will allow pdf conversion for pandoc"
 #installPacman texlive-core ""
 #installPacman texlive-most "LaTex. Includes: texlive-core, texlive-bin, texlive-latexextra"
-installPacman texlive-lang "group contains packages providing character sets and features for languages with non-Latin characters. I've only installed cyrillic"
+
+# Installed. but keeps showing up when running this script so commenting out for now
+#installPacman texlive-lang "group contains packages providing character sets and features for languages with non-Latin characters. I've only installed cyrillic"
 
 # 4.6 Readers and viewers
-install evince "Document viewer for GNOME using GTK"
+install evince "Document viewer for GNOME using GTK" # not epub
+
+# 4.6.2 E-book
+install FBReader # should be epub
 
 # 4.6.3 Comic book
 # install mcomix "Manga/Comix reader" # dont care anymore

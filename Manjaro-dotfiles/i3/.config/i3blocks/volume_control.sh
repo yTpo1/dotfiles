@@ -36,4 +36,4 @@ case $BLOCK_BUTTON in
 esac
 #notify-send "message" ;
 
-echo $current_sink_num vol-$VOLUME_LEVEL
+echo  "  Sink:"$current_sink_num Vol:$VOLUME_LEVEL

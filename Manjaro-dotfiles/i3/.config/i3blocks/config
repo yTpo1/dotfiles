@@ -10,6 +10,10 @@
 separator=true
 separator_block_width=15
 
+[monitor_reset]
+command=~/.config/i3blocks/monitor.sh
+interval=once
+
 [rofi_dmenu]
 command=~/.config/i3blocks/rofi_dmenu_launcher.sh
 interval=once
@@ -34,10 +38,6 @@ interval=once
 command=~/.config/i3blocks/battery.sh
 interval=60
 
-[time]
-command=date '+%d-%m %H:%M'
-interval=1
-#command=date '+%Y-%m-%d %H:%M:%S'
 
 [volume_control]
 command=~/.config/i3blocks/volume_control.sh
@@ -49,6 +49,14 @@ interval=5
 signal=10
 #interval=once
 
+[time]
+label= 
+command=date '+%l:%M %p - %a %d-%m-%y'
+#command=date '%l:%M %p +%a %d-%m-%y'
+#command=date '+%d-%m %H:%M'
+interval=1
+color=#50C878
+#command=date '+%Y-%m-%d %H:%M:%S'
 
 # Will open brower
 #[documentation]
