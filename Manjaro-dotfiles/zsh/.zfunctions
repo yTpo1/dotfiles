@@ -451,7 +451,7 @@ monitor-hdmi-reset() {
 #ytdl-vid() { youtube-dl "$1" ;}
 ytdl-vid() { yt-dlp "$1" ;}
 #ytdl-mp3() { youtube-dl --extract-audio --audio-format mp3 "$1" ;}
-ytdl-mp3() { yt-dlp --extract-audio --audio-format mp3 "$1" ;}
+#ytdl-mp3() { yt-dlp --extract-audio --audio-format mp3 "$1" ;} # Made it into a script
 ytdl-mp3-rename() { yt-dlp --extract-audio --audio-format mp3 "$1" -o "$2" ;}
 #ytdl-wav() { youtube-dl --extract-audio --audio-format wav "$1" ;}
 ytdl-wav() { yt-dlp --extract-audio --audio-format wav "$1" ;}
@@ -506,15 +506,15 @@ tsm-blocklist() { $HOME/blocklist.sh ;}		# update blocklist
 
 # Torrent file manipulation
 # add magnet link
-tsm-add() { transmission-remote -n $TSM_USR_PASS --add "$1" ;} # <link>
-tsm-start() { transmission-remote -n $TSM_USR_PASS -t"$1" --start ;} # <id> or all
+tsm-add-single() { transmission-remote -n "$TSM_USR_PASS" --add "$1" ;} # <link>
+tsm-start() { transmission-remote -n $TSM_USR_PASS -t "$1" --start ;} # <id> or all
 # stop/pause
-tsm-stop() { transmission-remote -n $TSM_USR_PASS -t"$1" --stop ;} # <id> or all
-tsm-start-all() { transmission-remote -n $TSM_USR_PASS --torrent=all --start ;}
-tsm-stop-all() { transmission-remote -n $TSM_USR_PASS --torrent=all --stop ;}
+tsm-stop() { transmission-remote -n $TSM_USR_PASS -t "$1" --stop ;} # <id> or all
+tsm-start-all() { transmission-remote -n "$TSM_USR_PASS" --torrent=all --start ;}
+tsm-stop-all() { transmission-remote -n "$TSM_USR_PASS" --torrent=all --stop ;}
 
-tsm-purge() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove-and-delete ;} # delete data also
-tsm-remove() { transmission-remote -n $TSM_USR_PASS -t"$1" --remove ;}		# leaves data alone
+tsm-purge() { transmission-remote -n "$TSM_USR_PASS" -t "$1" --remove-and-delete ;} # delete data also
+tsm-remove() { transmission-remote -n "$TSM_USR_PASS" -t "$1" --remove ;}		# leaves data alone
 # example $1 = 1, $2 = 68, will remove everything from torrents and files withing that range
 tsm-purge-range() { for i in {$1..$2}; do tsm-purge $i; done; }
 

@@ -190,7 +190,7 @@ assign [class="firefox"] $ws1
 assign [class="Code"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="st"] $ws4
-assign [class="Chromium"] $ws5
+assign [class="Chromium"] $ws1
 
 
 # Open specific applications in floating mode

@@ -2,7 +2,8 @@
 
 hdmi_only()
 {
-	xrandr --output HDMI-1 --mode 2560x1440
+	# xrandr --output HDMI-1 --mode 2560x1440
+	xrandr --output HDMI-1 --mode 1920x1080
 	xrandr --output eDP-1 --off # Turn laptop screen off
 }
 

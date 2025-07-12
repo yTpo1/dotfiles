@@ -1,0 +1,8 @@
+#!/bin/bash
+
+printf "Enter torrent magnet link (Ctrl+C to exit): \n"
+while true; do
+    read INPUT
+
+	transmission-remote -n "$TSM_USR_PASS" --add "$INPUT"
+done

@@ -51,7 +51,7 @@ function parse_named_arguments() {
 	while [[ "$#" -gt 0 ]]; do
 		case "$1" in
 			-t)
-				HTML_TEMPLATE="$2"
+				HTML_TEMPLATE="$source_directory"/"$2"
 				shift 2 # Shift twice to skip the value
 				;;
 			--all)
@@ -113,7 +113,9 @@ function assign_full_path_of_dir() {
 
 function get_files_in_src_dir() {
 	if $ALL; then
-		FILES=$(find $source_directory -maxdepth 1 -type f -name "*.md")
+		echo Source dir: "$source_directory"
+		#FILES=$(find $source_directory -maxdepth 1 -type f -name "*.md")
+		mapfile -t FILES < <(find "$source_directory" -maxdepth 1 -type f -name "*.md")
 	else
 		get_modified_files
 	fi
@@ -174,9 +176,14 @@ function convert_md_to_html() {
 	#for file in $FILES; do
 	for file in "${FILES[@]}"; do
 		#mkdir -p "$source_directory/html"
+		echo file: "$file"
 		if [[ -f "$file" ]]; then
+			echo file: "$file"
+			#echo HTML_TEMPLATE: "$HTML_TEMPLATE"
+			#echo HTML_TEMPLATE extra: "$HOME"/"$HTML_TEMPLATE"
+
 			# Generate the html from the md files
-			pandoc --standalone --template $HTML_TEMPLATE $file -f gfm -o ${file%.*}.html
+			pandoc --standalone --template="$HTML_TEMPLATE" "$file" -f gfm -o ${file%.*}.html
 			# pandoc --standalone --template "$html_output_directory"/0_template.html $file -f gfm -o ${file%.*}.html
 
 			# Repalace all .md links with .html
@@ -211,7 +218,7 @@ function publish_locally() {
 
 	#sudo rm -rf "$destination_directory/$source_directory_name"
 	sudo mkdir -p "$destination_directory/$source_directory_name"
-	sudo cp -r "$html_output_directory" "$destination_directory/$source_directory_name"
+	sudo cp -r "$html_output_directory"/* "$destination_directory/$source_directory_name"
 }
 
 function main() {
@@ -226,7 +233,6 @@ function main() {
 	convert_md_to_html
 
 	move_to_html_dir
-
 	
 	if $COPY_TO_ADDITIONAL_DIR; then
 		#copy_to_github_hosting

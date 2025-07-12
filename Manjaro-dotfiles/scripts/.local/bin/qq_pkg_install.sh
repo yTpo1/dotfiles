@@ -2,7 +2,7 @@
 
 # Variables
 LINE="\n--------------------------"
-AUR_DOWNLOAD_DIR="~/AUR_Package_downloads"
+AUR_DOWNLOAD_DIR="$HOME/AUR_Package_downloads"
 
 # $1 package
 # $2 Description
@@ -38,8 +38,8 @@ installAUR() {
 	if ! type $3 &> /dev/null; then
 		echo "Installing $3 from AUR. | $2"
 		echo "--------------------------"
-		git clone $1 $AUR_DOWNLOAD_DIR/$3
-		cd $AUR_DOWNLOAD_DIR/$3
+		git clone $1 "$AUR_DOWNLOAD_DIR"/$3
+		cd "$AUR_DOWNLOAD_DIR"/$3
 		makepkg -si
 	fi
 }
@@ -58,7 +58,7 @@ installAURPacman() {
 }
 
 printf "$LINE \nUpdating the system $LINE\n"
-#sudo pacman -Syu
+sudo pacman -Syu
 
 printf "$LINE \nInstalling new software packages $LINE\n"
 
@@ -135,7 +135,8 @@ install flac
 install gimp
 
 # 2.2.7 Vector graphics editors
-install inkscape
+# Uninstalling as I never used it
+#install inkscape
 
 # 2.2.12 Screenshot
 install flameshot
@@ -144,7 +145,9 @@ install flameshot
 # 2.3.1 Audio systems
 install pulseaudio
 install pulseaudio-equalizer # equalizer sink (qpaeq)
-install pavucontrol
+install pulseaudio-equalizer-ladspa # LADSPA based multiband equalizer for PulseAudio.
+#installAUR "https://aur.archlinux.org/pulseeffects-legacy.git" "-" pulseeffects-legacy
+install pavucontrol # Simple GTK volume control tool ("mixer") for PulseAudio
 
 # 2.3.2 Audio players
 # 2.3.2.3 
@@ -165,7 +168,9 @@ install mp3splt "Commandline tool for splitting mp3 and ogg files without decodi
 installAURPacman "https://aur.archlinux.org/m4b-tool-bin.git" "A command line utility to merge, split and chapterize audiobook files such as mp3, ogg, flac, m4a or m4b" m4b-tool-bin
 
 # 2.3.8. Audio editors
-install audacity
+
+# Uninstalling audacity as I never used it
+#install audacity
 
 # 2.3.9 Digital audio workstations
 installPacman ardour
@@ -186,7 +191,10 @@ installAURPacman "https://aur.archlinux.org/calf-ladspa.git" "Music" calf-ladspa
 # 2.4 Video
 # 2.4.1 Video Players
 install vlc
-install mpv
+
+# Uninsatlled mpv as I never used it
+#install mpv
+
 
 # 3.1 Terminal
 # 3.1.1 Command shells
@@ -229,7 +237,7 @@ install tmux
 
 # 3.2 Files
 # 3.2.1 File Managers
-install nautilus
+#install nautilus
 install thunar
 install catfish "Search tool for Thunar"
 installPacman tumbler "Image thumbnail previewer"
@@ -251,15 +259,19 @@ if ! type python &> /dev/null; then
 fi
 install node "NodeJS"
 install npm "For NodeJS"
-install yarn "For NodeJS"
-installPacman jre8-openjdk "Java"
+#install yarn "For NodeJS"
 install docker "Virtualization, Sandboxing"
 install docker-compose "an alternate CLI frontend for the Docker Engine"
-installPacman java-runtime-common "(containing common files for Java Runtime Environments)"
-installPacman java-environment-common "(containing common files for Java Development Kits)" 
-installPacman r
 install php
 installPacman php-apache
+
+# Java - uninstalled it as I never use it
+#installPacman jre8-openjdk "Java"
+#installPacman java-runtime-common "(containing common files for Java Runtime Environments)"
+#installPacman java-environment-common "(containing common files for Java Development Kits)" 
+
+# Uninstalled R as I never used it
+#installPacman r
 
 # Dot Net
 installPacman dotnet-runtime-6.0
@@ -286,7 +298,9 @@ install git
 
 # 3.3.4 Integrated development environments
 # 3.3.4.1 Java IDEs
-install intellij-idea-community-edition "-" idea
+
+# Uninstalling as I never used it
+#install intellij-idea-community-edition "-" idea
 
 # 3.3.9 JSON tools
 install jq
@@ -337,7 +351,7 @@ fi
 install ctags
 install dos2unix
 
-installAUR "https://aur.archlinux.org/visual-studio-code-bin.git" "Microsoft-branded VSCode release (need it to debug C#)" code
+installAUR "https://aur.archlinux.org/visual-studio-code-bin.git" "Microsoft-branded VSCode release (need it to debug C#)" code # package name visual-studio-code-bin
 
 # 4.2 Office
 # libreoffice includes:
@@ -350,7 +364,9 @@ installPacman hyphen "library for high quality hyphenation and justification"
 installPacman hyphen-en
 installPacman libmythes "a simple thesaurus"
 installPacman mythes-en
-installAURPacman "https://aur.archlinux.org/libreoffice-extension-languagetool.git" "Grammar checking for LibreOffice" libreoffice-extension-languagetool
+
+# uninstalled as it didn't work for russian
+#installAURPacman "https://aur.archlinux.org/libreoffice-extension-languagetool.git" "Grammar checking for LibreOffice" libreoffice-extension-languagetool
 
 # 4.2.5 Database tools
 install sqlite "-" sqlite3
@@ -364,8 +380,10 @@ installPacman postgresql
 # 4.3.2 Markdown
 # 4.3.2.3 Markdown editors
 install ghostwriter
-install marker
-install zettlr
+
+# Uninstalling as I never used it
+#install marker
+#install zettlr
 
 # 4.4 Document Converter
 install pandoc
@@ -380,16 +398,21 @@ install pandoc
 #installPacman texlive-lang "group contains packages providing character sets and features for languages with non-Latin characters. I've only installed cyrillic"
 
 # 4.6 Readers and viewers
-install evince "Document viewer for GNOME using GTK" # not epub
+
+# Uninstalling as I never used it
+# install evince "Document viewer for GNOME using GTK" # not epub
 
 # 4.6.2 E-book
-install FBReader # should be epub
+
+# Uninstalling as I never used it
+#install fbreader # should be epub
 
 # 4.6.3 Comic book
 # install mcomix "Manga/Comix reader" # dont care anymore
 
 # 4.10.4 Mind-mapping
-install freeplane 
+# Uninstalling as I never used it
+#install freeplane 
 
 # 5.8 Password managers
 install pass
