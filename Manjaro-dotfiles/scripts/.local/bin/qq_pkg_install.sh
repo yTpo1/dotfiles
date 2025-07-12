@@ -64,32 +64,32 @@ printf "$LINE \nInstalling new software packages $LINE\n"
 
 
 # 1 Internet
-install whois
+#install whois
 # 1.2 VPN Clients
-if ! type  nordvpn &> /dev/null; then
-	echo "Installing  NordVPN from AUR"
-	git clone https://aur.archlinux.org/nordvpn-bin.git ~/Downloads/NordVPN
-	cd ~/Downloads/NordVPN
-	makepkg -si
-
-	printf "Set up group rights\n"
-	sudo groupadd -r nordvpn
-	MYUSERNAME=$(whoami)
-	printf "I am - %s \n" $MYUSERNAME 
-	sudo gpasswd -a $MYUSERNAME nordvpn
-
-	printf "enabling and starting nordvpn service\n"
-	sudo systemctl enable nordvpnd.service
-	sudo systemctl start nordvpnd.service
-fi
+#if ! type  nordvpn &> /dev/null; then
+#	echo "Installing  NordVPN from AUR"
+#	git clone https://aur.archlinux.org/nordvpn-bin.git ~/Downloads/NordVPN
+#	cd ~/Downloads/NordVPN
+#	makepkg -si
+#
+#	printf "Set up group rights\n"
+#	sudo groupadd -r nordvpn
+#	MYUSERNAME=$(whoami)
+#	printf "I am - %s \n" $MYUSERNAME 
+#	sudo gpasswd -a $MYUSERNAME nordvpn
+#
+#	printf "enabling and starting nordvpn service\n"
+#	sudo systemctl enable nordvpnd.service
+#	sudo systemctl start nordvpnd.service
+#fi
 
 # 1.2 Web Browsers
 install firefox
 install chromium
 
 # 1.3 Web servers
-installPacman apache
-install nginx
+#installPacman apache
+#install nginx
 
 # 1.4 File Sharing
 
@@ -99,8 +99,8 @@ install yt-dlp "ytdl"
 
 # 1.4.4 Cloud synchronization clients
 installAUR "https://aur.archlinux.org/dropbox.git" "-" dropbox
-installAURPacman "https://aur.archlinux.org/thunar-dropbox.git" "Dropbox extension for Thunar" thunar-dropbox
-installAUR "https://aur.archlinux.org/pcloud-drive.git" "Category: cloud" pcloud
+#installAURPacman "https://aur.archlinux.org/thunar-dropbox.git" "Dropbox extension for Thunar" thunar-dropbox
+#installAUR "https://aur.archlinux.org/pcloud-drive.git" "Category: cloud" pcloud
 
 # 1.4.6 BitTorrent clients
 if ! type transmission-remote &> /dev/null; then
@@ -115,16 +115,13 @@ if ! type transmission-remote &> /dev/null; then
 	sudo systemctl start transmission.service
 fi
 
-# 1.5.4 Taskbars
-install i3blocks
-
 # 1.5.5 Instant messaging clients
-install discord
+#install discord
 install telegram-desktop
 #installAUR "https://aur.archlinux.org/teams.git" "Microsoft Teams" teams
 
 # 1.6 News, RSS, and blogs
-install newsboat "console RSS aggregator"
+#install newsboat "console RSS aggregator"
 
 # 2 Multimedia
 # 2.1 Codecs
@@ -151,21 +148,21 @@ install pavucontrol # Simple GTK volume control tool ("mixer") for PulseAudio
 
 # 2.3.2 Audio players
 # 2.3.2.3 
-install quodlibet
-install audacious
+#install quodlibet
+#install audacious
 
 # 2.3.5 Audio tag editors
 install easytag
 
 # 2.3.7 Audio converters
-install shntool "WAVE data processing and reporting utility. command tool is shnsplit"
-installPacman cuetools "cuetools is a set of utilities for working with Cue Sheet (cue) and Table of Contents (toc) files."
-install sox "Command line utility that can convert various formats of computer audio files into other formats."
-installAUR "https://aur.archlinux.org/flacon.git" "cue splitting GUI tool" flacon
-install gpac "multimedia framework for manipulating MPEG-4 media"
-install mp3splt-gtk "Split mp3 and ogg files without decoding"
-install mp3splt "Commandline tool for splitting mp3 and ogg files without decoding"
-installAURPacman "https://aur.archlinux.org/m4b-tool-bin.git" "A command line utility to merge, split and chapterize audiobook files such as mp3, ogg, flac, m4a or m4b" m4b-tool-bin
+#install shntool "WAVE data processing and reporting utility. command tool is shnsplit"
+#installPacman cuetools "cuetools is a set of utilities for working with Cue Sheet (cue) and Table of Contents (toc) files."
+#install sox "Command line utility that can convert various formats of computer audio files into other formats."
+#installAUR "https://aur.archlinux.org/flacon.git" "cue splitting GUI tool" flacon
+#install gpac "multimedia framework for manipulating MPEG-4 media"
+#install mp3splt-gtk "Split mp3 and ogg files without decoding"
+#install mp3splt "Commandline tool for splitting mp3 and ogg files without decoding"
+#installAURPacman "https://aur.archlinux.org/m4b-tool-bin.git" "A command line utility to merge, split and chapterize audiobook files such as mp3, ogg, flac, m4a or m4b" m4b-tool-bin
 
 # 2.3.8. Audio editors
 
@@ -198,39 +195,39 @@ install vlc
 
 # 3.1 Terminal
 # 3.1.1 Command shells
-install zsh
-if [ $SHELL != "/usr/bin/zsh" ]; then
-	    echo Current shell not zsh, changing:; 
-		    chsh -s $(which zsh)
-fi
-if ! type antibody &> /dev/null; then
-	    printf "Installing zsh plugin manager - Antibody\n\n"
-		    curl -sfL git.io/antibody | sudo sh -s - -b /usr/local/bin 
-			    printf "Installing zsh plugins\n\n"
-				    antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-fi
-install fzf "Search command line history with <CTRL+R>"
+#install zsh
+#if [ $SHELL != "/usr/bin/zsh" ]; then
+#	    echo Current shell not zsh, changing:; 
+#		    chsh -s $(which zsh)
+#fi
+#if ! type antibody &> /dev/null; then
+#	    printf "Installing zsh plugin manager - Antibody\n\n"
+#		    curl -sfL git.io/antibody | sudo sh -s - -b /usr/local/bin 
+#			    printf "Installing zsh plugins\n\n"
+#				    antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+#fi
+#install fzf "Search command line history with <CTRL+R>"
 
 # 3.1.2 Terminal emulators
 
 # ----- Installing from source -----
-if ! type st &> /dev/null; then
-	sudo mkdir /usr/local/src/st
-	sudo git clone https://git.suckless.org/st /usr/local/src/st
-	cd /usr/local/src/st
-	sudo git checkout 0.8.2 # 0.8.4 is out but patch is for 0.8.2
-
-	# my font patch
-	sudo wget -L https://raw.githubusercontent.com/yTpo1/dotfiles/master/Scripts/st_font_increase-0.8.2.diff
-	sudo patch config.def.h < st_font_increase-0.8.2.diff
-
-	# Gruvbox patch
-	sudo wget https://st.suckless.org/patches/gruvbox/st-gruvbox-dark-0.8.2.diff
-	sudo patch -ruN -d . < st-gruvbox-dark-0.8.2.diff
-
-	echo Installing ST
-	sudo make clean install
-fi
+#if ! type st &> /dev/null; then
+#	sudo mkdir /usr/local/src/st
+#	sudo git clone https://git.suckless.org/st /usr/local/src/st
+#	cd /usr/local/src/st
+#	sudo git checkout 0.8.2 # 0.8.4 is out but patch is for 0.8.2
+#
+#	# my font patch
+#	sudo wget -L https://raw.githubusercontent.com/yTpo1/dotfiles/master/Scripts/st_font_increase-0.8.2.diff
+#	sudo patch config.def.h < st_font_increase-0.8.2.diff
+#
+#	# Gruvbox patch
+#	sudo wget https://st.suckless.org/patches/gruvbox/st-gruvbox-dark-0.8.2.diff
+#	sudo patch -ruN -d . < st-gruvbox-dark-0.8.2.diff
+#
+#	echo Installing ST
+#	sudo make clean install
+#fi
 
 # 3.1.4 Terminal multiplexers
 install tmux
@@ -250,20 +247,19 @@ install unzip
 
 # 3.3 Development
 # -------- Programming Languages and Environments ------
-if ! type python &> /dev/null; then
-	echo "Installing python"
-	sudo pacman -S python
-
-	echo "Additional install for coc-nvim python ultisnips"
-	python3 -m pip install --user --upgrade pynvim
-fi
-install node "NodeJS"
-install npm "For NodeJS"
-#install yarn "For NodeJS"
-install docker "Virtualization, Sandboxing"
-install docker-compose "an alternate CLI frontend for the Docker Engine"
-install php
-installPacman php-apache
+#if ! type python &> /dev/null; then
+#	echo "Installing python"
+#	sudo pacman -S python
+#
+#	echo "Additional install for coc-nvim python ultisnips"
+#	python3 -m pip install --user --upgrade pynvim
+#fi
+#install node "NodeJS"
+#install npm "For NodeJS"
+#install docker "Virtualization, Sandboxing"
+#install docker-compose "an alternate CLI frontend for the Docker Engine"
+#install php
+#installPacman php-apache
 
 # Java - uninstalled it as I never use it
 #installPacman jre8-openjdk "Java"
@@ -274,9 +270,9 @@ installPacman php-apache
 #installPacman r
 
 # Dot Net
-installPacman dotnet-runtime-6.0
-installPacman dotnet-sdk-6.0
-installPacman aspnet-runtime-6.0
+#installPacman dotnet-runtime-6.0
+#installPacman dotnet-sdk-6.0
+#installPacman aspnet-runtime-6.0
 
 # Entity framework - used to generate EF Core migrations
 # dotnet tool install -g dotnet-ef
@@ -303,7 +299,7 @@ install git
 #install intellij-idea-community-edition "-" idea
 
 # 3.3.9 JSON tools
-install jq
+#install jq
 
 # 3.6 System
 # 3.6.1 Task managers
@@ -311,26 +307,27 @@ install htop
 
 # 3.6.6  Font viewers + Font packages
 # Following fonts were preinstalled on manjaro
-installPacman ttf-bitstream-vera
-installPacman ttf-dejavu
-installPacman ttf-droid
-installPacman ttf-font-icons
-installPacman ttf-inconsolata
-installPacman ttf-indic-otf
-installPacman ttf-liberation
-installPacman ttf-opensans
-installPacman otf-latin-modern # Improved version used in LaTeX
-installPacman otf-latinmodern-math # Improved version used in LaTeX
+#installPacman ttf-bitstream-vera
+#installPacman ttf-dejavu
+#installPacman ttf-droid
+#installPacman ttf-font-icons
+#installPacman ttf-inconsolata
+#installPacman ttf-indic-otf
+#installPacman ttf-liberation
+#installPacman ttf-opensans
+#installPacman otf-latin-modern # Improved version used in LaTeX
+#installPacman otf-latinmodern-math # Improved version used in LaTeX
 
 # 3.6.14 Printer management
-installPacman cups "Printer and printing support"
-installPacman cups-pdf "Printer and printing support"
-install system-config-printer "GTK printer configuration tool and status applet"
+#installPacman cups "Printer and printing support"
+#installPacman cups-pdf "Printer and printing support"
+#install system-config-printer "GTK printer configuration tool and status applet"
 
 # 3.6.17 System management
 install stow "Dotfiles Setup"
 if [ ! -L ~/.zshrc ]; then # -L returns true if the "file" exists and is a symbolic link
-	cd ~/Documents/dotfiles/manjaro-dotfiles/
+	#cd ~/Documents/dotfiles/manjaro-dotfiles/
+	cd ~/Documents/dotfiles-master/Manjaro-dotfiles/
 	pwd
 	if [ -e ~/.zshrc ]; then # -e (returns true if file exists regardless of type
 	    echo "Deleting .zshrc"
@@ -338,6 +335,7 @@ if [ ! -L ~/.zshrc ]; then # -L returns true if the "file" exists and is a symbo
 	fi
 	echo "Stow creating symlinks"
 	stow * -t ~/
+	cd -
 fi
 
 # 4. Documents and texts
@@ -356,37 +354,37 @@ installAUR "https://aur.archlinux.org/visual-studio-code-bin.git" "Microsoft-bra
 # 4.2 Office
 # libreoffice includes:
 # LibreOffice Draw — Vector graphics editor and diagramming tool included in the LibreOffice suite similar to Microsoft Visio.
-install libreoffice-still "Libre Office suite" libreoffice 
-install hunspell "Spell checker and morphological analyzer library and program"
-installPacman hunspell-en_us
-installPacman hunspell-en_gb
-installPacman hyphen "library for high quality hyphenation and justification"
-installPacman hyphen-en
-installPacman libmythes "a simple thesaurus"
-installPacman mythes-en
+#install libreoffice-still "Libre Office suite" libreoffice 
+#install hunspell "Spell checker and morphological analyzer library and program"
+#installPacman hunspell-en_us
+#installPacman hunspell-en_gb
+#installPacman hyphen "library for high quality hyphenation and justification"
+#installPacman hyphen-en
+#installPacman libmythes "a simple thesaurus"
+#installPacman mythes-en
 
 # uninstalled as it didn't work for russian
 #installAURPacman "https://aur.archlinux.org/libreoffice-extension-languagetool.git" "Grammar checking for LibreOffice" libreoffice-extension-languagetool
 
 # 4.2.5 Database tools
-install sqlite "-" sqlite3
+#install sqlite "-" sqlite3
 
-install mariadb # mysql
-installPacman phpmyadmin
+#install mariadb # mysql
+#installPacman phpmyadmin
 
-installPacman postgresql
+#installPacman postgresql
 
 # 4.3 Markup languages
 # 4.3.2 Markdown
 # 4.3.2.3 Markdown editors
-install ghostwriter
+#install ghostwriter
 
 # Uninstalling as I never used it
 #install marker
 #install zettlr
 
 # 4.4 Document Converter
-install pandoc
+#install pandoc
 # latex
 #installPacman texlive-most "contains most TeX Live packages" # error: this package was not found..
 
@@ -421,32 +419,35 @@ install pwgen "Password Generator"
 # 7 Others
 
 # 7.4 Display managers / login manager
-if ! type lightdm &> /dev/null; then
-	echo "Installing lightdm - Login Manager/Display Manager"
-	sudo pacman -S lightdm
-	echo "Installing lightdm Greeter - GUI that prompts the user for credentials"
-	sudo pacman -S lightdm-slick-greeter
-	sudo systemctl enable lightdm
-fi
+#if ! type lightdm &> /dev/null; then
+#	echo "Installing lightdm - Login Manager/Display Manager"
+#	sudo pacman -S lightdm
+#	echo "Installing lightdm Greeter - GUI that prompts the user for credentials"
+#	sudo pacman -S lightdm-slick-greeter
+#	sudo systemctl enable lightdm
+#fi
 
 # 7.5 Desktop environments
 # 7.5.1 Window managers
-installPacman i3-gaps
+#installPacman i3-gaps
+
+# 1.5.4 Taskbars
+#install i3blocks
 
 # 7.5.4 Taskbars
-installAUR "https://aur.archlinux.org/polybar.git" "-" polybar
+#installAUR "https://aur.archlinux.org/polybar.git" "-" polybar
 
 # 7.5.6 Application launchers
 install rofi
 
 # 8 Other
 #install adb "Android debugger"
-install xorg-xbacklight "tool to control screen brightness" xbacklight
+#install xorg-xbacklight "tool to control screen brightness" xbacklight
 
 # ----- Manjaro specific -----
-if [ ! -e /etc/modprobe.d/nobeep.conf ]; then
-	printf "Disable bios *beep* sounds on backspace\n\n"
-	echo nobeep.conf does not exist, creating
-	sudo sh -c "echo 'blacklist pcspkr' > /etc/modprobe.d/nobeep.conf"
-fi
+#if [ ! -e /etc/modprobe.d/nobeep.conf ]; then
+#	printf "Disable bios *beep* sounds on backspace\n\n"
+#	echo nobeep.conf does not exist, creating
+#	sudo sh -c "echo 'blacklist pcspkr' > /etc/modprobe.d/nobeep.conf"
+#fi
 
