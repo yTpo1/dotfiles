@@ -1,0 +1,11 @@
+# Inspiration: https://gist.github.com/pksunkara/988716
+
+[user]
+	name = Nick
+	email = nick_not_real_email@gmail.com
+	username = nick
+[alias]
+    a = add --all
+    cm = commit -m
+    co = checkout # o
+    st = status # s

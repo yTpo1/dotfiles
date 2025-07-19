@@ -1,0 +1,5 @@
+alias t='touch'
+alias c='clear'
+alias g='git'
+alias v='nvim'
+alias ll='ls -la'

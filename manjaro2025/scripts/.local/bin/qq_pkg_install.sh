@@ -66,24 +66,6 @@ printf "$LINE \nInstalling new software packages $LINE\n"
 install fakeroot
 
 # 1 Internet
-#install whois
-# 1.2 VPN Clients
-#if ! type  nordvpn &> /dev/null; then
-#	echo "Installing  NordVPN from AUR"
-#	git clone https://aur.archlinux.org/nordvpn-bin.git ~/Downloads/NordVPN
-#	cd ~/Downloads/NordVPN
-#	makepkg -si
-#
-#	printf "Set up group rights\n"
-#	sudo groupadd -r nordvpn
-#	MYUSERNAME=$(whoami)
-#	printf "I am - %s \n" $MYUSERNAME 
-#	sudo gpasswd -a $MYUSERNAME nordvpn
-#
-#	printf "enabling and starting nordvpn service\n"
-#	sudo systemctl enable nordvpnd.service
-#	sudo systemctl start nordvpnd.service
-#fi
 
 # 1.2 Web Browsers
 install firefox
@@ -94,8 +76,6 @@ install chromium
 #install nginx
 
 # 1.4 File Sharing
-
-# install youtube-dl "ytdl" # old version
 install yt-dlp "ytdl"
 
 
@@ -103,7 +83,6 @@ install yt-dlp "ytdl"
 installPacman python-gpgme # Required for dropbox
 installAUR "https://aur.archlinux.org/dropbox.git" "-" dropbox
 #installAURPacman "https://aur.archlinux.org/thunar-dropbox.git" "Dropbox extension for Thunar" thunar-dropbox
-#installAUR "https://aur.archlinux.org/pcloud-drive.git" "Category: cloud" pcloud
 
 # 1.4.6 BitTorrent clients
 if ! type transmission-remote &> /dev/null; then
@@ -121,10 +100,6 @@ fi
 # 1.5.5 Instant messaging clients
 #install discord
 install telegram-desktop
-#installAUR "https://aur.archlinux.org/teams.git" "Microsoft Teams" teams
-
-# 1.6 News, RSS, and blogs
-#install newsboat "console RSS aggregator"
 
 # 2 Multimedia
 # 2.1 Codecs
@@ -134,43 +109,16 @@ install flac
 # 2.2.4 Raster graphics editors
 install gimp
 
-# 2.2.7 Vector graphics editors
-# Uninstalling as I never used it
-#install inkscape
-
 # 2.2.12 Screenshot
 install flameshot
 
 # 2.3 Audio
-# 2.3.1 Audio systems
-#install pulseaudio
-#install pulseaudio-equalizer # equalizer sink (qpaeq)
-#install pulseaudio-equalizer-ladspa # LADSPA based multiband equalizer for PulseAudio.
-#installAUR "https://aur.archlinux.org/pulseeffects-legacy.git" "-" pulseeffects-legacy
-#install pavucontrol # Simple GTK volume control tool ("mixer") for PulseAudio
-
 # 2.3.2 Audio players
 # 2.3.2.3 
-#install quodlibet
-#install audacious
+install audacious
 
 # 2.3.5 Audio tag editors
 install easytag
-
-# 2.3.7 Audio converters
-#install shntool "WAVE data processing and reporting utility. command tool is shnsplit"
-#installPacman cuetools "cuetools is a set of utilities for working with Cue Sheet (cue) and Table of Contents (toc) files."
-#install sox "Command line utility that can convert various formats of computer audio files into other formats."
-#installAUR "https://aur.archlinux.org/flacon.git" "cue splitting GUI tool" flacon
-#install gpac "multimedia framework for manipulating MPEG-4 media"
-#install mp3splt-gtk "Split mp3 and ogg files without decoding"
-#install mp3splt "Commandline tool for splitting mp3 and ogg files without decoding"
-#installAURPacman "https://aur.archlinux.org/m4b-tool-bin.git" "A command line utility to merge, split and chapterize audiobook files such as mp3, ogg, flac, m4a or m4b" m4b-tool-bin
-
-# 2.3.8. Audio editors
-
-# Uninstalling audacity as I never used it
-#install audacity
 
 # 2.3.9 Digital audio workstations
 #installPacman ardour
@@ -192,10 +140,6 @@ install easytag
 # 2.4.1 Video Players
 install vlc
 
-# Uninsatlled mpv as I never used it
-#install mpv
-
-
 # 3.1 Terminal
 # 3.1.1 Command shells
 #install zsh
@@ -214,25 +158,6 @@ install vlc
 # 3.1.2 Terminal emulators
 install alacritty
 
-# ----- Installing from source -----
-#if ! type st &> /dev/null; then
-#	sudo mkdir /usr/local/src/st
-#	sudo git clone https://git.suckless.org/st /usr/local/src/st
-#	cd /usr/local/src/st
-#	sudo git checkout 0.8.2 # 0.8.4 is out but patch is for 0.8.2
-#
-#	# my font patch
-#	sudo wget -L https://raw.githubusercontent.com/yTpo1/dotfiles/master/Scripts/st_font_increase-0.8.2.diff
-#	sudo patch config.def.h < st_font_increase-0.8.2.diff
-#
-#	# Gruvbox patch
-#	sudo wget https://st.suckless.org/patches/gruvbox/st-gruvbox-dark-0.8.2.diff
-#	sudo patch -ruN -d . < st-gruvbox-dark-0.8.2.diff
-#
-#	echo Installing ST
-#	sudo make clean install
-#fi
-
 # 3.1.4 Terminal multiplexers
 install tmux
 
@@ -245,9 +170,6 @@ installPacman tumbler "Image thumbnail previewer"
 
 # 3.2.3 File synchronization and backup
 install rsync
-
-# 3.2.4 Archiving and compression tools
-install unzip
 
 # 3.3 Development
 # -------- Programming Languages and Environments ------
@@ -296,36 +218,9 @@ install unzip
 # 3.3.2 Version control systems
 install git
 
-# 3.3.4 Integrated development environments
-# 3.3.4.1 Java IDEs
-
-# Uninstalling as I never used it
-#install intellij-idea-community-edition "-" idea
-
-# 3.3.9 JSON tools
-#install jq
-
 # 3.6 System
 # 3.6.1 Task managers
 install htop
-
-# 3.6.6  Font viewers + Font packages
-# Following fonts were preinstalled on manjaro
-#installPacman ttf-bitstream-vera
-#installPacman ttf-dejavu
-#installPacman ttf-droid
-#installPacman ttf-font-icons
-#installPacman ttf-inconsolata
-#installPacman ttf-indic-otf
-#installPacman ttf-liberation
-#installPacman ttf-opensans
-#installPacman otf-latin-modern # Improved version used in LaTeX
-#installPacman otf-latinmodern-math # Improved version used in LaTeX
-
-# 3.6.14 Printer management
-#installPacman cups "Printer and printing support"
-#installPacman cups-pdf "Printer and printing support"
-#install system-config-printer "GTK printer configuration tool and status applet"
 
 # 3.6.17 System management
 #install stow "Dotfiles Setup"
@@ -346,11 +241,11 @@ install htop
 # 4.1 Text Editor
 install vim
 install nvim
-if [ ! -e "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim ]; then
-		echo "Installing Plug - plugin manager for neovim"
-			sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-				       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-fi
+# if [ ! -e "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim ]; then
+# 		echo "Installing Plug - plugin manager for neovim"
+# 			sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+# 				       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# fi
 #install ctags
 #install dos2unix
 

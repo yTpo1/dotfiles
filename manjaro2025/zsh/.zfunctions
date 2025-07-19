@@ -1,0 +1,50 @@
+# ------------------------------------------------------------------------------
+# YouTube downloads
+# ------------------------------------------------------------------------------
+ytdl-mp3() {
+    printf "Enter torrent magnet link (Ctrl+C to exit): \n"
+    while true; do
+        read INPUT
+        yt-dlp --extract-audio --audio-format mp3 "$INPUT"
+    done
+}
+
+
+# ------------------------------------------------------------------------------
+# Torrents - Transmission
+# ------------------------------------------------------------------------------
+
+# List all torrents
+tsm-ls() { 
+	transmission-remote -n $TSM_USR_PASS --list 
+;}
+tsm-ls-top() { tsm-ls | sort -n -r -k1 ;}
+tsm() { tsm-ls-top | tac ;} # bottom
+
+tsm-add() {
+    printf "Enter torrent magnet link (Ctrl+C to exit): \n"
+    while true; do
+        read INPUT
+
+        transmission-remote -n "$TSM_USR_PASS" --add "$INPUT"
+    done
+}
+
+# ------------------------------------------------------------------------------
+# Password generation
+# ------------------------------------------------------------------------------
+# generate password and copy to clipboard
+# $1 is the length of password
+pass-gen() {
+	if [ $# -eq 0 ]
+	  then
+	    echo "No arguments supplied, usage: pass-gen <LEN>"
+	    return 1
+	fi
+
+	local PASS_LEN=$1 ;
+	local PASS_GEN=$(pwgen -y -1 $PASS_LEN) ;
+	echo $PASS_GEN ;
+	printf $PASS_GEN | xclip -selection c
+	echo Copied to clipboard ;
+}
